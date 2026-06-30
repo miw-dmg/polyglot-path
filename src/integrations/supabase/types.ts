@@ -14,7 +14,215 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      courses: {
+        Row: {
+          created_at: string
+          curriculum: Json | null
+          description: string | null
+          duration_hours: number | null
+          format: string
+          id: string
+          image_url: string | null
+          is_featured: boolean | null
+          language: string
+          language_flag: string | null
+          level: string
+          prerequisites: string | null
+          price_cents: number
+          rating: number | null
+          reviews_count: number | null
+          slug: string
+          summary: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          curriculum?: Json | null
+          description?: string | null
+          duration_hours?: number | null
+          format: string
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          language: string
+          language_flag?: string | null
+          level: string
+          prerequisites?: string | null
+          price_cents: number
+          rating?: number | null
+          reviews_count?: number | null
+          slug: string
+          summary?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          curriculum?: Json | null
+          description?: string | null
+          duration_hours?: number | null
+          format?: string
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          language?: string
+          language_flag?: string | null
+          level?: string
+          prerequisites?: string | null
+          price_cents?: number
+          rating?: number | null
+          reviews_count?: number | null
+          slug?: string
+          summary?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      enrollments: {
+        Row: {
+          course_id: string
+          enrolled_at: string
+          id: string
+          progress: number
+          user_id: string
+        }
+        Insert: {
+          course_id: string
+          enrolled_at?: string
+          id?: string
+          progress?: number
+          user_id: string
+        }
+        Update: {
+          course_id?: string
+          enrolled_at?: string
+          id?: string
+          progress?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      newsletter_subscribers: {
+        Row: {
+          email: string
+          id: string
+          subscribed_at: string
+        }
+        Insert: {
+          email: string
+          id?: string
+          subscribed_at?: string
+        }
+        Update: {
+          email?: string
+          id?: string
+          subscribed_at?: string
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          course_id: string
+          course_title: string
+          id: string
+          order_id: string
+          price_cents: number
+          quantity: number
+        }
+        Insert: {
+          course_id: string
+          course_title: string
+          id?: string
+          order_id: string
+          price_cents: number
+          quantity?: number
+        }
+        Update: {
+          course_id?: string
+          course_title?: string
+          id?: string
+          order_id?: string
+          price_cents?: number
+          quantity?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          billing_email: string | null
+          billing_name: string | null
+          created_at: string
+          id: string
+          status: string
+          total_cents: number
+          user_id: string
+        }
+        Insert: {
+          billing_email?: string | null
+          billing_name?: string | null
+          created_at?: string
+          id?: string
+          status?: string
+          total_cents: number
+          user_id: string
+        }
+        Update: {
+          billing_email?: string | null
+          billing_name?: string | null
+          created_at?: string
+          id?: string
+          status?: string
+          total_cents?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
