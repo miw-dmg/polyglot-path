@@ -51,7 +51,7 @@ function Catalogue() {
   }, [courses, search, q]);
 
   function setFilter<K extends keyof typeof search>(key: K, value: (typeof search)[K]) {
-    navigate({ search: (prev) => ({ ...prev, [key]: prev[key] === value ? undefined : value }) });
+    navigate({ search: (prev: typeof search) => ({ ...prev, [key]: prev[key] === value ? undefined : value }) });
   }
 
   return (
