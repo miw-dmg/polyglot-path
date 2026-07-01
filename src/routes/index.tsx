@@ -24,9 +24,11 @@ export const Route = createFileRoute("/")({
 
 const languages = [
   { name: "Français", flag: "🇫🇷", bg: "bg-blue-50" },
+  { name: "Anglais", flag: "🇬🇧", bg: "bg-red-50" },
   { name: "Espagnol", flag: "🇪🇸", bg: "bg-yellow-50" },
-  { name: "Japonais", flag: "🇯🇵", bg: "bg-red-50" },
   { name: "Italien", flag: "🇮🇹", bg: "bg-sage-50" },
+  { name: "Allemand", flag: "🇩🇪", bg: "bg-orange-50" },
+  { name: "Arabe", flag: "🇸🇦", bg: "bg-emerald-50" },
 ];
 
 const steps = [
@@ -97,7 +99,7 @@ function Home() {
               Voir tout le catalogue →
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
             {languages.map((l) => {
               const count = courses.filter((c) => c.language === l.name).length;
               return (

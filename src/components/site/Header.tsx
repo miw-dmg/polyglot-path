@@ -20,6 +20,7 @@ export function Header() {
   }, []);
 
   const links = [
+    { to: "/", label: "Accueil" },
     { to: "/catalogue", label: "Catalogue" },
     { to: "/a-propos", label: "À propos" },
     { to: "/contact", label: "Contact" },
