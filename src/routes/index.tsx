@@ -99,7 +99,7 @@ function Home() {
               Voir tout le catalogue →
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
             {languages.map((l) => {
               const count = courses.filter((c) => c.language === l.name).length;
               return (
