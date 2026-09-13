@@ -22,8 +22,10 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+import coursAnglaisImg from "@/assets/cours-anglais.jpg";
+
 const languages = [
-  { name: "Anglais", flag: "🇬🇧", bg: "bg-red-50" },
+  { name: "Anglais", image: coursAnglaisImg },
 ];
 
 const steps = [
@@ -104,7 +106,7 @@ function Home() {
                   search={{ langue: l.name }}
                   className="group cursor-pointer rounded-2xl border border-sage-50 p-6 text-center transition-all hover:bg-cream-100 hover:shadow-card"
                 >
-                  <div className={`mx-auto mb-4 size-12 rounded-full ${l.bg} grid place-items-center group-hover:scale-110 transition-transform text-2xl`}>{l.flag}</div>
+                  <img src={l.image} alt={`Apprenante suivant un cours d'${l.name.toLowerCase()} en ligne`} width={1024} height={1024} loading="lazy" className="mx-auto mb-4 size-24 rounded-full object-cover ring-2 ring-sage-100 group-hover:scale-105 transition-transform" />
                   <h3 className="font-medium">{l.name}</h3>
                   <p className="text-xs text-muted-foreground">{count} {count > 1 ? "cours disponibles" : "cours disponible"}</p>
                 </Link>

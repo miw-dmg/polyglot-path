@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { courseBySlugQuery, resolveImage, levelLabels, formatLabels } from "@/lib/courses";
+import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 import { useCart, formatPrice } from "@/lib/cart";
 
 export const Route = createFileRoute("/cours/$slug")({
@@ -41,7 +42,7 @@ function CoursePage() {
   const cart = useCart();
   if (!course) return null;
 
-  const img = resolveImage(course.image_url, course.language);
+  const img = resolveImage(course.image_url, course.language) ?? coursAnglaisImg;
   const inCart = cart.items.some((i) => i.courseId === course.id);
 
   function addToCart() {
@@ -69,7 +70,7 @@ function CoursePage() {
         <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_380px]">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
-              {course.language_flag} {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
+              {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
             </div>
             <h1 className="font-serif text-4xl md:text-5xl mb-4">{course.title}</h1>
             <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
@@ -78,9 +79,7 @@ function CoursePage() {
               <span className="inline-flex items-center gap-1"><Award className="h-4 w-4" /> Certificat inclus</span>
             </div>
 
-            {img && (
-              <img src={img} alt={course.title} loading="lazy" className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
-            )}
+            <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
 
             <section className="mb-10">
               <h2 className="font-serif text-2xl mb-4">Description</h2>
