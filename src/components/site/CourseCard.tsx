@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { type Course, resolveImage, levelLabels, formatLabels } from "@/lib/courses";
+import { type Course, courseImage, levelLabels, formatLabels } from "@/lib/courses";
 import { formatPrice } from "@/lib/cart";
 import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 
 export function CourseCard({ course }: { course: Course }) {
-  const img = resolveImage(course.image_url, course.language) ?? coursAnglaisImg;
+  const img = courseImage(course) ?? coursAnglaisImg;
   return (
     <Link
       to="/cours/$slug"

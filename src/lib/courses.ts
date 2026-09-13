@@ -3,6 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 import courseItalianImg from "@/assets/course-italian.jpg";
 import courseJapaneseImg from "@/assets/course-japanese.jpg";
 import courseSpanishImg from "@/assets/course-spanish.jpg";
+import coursAnglaisImg from "@/assets/cours-anglais.jpg";
+import coursConversationImg from "@/assets/cours-conversation.jpg";
+import coursAffairesImg from "@/assets/cours-affaires.jpg";
 
 export type Course = {
   id: string;
@@ -29,6 +32,15 @@ const imageMap: Record<string, string> = {
   "/src/assets/course-japanese.jpg": courseJapaneseImg,
   "/src/assets/course-spanish.jpg": courseSpanishImg,
 };
+
+export function courseImage(course: { slug: string; image_url: string | null; language: string }): string | null {
+  const resolved = resolveImage(course.image_url, course.language);
+  if (resolved) return resolved;
+  if (course.slug.includes("conversation")) return coursConversationImg;
+  if (course.slug.includes("affaires")) return coursAffairesImg;
+  if (course.language === "Anglais") return coursAnglaisImg;
+  return null;
+}
 
 export function resolveImage(url: string | null, language: string): string | null {
   if (!url) {
