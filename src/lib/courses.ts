@@ -30,6 +30,15 @@ const imageMap: Record<string, string> = {
   "/src/assets/course-spanish.jpg": courseSpanishImg,
 };
 
+export function courseImage(course: { slug: string; image_url: string | null; language: string }): string | null {
+  const resolved = resolveImage(course.image_url, course.language);
+  if (resolved) return resolved;
+  if (course.slug.includes("conversation")) return coursConversationImg;
+  if (course.slug.includes("affaires")) return coursAffairesImg;
+  if (course.language === "Anglais") return coursAnglaisImg;
+  return null;
+}
+
 export function resolveImage(url: string | null, language: string): string | null {
   if (!url) {
     // language fallback
