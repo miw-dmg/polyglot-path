@@ -70,7 +70,7 @@ function CoursePage() {
         <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_380px]">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
-              {course.language_flag} {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
+              {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
             </div>
             <h1 className="font-serif text-4xl md:text-5xl mb-4">{course.title}</h1>
             <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
