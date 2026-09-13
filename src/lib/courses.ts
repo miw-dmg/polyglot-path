@@ -3,6 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 import courseItalianImg from "@/assets/course-italian.jpg";
 import courseJapaneseImg from "@/assets/course-japanese.jpg";
 import courseSpanishImg from "@/assets/course-spanish.jpg";
+import coursAnglaisImg from "@/assets/cours-anglais.jpg";
+import coursConversationImg from "@/assets/cours-conversation.jpg";
+import coursAffairesImg from "@/assets/cours-affaires.jpg";
 
 export type Course = {
   id: string;
