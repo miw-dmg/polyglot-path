@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { courseBySlugQuery, resolveImage, levelLabels, formatLabels } from "@/lib/courses";
+import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 import { useCart, formatPrice } from "@/lib/cart";
 
 export const Route = createFileRoute("/cours/$slug")({
@@ -79,7 +80,6 @@ function CoursePage() {
             </div>
 
             <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
-            )}
 
             <section className="mb-10">
               <h2 className="font-serif text-2xl mb-4">Description</h2>
