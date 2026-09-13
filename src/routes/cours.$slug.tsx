@@ -41,7 +41,7 @@ function CoursePage() {
   const cart = useCart();
   if (!course) return null;
 
-  const img = resolveImage(course.image_url, course.language);
+  const img = resolveImage(course.image_url, course.language) ?? coursAnglaisImg;
   const inCart = cart.items.some((i) => i.courseId === course.id);
 
   function addToCart() {
@@ -78,8 +78,7 @@ function CoursePage() {
               <span className="inline-flex items-center gap-1"><Award className="h-4 w-4" /> Certificat inclus</span>
             </div>
 
-            {img && (
-              <img src={img} alt={course.title} loading="lazy" className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
+            <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
             )}
 
             <section className="mb-10">
