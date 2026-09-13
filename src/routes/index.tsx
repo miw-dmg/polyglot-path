@@ -154,6 +154,23 @@ function Home() {
         </div>
       </section>
 
+      {/* CPF */}
+      <section className="py-16 bg-white">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="flex flex-col items-center gap-6 rounded-3xl bg-sage-50/70 p-8 text-center md:flex-row md:text-left">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sage-600 text-white">
+              <Wallet className="h-6 w-6" />
+            </div>
+            <div>
+              <h2 className="font-serif text-2xl mb-2">Financement CPF accepté en France</h2>
+              <p className="text-sage-900/70 leading-relaxed">
+                Nos parcours certifiants sont éligibles au Compte Personnel de Formation (CPF). Vous pouvez utiliser vos heures CPF pour financer tout ou partie de votre formation. Notre équipe vous accompagne pas à pas dans la constitution de votre dossier.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-6">
