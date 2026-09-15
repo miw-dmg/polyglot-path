@@ -24,7 +24,7 @@ function About() {
           Linguist est née d'une conviction simple : apprendre une langue ne devrait jamais être ennuyeux. C'est une rencontre — avec une culture, une manière de penser, des gens.
         </p>
         <p className="text-sage-900/80 leading-relaxed mb-6">
-          Nos cours sont conçus par des linguistes passionnés et des locuteurs natifs certifiés. Vidéos haute fidélité, sessions live en petit groupe, accompagnement personnalisé : nous combinons les meilleures méthodes pédagogiques pour vous faire progresser durablement.
+          Nos cours sont conçus par des linguistes passionnés et des locuteurs natifs certifiés. Toutes nos formations se déroulent en sessions live en petit groupe, à réserver selon vos disponibilités, avec un accompagnement personnalisé pour vous faire progresser durablement.
         </p>
 
         <div className="grid gap-6 sm:grid-cols-3 my-12">
