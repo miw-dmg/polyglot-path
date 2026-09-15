@@ -76,7 +76,7 @@ function Catalogue() {
                 <input
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
-                  placeholder="Italien, japonais..."
+                  placeholder="Anglais, business..."
                   className="w-full rounded-lg border border-sage-100 bg-white pl-9 pr-3 py-2 text-sm focus:border-sage-600 focus:outline-none"
                 />
               </div>
