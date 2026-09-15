@@ -10,10 +10,10 @@ import heroImg from "@/assets/hero-study.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Linguist — Cours de langues en ligne, vidéos et live" },
-      { name: "description", content: "Apprenez une nouvelle langue avec des cours vidéo structurés, des sessions en direct et un accompagnement personnalisé. Italien, japonais, espagnol, français et plus." },
-      { property: "og:title", content: "Linguist — Cours de langues en ligne" },
-      { property: "og:description", content: "Apprenez une nouvelle langue avec assurance. Vidéos, sessions live, abonnements." },
+      { title: "Linguist — Cours d'anglais en direct, sessions à réserver" },
+      { name: "description", content: "Apprenez l'anglais avec des sessions en direct à réserver selon vos disponibilités : conversation, anglais des affaires et préparation certifiante TOEFL." },
+      { property: "og:title", content: "Linguist — Cours d'anglais en direct" },
+      { property: "og:description", content: "Apprenez l'anglais avec assurance. Sessions en direct avec des professeurs certifiés, à réserver en ligne." },
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(coursesQuery()),
@@ -29,16 +29,16 @@ const languages = [
 ];
 
 const steps = [
-  { icon: Sparkles, title: "Choisissez votre langue", text: "Parcourez notre catalogue et trouvez le cours adapté à votre niveau et vos objectifs." },
-  { icon: BookOpen, title: "Apprenez à votre rythme", text: "Accédez aux vidéos en ligne 24/7 ou rejoignez nos sessions live hebdomadaires." },
+  { icon: Sparkles, title: "Choisissez votre parcours", text: "Parcourez notre catalogue et trouvez le cours adapté à votre niveau et vos objectifs." },
+  { icon: BookOpen, title: "Réservez vos sessions en direct", text: "Choisissez les créneaux qui vous conviennent et rejoignez votre professeur en visioconférence." },
   { icon: Users, title: "Pratiquez avec des natifs", text: "Échangez avec nos professeurs certifiés et progressez en conversation réelle." },
   { icon: CheckCircle2, title: "Mesurez vos progrès", text: "Suivez votre progression dans votre espace personnel et obtenez vos certificats." },
 ];
 
 const testimonials = [
-  { name: "Clara D.", quote: "Une approche radicalement différente. Je ne me suis jamais sentie aussi à l'aise en italien après seulement 3 mois.", course: "Italien des Affaires" },
-  { name: "Julien R.", quote: "Les vidéos sont magnifiques et le contenu très structuré. On sent l'amour pour la langue à chaque étape.", course: "Japonais Fondations" },
-  { name: "Sarah W.", quote: "Le format abonnement est parfait pour mon rythme. Je pratique 20 minutes par jour et je progresse vite.", course: "Espagnol Masterclass" },
+  { name: "Clara D.", quote: "Une approche radicalement différente. Les sessions en direct m'ont permis de prendre la parole en anglais sans stress.", course: "Anglais Conversationnel" },
+  { name: "Julien R.", quote: "Pouvoir réserver mes créneaux selon mon agenda a tout changé. Le contenu est très structuré et concret.", course: "Business English" },
+  { name: "Sarah W.", quote: "Grâce aux sessions live et au suivi personnalisé, j'ai atteint mon objectif de score en quelques mois.", course: "Parcours certifiant TOEFL" },
 ];
 
 function Home() {
@@ -61,7 +61,7 @@ function Home() {
                 Maîtrisez une nouvelle langue avec <span className="italic">assurance</span>.
               </h1>
               <p className="mb-8 text-lg text-sage-900/70 leading-relaxed">
-                Des cours vidéo structurés, des sessions en direct et un accompagnement personnalisé pour transformer votre apprentissage en réussite.
+                Des sessions en direct avec des professeurs certifiés, à réserver selon vos disponibilités, pour transformer votre apprentissage en réussite.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/catalogue" className="rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft hover:-translate-y-0.5 transition-all">
