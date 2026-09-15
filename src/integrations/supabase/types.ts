@@ -223,9 +223,90 @@ export type Database = {
         }
         Relationships: []
       }
+      session_bookings: {
+        Row: {
+          created_at: string
+          id: string
+          session_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          session_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          session_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "session_bookings_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sessions: {
+        Row: {
+          capacity: number
+          course_id: string
+          created_at: string
+          duration_minutes: number
+          id: string
+          meeting_url: string | null
+          starts_at: string
+        }
+        Insert: {
+          capacity?: number
+          course_id: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          meeting_url?: string | null
+          starts_at: string
+        }
+        Update: {
+          capacity?: number
+          course_id?: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          meeting_url?: string | null
+          starts_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sessions_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
-      [_ in never]: never
+      session_booking_counts: {
+        Row: {
+          booked_count: number | null
+          session_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "session_bookings_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       [_ in never]: never
