@@ -6,7 +6,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { formatPrice } from "@/lib/cart";
-import { resolveImage } from "@/lib/courses";
+import { courseImage } from "@/lib/courses";
 
 export const Route = createFileRoute("/_authenticated/compte")({
   head: () => ({ meta: [{ title: "Mon compte — Linguist" }] }),
@@ -103,7 +103,7 @@ function Account() {
               <div className="grid gap-4 md:grid-cols-2">
                 {enrollments.map((e) => {
                   if (!e.courses) return null;
-                  const img = resolveImage(e.courses.image_url, e.courses.language);
+                  const img = courseImage(e.courses);
                   return (
                     <div key={e.id} className="rounded-2xl border border-sage-100 bg-cream-100/40 p-4">
                       <div className="flex gap-4 mb-3">
