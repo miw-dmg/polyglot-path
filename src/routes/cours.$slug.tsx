@@ -4,7 +4,7 @@ import { Star, Clock, Award, CheckCircle2, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { courseBySlugQuery, resolveImage, levelLabels, formatLabels } from "@/lib/courses";
+import { courseBySlugQuery, courseImage, levelLabels, formatLabels } from "@/lib/courses";
 import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 import { useCart, formatPrice } from "@/lib/cart";
 
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/cours/$slug")({
       { name: "description", content: loaderData.summary ?? loaderData.description ?? "" },
       { property: "og:title", content: loaderData.title },
       { property: "og:description", content: loaderData.summary ?? "" },
-      ...(resolveImage(loaderData.image_url, loaderData.language) ? [{ property: "og:image", content: resolveImage(loaderData.image_url, loaderData.language)! }] : []),
+      ...(courseImage(loaderData) ? [{ property: "og:image", content: courseImage(loaderData)! }] : []),
     ] : [],
   }),
   errorComponent: ({ error }) => <div className="p-8">{error.message}</div>,
@@ -42,7 +42,7 @@ function CoursePage() {
   const cart = useCart();
   if (!course) return null;
 
-  const img = resolveImage(course.image_url, course.language) ?? coursAnglaisImg;
+  const img = courseImage(course) ?? coursAnglaisImg;
   const inCart = cart.items.some((i) => i.courseId === course.id);
 
   function addToCart() {
