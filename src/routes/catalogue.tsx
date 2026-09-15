@@ -12,7 +12,7 @@ import { coursesQuery, levelLabels, formatLabels, type Course } from "@/lib/cour
 const searchSchema = z.object({
   langue: fallback(z.string().optional(), undefined),
   niveau: fallback(z.enum(["debutant", "intermediaire", "avance"]).optional(), undefined),
-  format: fallback(z.enum(["video", "live", "abonnement"]).optional(), undefined),
+  format: fallback(z.literal("live").optional(), undefined),
   q: fallback(z.string().optional(), undefined),
 });
 
@@ -21,9 +21,9 @@ export const Route = createFileRoute("/catalogue")({
   head: () => ({
     meta: [
       { title: "Catalogue de cours — Linguist" },
-      { name: "description", content: "Parcourez tous nos cours de langues : vidéos, sessions live et abonnements. Filtrez par langue, niveau et format." },
+      { name: "description", content: "Parcourez tous nos cours d'anglais en direct : sessions à réserver, filtrables par langue et niveau." },
       { property: "og:title", content: "Catalogue de cours — Linguist" },
-      { property: "og:description", content: "Parcourez tous nos cours de langues filtrables par langue, niveau et format." },
+      { property: "og:description", content: "Parcourez tous nos cours en direct, filtrables par langue et niveau." },
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(coursesQuery()),
@@ -76,7 +76,7 @@ function Catalogue() {
                 <input
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
-                  placeholder="Italien, japonais..."
+                  placeholder="Anglais, business..."
                   className="w-full rounded-lg border border-sage-100 bg-white pl-9 pr-3 py-2 text-sm focus:border-sage-600 focus:outline-none"
                 />
               </div>
@@ -95,7 +95,7 @@ function Catalogue() {
             </FilterGroup>
 
             <FilterGroup label="Format">
-              {(["video", "live", "abonnement"] as const).map((f) => (
+              {(["live"] as const).map((f) => (
                 <FilterChip key={f} active={search.format === f} onClick={() => setFilter("format", f)}>{formatLabels[f]}</FilterChip>
               ))}
             </FilterGroup>
