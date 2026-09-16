@@ -63,7 +63,7 @@ export function useCart() {
 
   const totalCents = items.reduce((sum, i) => sum + i.priceCents, 0);
 
-  return { items, add, remove, clear, totalCents, count: items.length };
+  return { items, add, remove, clear, setSession, totalCents, count: items.length };
 }
 
 export function formatPrice(cents: number) {
