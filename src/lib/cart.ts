@@ -8,6 +8,8 @@ export type CartItem = {
   imageUrl: string | null;
   language: string;
   format: string;
+  sessionId?: string | null;
+  sessionStartsAt?: string | null;
 };
 
 const KEY = "linguist_cart_v1";
@@ -51,6 +53,10 @@ export function useCart() {
 
   const remove = useCallback((courseId: string) => {
     write(read().filter((c) => c.courseId !== courseId));
+  }, []);
+
+  const setSession = useCallback((courseId: string, sessionId: string | null, sessionStartsAt: string | null) => {
+    write(read().map((c) => (c.courseId === courseId ? { ...c, sessionId, sessionStartsAt } : c)));
   }, []);
 
   const clear = useCallback(() => write([]), []);
