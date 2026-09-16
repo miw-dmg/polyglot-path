@@ -1,16 +1,25 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
-import { CreditCard, Lock } from "lucide-react";
+import { CreditCard, Lock, CheckCircle2 } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Stepper } from "@/routes/panier";
-import { useCart, formatPrice } from "@/lib/cart";
+import { useCart, formatPrice, type CartItem } from "@/lib/cart";
+import { formatSessionDate } from "@/lib/sessions";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/_authenticated/checkout")({
-  head: () => ({ meta: [{ title: "Paiement — Linguist" }] }),
+export const Route = createFileRoute("/checkout")({
+  ssr: false,
+  head: () => ({
+    meta: [
+      { title: "Paiement — Linguist" },
+      { name: "description", content: "Réglez votre commande de sessions d'anglais en direct, sans créer de compte." },
+      { property: "og:title", content: "Paiement — Linguist" },
+      { property: "og:description", content: "Paiement rapide, sans inscription." },
+    ],
+  }),
   component: Checkout,
 });
 
@@ -21,12 +30,51 @@ const billingSchema = z.object({
 
 function Checkout() {
   const cart = useCart();
-  const navigate = useNavigate();
-  const { user } = Route.useRouteContext();
   const [step, setStep] = useState<2 | 3>(2);
-  const [billing, setBilling] = useState({ name: "", email: user.email ?? "" });
+  const [billing, setBilling] = useState({ name: "", email: "" });
   const [card, setCard] = useState({ number: "", expiry: "", cvc: "" });
   const [loading, setLoading] = useState(false);
+  const [confirmed, setConfirmed] = useState<{ items: CartItem[]; totalCents: number; email: string } | null>(null);
+
+  if (confirmed) {
+    return (
+      <div className="min-h-screen bg-cream-100 text-sage-900">
+        <Header />
+        <div className="mx-auto max-w-2xl px-6 py-20">
+          <div className="rounded-2xl bg-white p-10 ring-1 ring-sage-100">
+            <CheckCircle2 className="h-10 w-10 text-sage-600" />
+            <h1 className="mt-4 font-serif text-3xl">Commande confirmée</h1>
+            <p className="mt-2 text-muted-foreground">
+              Un récapitulatif et les liens de visioconférence ont été associés à {confirmed.email}.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {confirmed.items.map((i) => (
+                <li key={i.courseId} className="rounded-lg bg-sage-50 p-4">
+                  <div className="font-semibold">{i.title}</div>
+                  {i.sessionStartsAt && (
+                    <div className="text-sm text-muted-foreground">{formatSessionDate(i.sessionStartsAt)}</div>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 flex justify-between border-t border-sage-100 pt-4">
+              <span className="font-semibold">Total réglé</span>
+              <span className="font-serif text-2xl font-bold text-sage-600">{formatPrice(confirmed.totalCents)}</span>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/catalogue" className="rounded-lg bg-sage-600 px-6 py-3 font-semibold text-white hover:bg-sage-900">
+                Voir d'autres cours
+              </Link>
+              <Link to="/auth" search={{ mode: "signup", redirect: "/compte" }} className="rounded-lg border border-sage-100 px-6 py-3 font-semibold hover:bg-sage-50">
+                Créer un compte pour suivre mes sessions
+              </Link>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (cart.items.length === 0 && !loading) {
     return (
@@ -43,12 +91,16 @@ function Checkout() {
   async function pay(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    // Simulated payment — record the order
+    const items = cart.items;
+    const total = cart.totalCents;
+    const { data: { user } } = await supabase.auth.getUser();
+
     const { data: order, error } = await supabase
       .from("orders")
       .insert({
-        user_id: user.id,
-        total_cents: cart.totalCents,
+        user_id: user?.id ?? null,
+        guest_email: user ? null : billing.email,
+        total_cents: total,
         status: "completed",
         billing_name: billing.name,
         billing_email: billing.email,
@@ -57,23 +109,39 @@ function Checkout() {
       .single();
     if (error || !order) { setLoading(false); return toast.error("Erreur de commande"); }
 
-    const items = cart.items.map((i) => ({
-      order_id: order.id,
-      course_id: i.courseId,
-      course_title: i.title,
-      price_cents: i.priceCents,
-      quantity: 1,
-    }));
-    await supabase.from("order_items").insert(items);
+    await supabase.from("order_items").insert(
+      items.map((i) => ({
+        order_id: order.id,
+        course_id: i.courseId,
+        course_title: i.title,
+        price_cents: i.priceCents,
+        quantity: 1,
+      })),
+    );
 
-    // Create enrollments
-    const enrollments = cart.items.map((i) => ({ user_id: user.id, course_id: i.courseId, progress: 0 }));
-    await supabase.from("enrollments").upsert(enrollments, { onConflict: "user_id,course_id" });
+    if (user) {
+      await supabase
+        .from("enrollments")
+        .upsert(items.map((i) => ({ user_id: user.id, course_id: i.courseId, progress: 0 })), { onConflict: "user_id,course_id" });
+    }
+
+    const bookings = items
+      .filter((i) => !!i.sessionId)
+      .map((i) => ({
+        session_id: i.sessionId as string,
+        user_id: user?.id ?? null,
+        guest_email: user ? null : billing.email,
+        order_id: order.id,
+      }));
+    if (bookings.length > 0) {
+      const { error: bookingError } = await supabase.from("session_bookings").insert(bookings);
+      if (bookingError) toast.error("Créneau non réservé : " + bookingError.message);
+    }
 
     cart.clear();
     setLoading(false);
-    toast.success("Paiement validé ! Bon apprentissage.");
-    navigate({ to: "/compte" });
+    setConfirmed({ items, totalCents: total, email: billing.email });
+    toast.success("Paiement validé. Bon apprentissage.");
   }
 
   function goToPayment(e: React.FormEvent) {
@@ -89,13 +157,13 @@ function Checkout() {
 
       <div className="mx-auto max-w-5xl px-6 py-16">
         <h1 className="font-serif text-4xl mb-2">{step === 2 ? "Vos informations" : "Paiement"}</h1>
-        <p className="text-muted-foreground mb-8">Étape {step} sur 3</p>
+        <p className="text-muted-foreground mb-8">Étape {step} sur 3 · aucun compte nécessaire</p>
         <Stepper step={step} />
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_360px]">
           {step === 2 ? (
             <form onSubmit={goToPayment} className="space-y-5 rounded-2xl bg-white p-8 ring-1 ring-sage-100">
-              <h2 className="font-serif text-xl">Adresse de facturation</h2>
+              <h2 className="font-serif text-xl">Vos coordonnées</h2>
               <div>
                 <label className="text-sm font-medium block mb-1.5">Nom complet</label>
                 <input value={billing.name} onChange={(e) => setBilling({ ...billing, name: e.target.value })} required className="w-full rounded-lg border border-sage-100 px-4 py-2.5 focus:border-sage-600 focus:outline-none" />
@@ -103,6 +171,7 @@ function Checkout() {
               <div>
                 <label className="text-sm font-medium block mb-1.5">Email</label>
                 <input type="email" required value={billing.email} onChange={(e) => setBilling({ ...billing, email: e.target.value })} className="w-full rounded-lg border border-sage-100 px-4 py-2.5 focus:border-sage-600 focus:outline-none" />
+                <p className="mt-1.5 text-xs text-muted-foreground">Nous y envoyons votre facture et vos liens de visioconférence.</p>
               </div>
               <button className="w-full sm:w-auto rounded-lg bg-sage-600 px-6 py-3 font-semibold text-white hover:bg-sage-900 transition-colors">
                 Passer au paiement
@@ -141,9 +210,14 @@ function Checkout() {
             <h2 className="font-serif text-xl mb-4">Récapitulatif</h2>
             <div className="space-y-3 mb-4 pb-4 border-b border-sage-100">
               {cart.items.map((i) => (
-                <div key={i.courseId} className="flex justify-between text-sm">
-                  <span className="line-clamp-1 pr-2">{i.title}</span>
-                  <span className="font-medium shrink-0">{formatPrice(i.priceCents)}</span>
+                <div key={i.courseId} className="text-sm">
+                  <div className="flex justify-between">
+                    <span className="line-clamp-1 pr-2">{i.title}</span>
+                    <span className="font-medium shrink-0">{formatPrice(i.priceCents)}</span>
+                  </div>
+                  {i.sessionStartsAt && (
+                    <div className="text-xs text-muted-foreground">{formatSessionDate(i.sessionStartsAt)}</div>
+                  )}
                 </div>
               ))}
             </div>
