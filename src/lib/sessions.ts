@@ -47,7 +47,9 @@ export function courseSessionsQuery(courseId: string) {
           .from("session_booking_counts")
           .select("session_id, booked_count")
           .in("session_id", ids);
-        for (const row of c ?? []) counts[row.session_id] = row.booked_count;
+        for (const row of c ?? []) {
+          if (row.session_id) counts[row.session_id] = row.booked_count ?? 0;
+        }
       }
 
       const myBookings: Record<string, string> = {};

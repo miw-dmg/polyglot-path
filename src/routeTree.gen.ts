@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PanierRouteImport } from './routes/panier'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AProposRouteImport } from './routes/a-propos'
@@ -18,7 +19,6 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursSlugRouteImport } from './routes/cours.$slug'
 import { Route as AuthenticatedCompteRouteImport } from './routes/_authenticated/compte'
-import { Route as AuthenticatedCheckoutRouteImport } from './routes/_authenticated/checkout'
 
 const PanierRoute = PanierRouteImport.update({
   id: '/panier',
@@ -28,6 +28,11 @@ const PanierRoute = PanierRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CatalogueRoute = CatalogueRouteImport.update({
@@ -64,20 +69,15 @@ const AuthenticatedCompteRoute = AuthenticatedCompteRouteImport.update({
   path: '/compte',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedCheckoutRoute = AuthenticatedCheckoutRouteImport.update({
-  id: '/checkout',
-  path: '/checkout',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
-  '/checkout': typeof AuthenticatedCheckoutRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
 }
@@ -86,9 +86,9 @@ export interface FileRoutesByTo {
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
-  '/checkout': typeof AuthenticatedCheckoutRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
 }
@@ -99,9 +99,9 @@ export interface FileRoutesById {
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
+  '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
-  '/_authenticated/checkout': typeof AuthenticatedCheckoutRoute
   '/_authenticated/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
 }
@@ -112,9 +112,9 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/auth'
     | '/catalogue'
+    | '/checkout'
     | '/contact'
     | '/panier'
-    | '/checkout'
     | '/compte'
     | '/cours/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -123,9 +123,9 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/auth'
     | '/catalogue'
+    | '/checkout'
     | '/contact'
     | '/panier'
-    | '/checkout'
     | '/compte'
     | '/cours/$slug'
   id:
@@ -135,9 +135,9 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/auth'
     | '/catalogue'
+    | '/checkout'
     | '/contact'
     | '/panier'
-    | '/_authenticated/checkout'
     | '/_authenticated/compte'
     | '/cours/$slug'
   fileRoutesById: FileRoutesById
@@ -148,6 +148,7 @@ export interface RootRouteChildren {
   AProposRoute: typeof AProposRoute
   AuthRoute: typeof AuthRoute
   CatalogueRoute: typeof CatalogueRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   PanierRoute: typeof PanierRoute
   CoursSlugRoute: typeof CoursSlugRoute
@@ -167,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/catalogue': {
@@ -218,23 +226,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCompteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/checkout': {
-      id: '/_authenticated/checkout'
-      path: '/checkout'
-      fullPath: '/checkout'
-      preLoaderRoute: typeof AuthenticatedCheckoutRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedCheckoutRoute: typeof AuthenticatedCheckoutRoute
   AuthenticatedCompteRoute: typeof AuthenticatedCompteRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedCheckoutRoute: AuthenticatedCheckoutRoute,
   AuthenticatedCompteRoute: AuthenticatedCompteRoute,
 }
 
@@ -247,6 +246,7 @@ const rootRouteChildren: RootRouteChildren = {
   AProposRoute: AProposRoute,
   AuthRoute: AuthRoute,
   CatalogueRoute: CatalogueRoute,
+  CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   PanierRoute: PanierRoute,
   CoursSlugRoute: CoursSlugRoute,

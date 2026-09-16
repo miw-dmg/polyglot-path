@@ -174,28 +174,31 @@ export type Database = {
           billing_email: string | null
           billing_name: string | null
           created_at: string
+          guest_email: string | null
           id: string
           status: string
           total_cents: number
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           billing_email?: string | null
           billing_name?: string | null
           created_at?: string
+          guest_email?: string | null
           id?: string
           status?: string
           total_cents: number
-          user_id: string
+          user_id?: string | null
         }
         Update: {
           billing_email?: string | null
           billing_name?: string | null
           created_at?: string
+          guest_email?: string | null
           id?: string
           status?: string
           total_cents?: number
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -226,23 +229,36 @@ export type Database = {
       session_bookings: {
         Row: {
           created_at: string
+          guest_email: string | null
           id: string
+          order_id: string | null
           session_id: string
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
+          guest_email?: string | null
           id?: string
+          order_id?: string | null
           session_id: string
-          user_id: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
+          guest_email?: string | null
           id?: string
+          order_id?: string | null
           session_id?: string
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "session_bookings_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "session_bookings_session_id_fkey"
             columns: ["session_id"]
