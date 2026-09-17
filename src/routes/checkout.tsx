@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -31,6 +32,7 @@ const billingSchema = z.object({
 
 function Checkout() {
   const cart = useCart();
+  const placeGuestOrder = useServerFn(createGuestOrder);
   const [step, setStep] = useState<2 | 3>(2);
   const [billing, setBilling] = useState({ name: "", email: "" });
   const [card, setCard] = useState({ number: "", expiry: "", cvc: "" });
