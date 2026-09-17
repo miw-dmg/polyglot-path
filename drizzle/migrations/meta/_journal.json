@@ -15,6 +15,13 @@
       "when": 1789555269307,
       "tag": "0001_guest_checkout_and_bookings",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789626292668,
+      "tag": "0002_revoke_anon_order_inserts",
+      "breakpoints": true
     }
   ]
 }
