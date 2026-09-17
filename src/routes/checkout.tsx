@@ -95,47 +95,55 @@ function Checkout() {
     const total = cart.totalCents;
     const { data: { user } } = await supabase.auth.getUser();
 
-    const { data: order, error } = await supabase
-      .from("orders")
-      .insert({
-        user_id: user?.id ?? null,
-        guest_email: user ? null : billing.email,
-        total_cents: total,
-        status: "completed",
-        billing_name: billing.name,
-        billing_email: billing.email,
-      })
-      .select()
-      .single();
-    if (error || !order) { setLoading(false); return toast.error("Erreur de commande"); }
-
-    await supabase.from("order_items").insert(
-      items.map((i) => ({
-        order_id: order.id,
-        course_id: i.courseId,
-        course_title: i.title,
-        price_cents: i.priceCents,
-        quantity: 1,
-      })),
-    );
-
     if (user) {
+      const { data: order, error } = await supabase
+        .from("orders")
+        .insert({
+          user_id: user.id,
+          total_cents: total,
+          status: "completed",
+          billing_name: billing.name,
+          billing_email: billing.email,
+        })
+        .select()
+        .single();
+      if (error || !order) { setLoading(false); return toast.error("Erreur de commande"); }
+
+      await supabase.from("order_items").insert(
+        items.map((i) => ({
+          order_id: order.id,
+          course_id: i.courseId,
+          course_title: i.title,
+          price_cents: i.priceCents,
+          quantity: 1,
+        })),
+      );
+
       await supabase
         .from("enrollments")
         .upsert(items.map((i) => ({ user_id: user.id, course_id: i.courseId, progress: 0 })), { onConflict: "user_id,course_id" });
-    }
 
-    const bookings = items
-      .filter((i) => !!i.sessionId)
-      .map((i) => ({
-        session_id: i.sessionId as string,
-        user_id: user?.id ?? null,
-        guest_email: user ? null : billing.email,
-        order_id: order.id,
-      }));
-    if (bookings.length > 0) {
-      const { error: bookingError } = await supabase.from("session_bookings").insert(bookings);
-      if (bookingError) toast.error("Créneau non réservé : " + bookingError.message);
+      const bookings = items
+        .filter((i) => !!i.sessionId)
+        .map((i) => ({ session_id: i.sessionId as string, user_id: user.id, order_id: order.id }));
+      if (bookings.length > 0) {
+        const { error: bookingError } = await supabase.from("session_bookings").insert(bookings);
+        if (bookingError) toast.error("Créneau non réservé : " + bookingError.message);
+      }
+    } else {
+      try {
+        const result = await placeGuestOrder({
+          data: {
+            name: billing.name,
+            email: billing.email,
+            items: items.map((i) => ({ courseId: i.courseId, sessionId: i.sessionId ?? null })),
+          },
+        });
+        if (result.warning) toast.warning(result.warning);
+      } catch (err) {
+        setLoading(false);
+        return toast.error(err instanceof Error ? err.message : "Erreur de commande");
+      }
     }
 
     cart.clear();
