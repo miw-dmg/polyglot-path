@@ -9,6 +9,7 @@ import { Stepper } from "@/routes/panier";
 import { useCart, formatPrice, type CartItem } from "@/lib/cart";
 import { formatSessionDate } from "@/lib/sessions";
 import { supabase } from "@/integrations/supabase/client";
+import { createGuestOrder } from "@/lib/orders.functions";
 
 export const Route = createFileRoute("/checkout")({
   ssr: false,
