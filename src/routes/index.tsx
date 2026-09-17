@@ -58,7 +58,7 @@ function Home() {
                 Apprentissage immersif
               </span>
               <h1 className="mb-6 font-serif text-5xl leading-[1.1] md:text-6xl">
-                Maîtrisez une l'Anglais avec <span className="italic">assurance</span>.
+                Maîtrisez l'Anglais avec <span className="italic">assurance</span>.
               </h1>
               <p className="mb-8 text-lg text-sage-900/70 leading-relaxed">
                 Des sessions en direct avec des professeurs certifiés, à réserver selon vos disponibilités, pour transformer votre apprentissage en réussite.
