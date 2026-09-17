@@ -31,7 +31,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <div className="flex items-center gap-8">
           <Link to="/" className="font-serif text-2xl font-bold tracking-tight text-sage-600 underline decoration-sage-100 underline-offset-4">
-            Linguist.
+            Polylinguist.
           </Link>
           <div className="hidden gap-6 md:flex">
             {links.map((l) => (
