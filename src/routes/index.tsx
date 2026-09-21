@@ -71,7 +71,7 @@ function Home() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/catalogue" className="rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft hover:-translate-y-0.5 transition-all">
-                  Découvrir le catalogue
+                  Je réserve en ligne
                 </Link>
                 <a href="#how" className="rounded-lg border border-sage-100 bg-white px-8 py-4 font-medium hover:bg-sage-50 transition-colors">
                   Comment ça marche
@@ -100,7 +100,7 @@ function Home() {
             <h2 className="font-serif text-3xl md:text-4xl mb-3">Comment ça marche ?</h2>
             <p className="text-muted-foreground">Réservez votre session en direct en quatre étapes simples.</p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-4">
             {steps.map((s, i) => (
               <div key={s.title} className="rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
@@ -111,6 +111,11 @@ function Home() {
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link to="/catalogue" className="inline-flex items-center gap-2 rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft transition-all hover:-translate-y-0.5">
+              Je réserve en ligne <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -124,7 +129,7 @@ function Home() {
               <p className="text-muted-foreground">Sélectionnés pour leur qualité pédagogique.</p>
             </div>
             <Link to="/catalogue" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-600 hover:underline">
-              Tout voir <ArrowRight className="h-4 w-4" />
+              Je réserve en ligne <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -177,7 +182,7 @@ function Home() {
               Rejoignez plus de 10 000 apprenants qui ont transformé leur manière d'apprendre les langues.
             </p>
             <Link to="/catalogue" className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 font-medium text-sage-900 hover:-translate-y-0.5 transition-all">
-              Explorer les cours <ArrowRight className="h-4 w-4" />
+              Je réserve en ligne <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

@@ -44,6 +44,9 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-3">
+          <Link to="/catalogue" className="hidden lg:inline-flex items-center rounded-full bg-sage-600 px-5 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-sage-900">
+            Je réserve en ligne
+          </Link>
           <Link to="/panier" className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-sage-50 transition-colors" aria-label="Panier">
             <ShoppingBag className="h-5 w-5" />
             {count > 0 && (
@@ -81,6 +84,9 @@ export function Header() {
               {l.label}
             </Link>
           ))}
+          <Link to="/catalogue" onClick={() => setOpen(false)} className="mt-2 rounded-lg bg-sage-600 px-4 py-3 text-center text-sm font-semibold text-white">
+            Je réserve en ligne
+          </Link>
           {user ? (
             <Link to="/compte" onClick={() => setOpen(false)} className="text-sm font-medium">Mon compte</Link>
           ) : (
