@@ -146,7 +146,10 @@ function CoursePage() {
                 <ShoppingBag className="h-4 w-4" />
                 {inCart ? "Dans le panier" : "Ajouter au panier"}
               </button>
-              <Link to="/panier" className="mt-2 block w-full text-center rounded-lg border border-sage-600 px-6 py-3 font-semibold text-sage-600 hover:bg-sage-50 transition-colors">
+              <Link to="/essai-gratuit" className="mt-2 block w-full text-center rounded-lg border border-sage-600 px-6 py-3 font-semibold text-sage-600 hover:bg-sage-50 transition-colors">
+                Séance d'essai gratuite
+              </Link>
+              <Link to="/panier" className="mt-2 block w-full text-center text-sm font-semibold text-sage-600 hover:underline">
                 Voir le panier
               </Link>
               <ul className="mt-6 space-y-3 text-sm text-sage-900/80">
