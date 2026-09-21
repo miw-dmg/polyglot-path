@@ -22,17 +22,11 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-import coursAnglaisImg from "@/assets/cours-anglais.jpg";
-
-const languages = [
-  { name: "Anglais", image: coursAnglaisImg },
-];
-
 const steps = [
-  { icon: Sparkles, title: "Choisissez votre parcours", text: "Parcourez notre catalogue et trouvez le cours adapté à votre niveau et vos objectifs." },
-  { icon: BookOpen, title: "Réservez vos sessions en direct", text: "Choisissez les créneaux qui vous conviennent et rejoignez votre professeur en visioconférence." },
-  { icon: Users, title: "Pratiquez avec des natifs", text: "Échangez avec nos professeurs certifiés et progressez en conversation réelle." },
-  { icon: CheckCircle2, title: "Mesurez vos progrès", text: "Suivez votre progression dans votre espace personnel et obtenez vos certificats." },
+  { icon: Sparkles, title: "Choisissez votre catégorie", text: "Conversation, anglais des affaires ou parcours certifiant : sélectionnez le cours adapté à votre objectif." },
+  { icon: BookOpen, title: "Sélectionnez un créneau", text: "Parcourez les sessions en direct disponibles et réservez la date et l'heure qui vous conviennent." },
+  { icon: Users, title: "Payez en toute sécurité", text: "Paiement par carte en quelques clics, sans création de compte. Votre place est confirmée immédiatement." },
+  { icon: CheckCircle2, title: "Rejoignez la session en direct", text: "Recevez votre lien de visioconférence par e-mail et connectez-vous au jour et à l'heure choisis." },
 ];
 
 const testimonials = [
@@ -99,31 +93,24 @@ function Home() {
         </div>
       </header>
 
-      {/* Languages */}
-      <section className="py-16 bg-white">
+      {/* How it works */}
+      <section id="how" className="py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="font-serif text-3xl">Apprenez ce qui vous passionne</h2>
-            <Link to="/catalogue" className="text-sm font-semibold text-sage-600 hover:underline">
-              Voir tout le catalogue →
-            </Link>
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl md:text-4xl mb-3">Comment ça marche ?</h2>
+            <p className="text-muted-foreground">Réservez votre session en direct en quatre étapes simples.</p>
           </div>
-          <div className="grid grid-cols-1 gap-4 max-w-sm">
-            {languages.map((l) => {
-              const count = courses.filter((c) => c.language === l.name).length;
-              return (
-                <Link
-                  key={l.name}
-                  to="/catalogue"
-                  search={{ langue: l.name }}
-                  className="group cursor-pointer rounded-2xl border border-sage-50 p-6 text-center transition-all hover:bg-cream-100 hover:shadow-card"
-                >
-                  <img src={l.image} alt={`Apprenante suivant un cours d'${l.name.toLowerCase()} en ligne`} width={1024} height={1024} loading="lazy" className="mx-auto mb-4 size-24 rounded-full object-cover ring-2 ring-sage-100 group-hover:scale-105 transition-transform" />
-                  <h3 className="font-medium">{l.name}</h3>
-                  <p className="text-xs text-muted-foreground">{count} {count > 1 ? "cours disponibles" : "cours disponible"}</p>
-                </Link>
-              );
-            })}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((s, i) => (
+              <div key={s.title} className="rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Étape {i + 1}</div>
+                <h3 className="font-serif text-xl mb-2">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -142,28 +129,6 @@ function Home() {
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((c) => <CourseCard key={c.id} course={c} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section id="how" className="bg-sage-50/50 py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl mb-3">Comment ça marche ?</h2>
-            <p className="text-muted-foreground">Quatre étapes simples pour apprendre durablement.</p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <div key={s.title} className="rounded-2xl bg-white p-6 ring-1 ring-sage-100">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
-                  <s.icon className="h-5 w-5" />
-                </div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Étape {i + 1}</div>
-                <h3 className="font-serif text-xl mb-2">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
