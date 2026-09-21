@@ -47,6 +47,18 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
+      {/* Free trial banner — top of site */}
+      <div className="bg-sage-900 text-white">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-2 px-6 py-3 text-center sm:flex-row sm:gap-4">
+          <p className="text-sm">
+            <span className="font-semibold">Séance d'essai gratuite</span> — testez une session en direct dans la catégorie de votre choix, sans engagement.
+          </p>
+          <Link to="/essai-gratuit" className="inline-flex items-center gap-1 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-sage-900 hover:-translate-y-0.5 transition-all">
+            Réserver gratuitement <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+      </div>
+
       <Header />
 
       {/* Hero */}

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PanierRouteImport } from './routes/panier'
+import { Route as EssaiGratuitRouteImport } from './routes/essai-gratuit'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
@@ -23,6 +24,11 @@ import { Route as AuthenticatedCompteRouteImport } from './routes/_authenticated
 const PanierRoute = PanierRouteImport.update({
   id: '/panier',
   path: '/panier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EssaiGratuitRoute = EssaiGratuitRouteImport.update({
+  id: '/essai-gratuit',
+  path: '/essai-gratuit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
   '/_authenticated/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/checkout'
     | '/contact'
+    | '/essai-gratuit'
     | '/panier'
     | '/compte'
     | '/cours/$slug'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/checkout'
     | '/contact'
+    | '/essai-gratuit'
     | '/panier'
     | '/compte'
     | '/cours/$slug'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/catalogue'
     | '/checkout'
     | '/contact'
+    | '/essai-gratuit'
     | '/panier'
     | '/_authenticated/compte'
     | '/cours/$slug'
@@ -150,6 +162,7 @@ export interface RootRouteChildren {
   CatalogueRoute: typeof CatalogueRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
+  EssaiGratuitRoute: typeof EssaiGratuitRoute
   PanierRoute: typeof PanierRoute
   CoursSlugRoute: typeof CoursSlugRoute
 }
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/panier'
       fullPath: '/panier'
       preLoaderRoute: typeof PanierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/essai-gratuit': {
+      id: '/essai-gratuit'
+      path: '/essai-gratuit'
+      fullPath: '/essai-gratuit'
+      preLoaderRoute: typeof EssaiGratuitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -248,6 +268,7 @@ const rootRouteChildren: RootRouteChildren = {
   CatalogueRoute: CatalogueRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
+  EssaiGratuitRoute: EssaiGratuitRoute,
   PanierRoute: PanierRoute,
   CoursSlugRoute: CoursSlugRoute,
 }
