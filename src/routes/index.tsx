@@ -22,17 +22,11 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-import coursAnglaisImg from "@/assets/cours-anglais.jpg";
-
-const languages = [
-  { name: "Anglais", image: coursAnglaisImg },
-];
-
 const steps = [
-  { icon: Sparkles, title: "Choisissez votre parcours", text: "Parcourez notre catalogue et trouvez le cours adapté à votre niveau et vos objectifs." },
-  { icon: BookOpen, title: "Réservez vos sessions en direct", text: "Choisissez les créneaux qui vous conviennent et rejoignez votre professeur en visioconférence." },
-  { icon: Users, title: "Pratiquez avec des natifs", text: "Échangez avec nos professeurs certifiés et progressez en conversation réelle." },
-  { icon: CheckCircle2, title: "Mesurez vos progrès", text: "Suivez votre progression dans votre espace personnel et obtenez vos certificats." },
+  { icon: Sparkles, title: "Choisissez votre catégorie", text: "Conversation, anglais des affaires ou parcours certifiant : sélectionnez le cours adapté à votre objectif." },
+  { icon: BookOpen, title: "Sélectionnez un créneau", text: "Parcourez les sessions en direct disponibles et réservez la date et l'heure qui vous conviennent." },
+  { icon: Users, title: "Payez en toute sécurité", text: "Paiement par carte en quelques clics, sans création de compte. Votre place est confirmée immédiatement." },
+  { icon: CheckCircle2, title: "Rejoignez la session en direct", text: "Recevez votre lien de visioconférence par e-mail et connectez-vous au jour et à l'heure choisis." },
 ];
 
 const testimonials = [
