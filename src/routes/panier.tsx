@@ -34,32 +34,11 @@ function SlotPicker({ item }: { item: CartItem }) {
       ) : !sessions || sessions.length === 0 ? (
         <p className="text-sm text-muted-foreground">Aucun créneau disponible pour le moment.</p>
       ) : (
-        <div className="flex flex-wrap gap-2">
-          {sessions.map((s) => {
-            const selected = item.sessionId === s.id;
-            const full = s.spots_left <= 0;
-            return (
-              <button
-                key={s.id}
-                type="button"
-                disabled={full}
-                onClick={() => cart.setSession(item.courseId, selected ? null : s.id, selected ? null : s.starts_at)}
-                className={`rounded-lg px-3 py-2 text-left text-xs transition-colors ${
-                  selected
-                    ? "bg-sage-600 text-white"
-                    : full
-                      ? "cursor-not-allowed bg-sage-50 text-muted-foreground opacity-60"
-                      : "bg-sage-50 hover:bg-sage-100"
-                }`}
-              >
-                <span className="block font-semibold">{formatSessionDate(s.starts_at)}</span>
-                <span className="block opacity-80">
-                  {s.duration_minutes} min · {full ? "Complet" : `${s.spots_left} place${s.spots_left > 1 ? "s" : ""}`}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+        <BookingCalendar
+          slots={sessions}
+          selectedId={item.sessionId}
+          onSelect={(s) => cart.setSession(item.courseId, s?.id ?? null, s?.starts_at ?? null)}
+        />
       )}
     </div>
   );
