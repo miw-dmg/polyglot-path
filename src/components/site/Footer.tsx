@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import logoAsset from "@/assets/polylinguist-logo.png.asset.json";
 
 const emailSchema = z.string().trim().email("Email invalide").max(254);
 
@@ -31,7 +32,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <span className="mb-4 block font-serif text-2xl font-bold text-sage-600">Linguist.</span>
+            <img src={logoAsset.url} alt="PolyLinguist" className="mb-4 h-10 w-auto" />
             <p className="mb-6 max-w-sm text-muted-foreground">
               Recevez chaque semaine nos conseils d'apprentissage et nos nouvelles offres de cours directement dans votre boîte mail.
             </p>
