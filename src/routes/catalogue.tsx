@@ -6,6 +6,7 @@ import { z } from "zod";
 import { Search } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { TrustBand } from "@/components/site/TrustBand";
 import { CourseCard } from "@/components/site/CourseCard";
 import { coursesQuery, levelLabels, formatLabels, type Course } from "@/lib/courses";
 
@@ -57,6 +58,8 @@ function Catalogue() {
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
       <Header />
+      <TrustBand />
+
 
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-12">
