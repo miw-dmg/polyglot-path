@@ -8,7 +8,6 @@ import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { TrustBand } from "@/components/site/TrustBand";
 import { AfterOrder, FaqSection, PackIncluded } from "@/components/site/Reassurance";
 import { openCart } from "@/components/site/CartDrawer";
-import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { courseBySlugQuery, courseImage, levelLabels, formatLabels } from "@/lib/courses";
@@ -47,7 +46,6 @@ function CoursePage() {
   const { slug } = Route.useParams();
   const { data: course } = useSuspenseQuery(courseBySlugQuery(slug));
   const cart = useCart();
-  const navigate = useNavigate();
   const [slotId, setSlotId] = useState<string | null>(null);
   const { data: sessions, isLoading: slotsLoading } = useQuery({ ...courseSessionsQuery(course?.id ?? ""), enabled: !!course, refetchInterval: 15000 });
   if (!course) return null;

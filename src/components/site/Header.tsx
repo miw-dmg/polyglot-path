@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ShoppingBag, User as UserIcon, Menu, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/lib/cart";
+import { openCart } from "@/components/site/CartDrawer";
 import type { User } from "@supabase/supabase-js";
 import logoAsset from "@/assets/polylinguist-logo.png.asset.json";
 
@@ -47,14 +48,18 @@ export function Header() {
           <Link to="/catalogue" className="hidden lg:inline-flex items-center rounded-full bg-sage-600 px-5 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-sage-900">
             Je réserve en ligne
           </Link>
-          <Link to="/panier" className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-sage-50 transition-colors" aria-label="Panier">
+          <button
+            onClick={openCart}
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-sage-50 transition-colors"
+            aria-label="Ouvrir le panier"
+          >
             <ShoppingBag className="h-5 w-5" />
             {count > 0 && (
               <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-sage-600 px-1 text-[10px] font-bold text-white">
                 {count}
               </span>
             )}
-          </Link>
+          </button>
           {user && (
             <Link to="/compte" className="hidden sm:inline-flex h-10 items-center gap-2 rounded-full border border-sage-100 bg-white px-4 text-sm font-medium hover:bg-sage-50">
               <UserIcon className="h-4 w-4" /> Mon compte
