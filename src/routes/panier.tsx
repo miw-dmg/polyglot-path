@@ -10,6 +10,7 @@ import { Footer } from "@/components/site/Footer";
 import { useCart, formatPrice, type CartItem } from "@/lib/cart";
 import { resolveImage } from "@/lib/courses";
 import { courseSessionsQuery, formatSessionDate } from "@/lib/sessions";
+import { AfterOrder } from "@/components/site/Reassurance";
 
 export const Route = createFileRoute("/panier")({
   head: () => ({
@@ -122,6 +123,7 @@ function Cart() {
                   </div>
                 );
               })}
+              <AfterOrder />
             </div>
 
             <aside className="lg:sticky lg:top-24 self-start rounded-2xl bg-white p-6 shadow-soft ring-1 ring-sage-100">
