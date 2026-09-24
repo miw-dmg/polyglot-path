@@ -86,7 +86,7 @@ function Home() {
                   <div className="h-2 w-8 rounded-full bg-sage-100"></div>
                 </div>
                 <p className="text-xs font-bold">Progression : 65%</p>
-                <p className="text-[10px] text-muted-foreground italic">Cours d'Italien B1</p>
+                <p className="text-[10px] text-muted-foreground italic">Cours d'Anglais B1</p>
               </div>
             </div>
           </div>
