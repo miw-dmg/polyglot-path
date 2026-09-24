@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ShoppingBag, User as UserIcon, Menu, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -7,7 +7,6 @@ import type { User } from "@supabase/supabase-js";
 import logoAsset from "@/assets/polylinguist-logo.png.asset.json";
 
 export function Header() {
-  const navigate = useNavigate();
   const { count } = useCart();
   const [user, setUser] = useState<User | null>(null);
   const [open, setOpen] = useState(false);
