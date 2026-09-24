@@ -79,7 +79,7 @@ function CoursePage() {
       <div className="mx-auto max-w-6xl px-6 py-12">
         <Link to="/catalogue" className="text-sm text-muted-foreground hover:text-sage-600">← Retour au catalogue</Link>
 
-        <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_380px]">
+        <div className="mt-8 mx-auto max-w-3xl">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
               {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
@@ -112,6 +112,49 @@ function CoursePage() {
             </section>
 
             <section className="mb-10">
+              <div className="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-sage-100">
+                <div className="mb-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  {formatLabels[course.format]}
+                </div>
+                <div className="mb-6 flex items-baseline gap-2">
+                  <span className="font-serif text-4xl font-bold text-sage-600">{formatPrice(course.price_cents)}</span>
+                  {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
+                </div>
+                <div className="mb-4">
+                  {chosen ? (
+                    <div className="rounded-lg bg-sage-50 px-3 py-2.5 text-sm">
+                      <span className="block font-semibold">{formatSessionDate(chosen.starts_at)}</span>
+                      <span className="block text-xs text-muted-foreground">{chosen.duration_minutes} min · en direct · 1 place</span>
+                    </div>
+                  ) : (
+                    <div className="rounded-lg bg-sage-50 px-3 py-2.5 text-sm text-sage-700">
+                      Sélectionnez un horaire dans le calendrier ci-dessus
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={addToCart}
+                  disabled={!chosen}
+                  className="disabled:cursor-not-allowed disabled:opacity-50 w-full rounded-lg bg-sage-600 px-6 py-3.5 font-semibold text-white hover:bg-sage-900 transition-colors inline-flex items-center justify-center gap-2"
+                >
+                  <ShoppingBag className="h-4 w-4" />
+                  {chosen ? "Payer maintenant" : "Choisissez un créneau"}
+                </button>
+                <Link to="/essai-gratuit" className="mt-2 block w-full text-center rounded-lg border border-sage-600 px-6 py-3 font-semibold text-sage-600 hover:bg-sage-50 transition-colors">
+                  Séance d'essai gratuite
+                </Link>
+                <Link to="/panier" className="mt-2 block w-full text-center text-sm font-semibold text-sage-600 hover:underline">
+                  Voir le panier
+                </Link>
+                <ul className="mt-6 space-y-3 text-sm text-sage-900/80">
+                  {["Session en direct", "Créneau garanti après paiement", "Paiement sécurisé par Shopify", "Aucun compte requis"].map((f) => (
+                    <li key={f} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" /> {f}</li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+
+            <section className="mb-10">
               <h2 className="font-serif text-2xl mb-4">Description</h2>
               <p className="text-sage-900/80 leading-relaxed">{course.description}</p>
             </section>
@@ -141,50 +184,6 @@ function CoursePage() {
             )}
 
           </div>
-
-          {/* Sticky purchase */}
-          <aside className="lg:sticky lg:top-24 self-start">
-            <div className="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-sage-100">
-              <div className="mb-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                {formatLabels[course.format]}
-              </div>
-              <div className="mb-6 flex items-baseline gap-2">
-                <span className="font-serif text-4xl font-bold text-sage-600">{formatPrice(course.price_cents)}</span>
-                {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
-              </div>
-              <div className="mb-4">
-                {chosen ? (
-                  <div className="rounded-lg bg-sage-50 px-3 py-2.5 text-sm">
-                    <span className="block font-semibold">{formatSessionDate(chosen.starts_at)}</span>
-                    <span className="block text-xs text-muted-foreground">{chosen.duration_minutes} min · en direct · 1 place</span>
-                  </div>
-                ) : (
-                  <a href="#reservation" className="block rounded-lg bg-sage-50 px-3 py-2.5 text-sm text-sage-700 hover:bg-sage-100">
-                    Choisissez votre créneau dans le calendrier ↓
-                  </a>
-                )}
-              </div>
-              <button
-                onClick={addToCart}
-                disabled={!chosen}
-                className="disabled:cursor-not-allowed disabled:opacity-50 w-full rounded-lg bg-sage-600 px-6 py-3.5 font-semibold text-white hover:bg-sage-900 transition-colors inline-flex items-center justify-center gap-2"
-              >
-                <ShoppingBag className="h-4 w-4" />
-                {chosen ? "Je réserve ce créneau" : "Choisissez un créneau"}
-              </button>
-              <Link to="/essai-gratuit" className="mt-2 block w-full text-center rounded-lg border border-sage-600 px-6 py-3 font-semibold text-sage-600 hover:bg-sage-50 transition-colors">
-                Séance d'essai gratuite
-              </Link>
-              <Link to="/panier" className="mt-2 block w-full text-center text-sm font-semibold text-sage-600 hover:underline">
-                Voir le panier
-              </Link>
-              <ul className="mt-6 space-y-3 text-sm text-sage-900/80">
-                {["Session en direct", "Créneau garanti après paiement", "Paiement sécurisé par Shopify", "Aucun compte requis"].map((f) => (
-                  <li key={f} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" /> {f}</li>
-                ))}
-              </ul>
-            </div>
-          </aside>
         </div>
       </div>
 
