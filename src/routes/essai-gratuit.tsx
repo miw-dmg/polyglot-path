@@ -117,6 +117,7 @@ function TrialPage() {
             <p className="text-sm text-muted-foreground">Aucun créneau disponible pour le moment.</p>
           ) : (
             <BookingCalendar
+              key={courseId}
               slots={sessions}
               selectedId={sessionId}
               onSelect={(s) => setSessionId(s?.id ?? null)}
