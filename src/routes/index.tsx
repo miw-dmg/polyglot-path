@@ -93,6 +93,24 @@ function Home() {
         </div>
       </header>
 
+      {/* Trust figures */}
+      <section aria-label="Chiffres clés" className="border-y border-sage-100 bg-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 text-center sm:grid-cols-3">
+          <div>
+            <div className="font-serif text-4xl text-sage-600">+500</div>
+            <p className="mt-1 text-sm text-muted-foreground">étudiants ont utilisé nos cours</p>
+          </div>
+          <div>
+            <div className="font-serif text-4xl text-sage-600">+50</div>
+            <p className="mt-1 text-sm text-muted-foreground">professeurs certifiés employés</p>
+          </div>
+          <div>
+            <div className="font-serif text-4xl text-sage-600">98%</div>
+            <p className="mt-1 text-sm text-muted-foreground">de satisfaction client</p>
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section id="how" className="py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6">
@@ -179,7 +197,7 @@ function Home() {
           <div className="rounded-3xl bg-sage-900 p-12 md:p-16 text-center text-white">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">Prêt à commencer l'aventure ?</h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              Rejoignez plus de 10 000 apprenants qui ont transformé leur manière d'apprendre les langues.
+              Rejoignez plus de 500 étudiants qui ont transformé leur manière d'apprendre l'anglais.
             </p>
             <Link to="/catalogue" className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 font-medium text-sage-900 hover:-translate-y-0.5 transition-all">
               Je réserve en ligne <ArrowRight className="h-4 w-4" />
