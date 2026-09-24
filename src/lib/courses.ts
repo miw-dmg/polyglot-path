@@ -1,5 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchShopifyCatalog, type ShopifyCourseData } from "@/lib/shopify";
 import courseItalianImg from "@/assets/course-italian.jpg";
 import courseJapaneseImg from "@/assets/course-japanese.jpg";
 import courseSpanishImg from "@/assets/course-spanish.jpg";
@@ -70,7 +71,9 @@ export const coursesQuery = () =>
     queryFn: async (): Promise<Course[]> => {
       const { data, error } = await supabase.from("courses").select("*").order("is_featured", { ascending: false });
       if (error) throw error;
-      return (data ?? []) as unknown as Course[];
+      const shop = await fetchShopifyCatalog().catch(() => null);
+      const list = (data ?? []) as unknown as Course[];
+      return shop ? list.filter((c) => shop[c.slug]).map((c) => mergeShop(c, shop[c.slug])) : list;
     },
   });
 
@@ -80,6 +83,13 @@ export const courseBySlugQuery = (slug: string) =>
     queryFn: async (): Promise<Course | null> => {
       const { data, error } = await supabase.from("courses").select("*").eq("slug", slug).maybeSingle();
       if (error) throw error;
-      return (data as unknown as Course) ?? null;
+      if (!data) return null;
+      const shop = await fetchShopifyCatalog().catch(() => null);
+      const c = data as unknown as Course;
+      return shop?.[c.slug] ? mergeShop(c, shop[c.slug]) : c;
     },
   });
+
+function mergeShop(c: Course, s: ShopifyCourseData): Course {
+  return { ...c, title: s.title, price_cents: s.priceCents, description: s.description || c.description, summary: s.description || c.summary, image_url: s.imageUrl ?? c.image_url };
+}
