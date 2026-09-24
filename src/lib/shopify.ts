@@ -77,3 +77,26 @@ export async function createShopifyCheckout(
   const url = data.data.cartCreate.cart?.checkoutUrl;
   return url ? formatCheckoutUrl(url) : null;
 }
+
+export type ShopifyCourseData = { title: string; description: string; priceCents: number; imageUrl: string | null };
+
+const CATALOG_QUERY = `
+  query Catalog { products(first: 50) { edges { node { title description tags priceRange { minVariantPrice { amount } } images(first: 1) { edges { node { url } } } } } } }
+`;
+
+/** Produits Shopify indexés par tag (= slug du cours). */
+export async function fetchShopifyCatalog(): Promise<Record<string, ShopifyCourseData> | null> {
+  const data = await storefrontApiRequest(CATALOG_QUERY);
+  if (!data) return null;
+  const out: Record<string, ShopifyCourseData> = {};
+  for (const { node } of data.data.products.edges) {
+    const entry = {
+      title: node.title,
+      description: node.description,
+      priceCents: Math.round(parseFloat(node.priceRange.minVariantPrice.amount) * 100),
+      imageUrl: node.images.edges[0]?.node.url ?? null,
+    };
+    for (const tag of node.tags as string[]) out[tag] = entry;
+  }
+  return out;
+}
