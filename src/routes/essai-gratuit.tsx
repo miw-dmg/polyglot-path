@@ -94,12 +94,14 @@ function TrialPage() {
               <button
                 key={c.id}
                 type="button"
-                onClick={() => { setCourseId(c.id); setSessionId(null); }}
-                className={`overflow-hidden rounded-2xl bg-white text-left ring-1 transition-all ${
-                  c.id === courseId ? "ring-2 ring-sage-600" : "ring-sage-100 hover:ring-sage-600/50"
+                aria-pressed={c.id === courseId}
+                onClick={() => { setCourseId(c.id); setSessionId(null); setTimeout(() => document.getElementById("trial-slots")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50); }}
+                className={`relative cursor-pointer overflow-hidden rounded-2xl text-left transition-all ${
+                  c.id === courseId ? "bg-sage-50 ring-4 ring-sage-600" : "bg-white ring-1 ring-sage-100 hover:ring-2 hover:ring-sage-600/50"
                 }`}
               >
                 <img src={courseImage(c) ?? coursAnglaisImg} alt={c.title} loading="lazy" width={1024} height={1024} className="aspect-video w-full object-cover" />
+                {c.id === courseId && (<span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-sage-600 px-2.5 py-1 text-xs font-semibold text-white"><CheckCircle2 className="h-3.5 w-3.5" /> Choisi</span>)}
                 <div className="p-4">
                   <h3 className="font-semibold leading-snug">{c.title}</h3>
                   <p className="mt-1 text-xs text-muted-foreground">Séance d'essai offerte</p>
@@ -109,8 +111,8 @@ function TrialPage() {
           </div>
         </section>
 
-        <section className="mb-12">
-          <h2 className="mb-4 font-serif text-2xl">2. Choisissez votre créneau</h2>
+        <section id="trial-slots" className="mb-12 scroll-mt-24">
+          <h2 className="mb-4 font-serif text-2xl">2. Choisissez votre créneau{selectedCourse ? ` — ${selectedCourse.title}` : ""}</h2>
           {isLoading ? (
             <p className="text-sm text-muted-foreground">Chargement des créneaux…</p>
           ) : sessions.length === 0 ? (
