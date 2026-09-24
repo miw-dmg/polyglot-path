@@ -42,7 +42,6 @@ const commitments = [
   { icon: ShieldCheck, title: "Paiement sécurisé", text: "Le paiement par carte est traité par Shopify. Aucune donnée bancaire ne transite sur notre site." },
   { icon: HeartHandshake, title: "Satisfait ou remboursé", text: "Si une session ne vous convient pas, nous vous remboursons. Notre objectif : que chaque cours soit un vrai plus pour vous." },
   { icon: CalendarCheck, title: "Créneau garanti", text: "Votre place est confirmée immédiatement après le paiement : le créneau est réservé pour vous." },
-  { icon: Wallet, title: "Financement CPF", text: "Nos parcours certifiants sont éligibles au CPF en France. Notre équipe vous accompagne dans votre dossier." },
   { icon: Sparkles, title: "Séance d'essai gratuite", text: "Testez une session en direct dans la catégorie de votre choix, sans engagement." },
 ];
 
