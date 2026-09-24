@@ -48,7 +48,7 @@ const commitments = [
 
 function Home() {
   const { data: courses } = useSuspenseQuery(coursesQuery());
-  const featured = courses.filter((c) => c.is_featured).slice(0, 3);
+  const featured = courses.filter((c) => c.is_featured || c.slug === "cours-a-la-demande").slice(0, 4);
 
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
@@ -152,7 +152,7 @@ function Home() {
               Je réserve en ligne <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((c) => <CourseCard key={c.id} course={c} />)}
           </div>
         </div>
