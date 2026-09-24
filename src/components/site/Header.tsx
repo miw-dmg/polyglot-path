@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ShoppingBag, User as UserIcon, Menu, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -7,7 +7,6 @@ import type { User } from "@supabase/supabase-js";
 import logoAsset from "@/assets/polylinguist-logo.png.asset.json";
 
 export function Header() {
-  const navigate = useNavigate();
   const { count } = useCart();
   const [user, setUser] = useState<User | null>(null);
   const [open, setOpen] = useState(false);
@@ -56,22 +55,10 @@ export function Header() {
               </span>
             )}
           </Link>
-          {user ? (
+          {user && (
             <Link to="/compte" className="hidden sm:inline-flex h-10 items-center gap-2 rounded-full border border-sage-100 bg-white px-4 text-sm font-medium hover:bg-sage-50">
               <UserIcon className="h-4 w-4" /> Mon compte
             </Link>
-          ) : (
-            <>
-              <Link to="/auth" className="hidden sm:inline-block text-sm font-medium">
-                Connexion
-              </Link>
-              <button
-                onClick={() => navigate({ to: "/auth", search: { mode: "signup" } })}
-                className="hidden sm:inline-block rounded-full bg-sage-600 px-5 py-2 text-sm font-medium text-white hover:bg-sage-900 transition-colors shadow-sm"
-              >
-                S'inscrire
-              </button>
-            </>
           )}
           <button onClick={() => setOpen((o) => !o)} className="inline-flex md:hidden h-10 w-10 items-center justify-center rounded-full hover:bg-sage-50">
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -88,10 +75,8 @@ export function Header() {
           <Link to="/catalogue" onClick={() => setOpen(false)} className="mt-2 rounded-lg bg-sage-600 px-4 py-3 text-center text-sm font-semibold text-white">
             Je réserve en ligne
           </Link>
-          {user ? (
+          {user && (
             <Link to="/compte" onClick={() => setOpen(false)} className="text-sm font-medium">Mon compte</Link>
-          ) : (
-            <Link to="/auth" onClick={() => setOpen(false)} className="text-sm font-medium">Connexion / Inscription</Link>
           )}
         </div>
       )}
