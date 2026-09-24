@@ -116,8 +116,6 @@ function CoursePage() {
                 />
               )}
             </section>
-            <div className="mb-10"><AfterOrder /></div>
-
             <section className="mb-10">
               <div className="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-sage-100">
                 <div className="mb-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
@@ -160,6 +158,7 @@ function CoursePage() {
                 </ul>
               </div>
             </section>
+            <div className="mb-10"><AfterOrder /></div>
 
             <section className="mb-10">
               <h2 className="font-serif text-2xl mb-4">Description</h2>
