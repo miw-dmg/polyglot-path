@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { useQuery } from "@tanstack/react-query";
 import { Trash2, ShoppingBag, CalendarDays, Loader2 } from "lucide-react";
 import { useState } from "react";
