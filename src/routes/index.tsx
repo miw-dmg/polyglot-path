@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowRight, BookOpen, CheckCircle2, Users, Sparkles, Wallet } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Users, Sparkles, Wallet, ShieldCheck, CalendarCheck, GraduationCap, UserCheck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CourseCard } from "@/components/site/CourseCard";
+import { TrustBand } from "@/components/site/TrustBand";
 import { coursesQuery } from "@/lib/courses";
 import heroImg from "@/assets/hero-study.jpg";
 
@@ -33,6 +34,15 @@ const testimonials = [
   { name: "Clara D.", quote: "Une approche radicalement différente. Les sessions en direct m'ont permis de prendre la parole en anglais sans stress.", course: "Anglais Conversationnel" },
   { name: "Julien R.", quote: "Pouvoir réserver mes créneaux selon mon agenda a tout changé. Le contenu est très structuré et concret.", course: "Business English" },
   { name: "Sarah W.", quote: "Grâce aux sessions live et au suivi personnalisé, j'ai atteint mon objectif de score en quelques mois.", course: "Parcours certifiant TOEFL" },
+];
+
+const commitments = [
+  { icon: GraduationCap, title: "Professeurs certifiés", text: "Nos professeurs sont diplômés et sélectionnés pour leur expérience de l'enseignement aux professionnels." },
+  { icon: UserCheck, title: "Cours individuels en direct", text: "Chaque session est un tête-à-tête : toute l'attention du professeur est portée sur vous." },
+  { icon: ShieldCheck, title: "Paiement sécurisé", text: "Le paiement par carte est traité par Shopify. Aucune donnée bancaire ne transite sur notre site." },
+  { icon: CalendarCheck, title: "Créneau garanti", text: "Votre place est confirmée immédiatement après le paiement : le créneau est réservé pour vous." },
+  { icon: Wallet, title: "Financement CPF", text: "Nos parcours certifiants sont éligibles au CPF en France. Notre équipe vous accompagne dans votre dossier." },
+  { icon: Sparkles, title: "Séance d'essai gratuite", text: "Testez une session en direct dans la catégorie de votre choix, sans engagement." },
 ];
 
 function Home() {
@@ -77,6 +87,11 @@ function Home() {
                   Comment ça marche
                 </a>
               </div>
+              <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-sage-600" /> Paiement sécurisé</span>
+                <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-sage-600" /> Sans compte requis</span>
+                <span className="inline-flex items-center gap-1.5"><Wallet className="h-3.5 w-3.5 text-sage-600" /> CPF accepté</span>
+              </p>
             </div>
             <div className="relative">
               <img src={heroImg} alt="Apprenante avec des écouteurs étudiant à son bureau" width={1024} height={768} className="aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" />
@@ -94,22 +109,7 @@ function Home() {
       </header>
 
       {/* Trust figures */}
-      <section aria-label="Chiffres clés" className="border-y border-sage-100 bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 text-center sm:grid-cols-3">
-          <div>
-            <div className="font-serif text-4xl text-sage-600">+500</div>
-            <p className="mt-1 text-sm text-muted-foreground">étudiants ont utilisé nos cours</p>
-          </div>
-          <div>
-            <div className="font-serif text-4xl text-sage-600">+50</div>
-            <p className="mt-1 text-sm text-muted-foreground">professeurs certifiés employés</p>
-          </div>
-          <div>
-            <div className="font-serif text-4xl text-sage-600">98%</div>
-            <p className="mt-1 text-sm text-muted-foreground">de satisfaction client</p>
-          </div>
-        </div>
-      </section>
+      <TrustBand />
 
       {/* How it works */}
       <section id="how" className="py-24 bg-white">
@@ -186,6 +186,27 @@ function Home() {
                   <div className="text-xs text-muted-foreground">{t.course}</div>
                 </footer>
               </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Commitments */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-14">
+            <h2 className="font-serif text-3xl md:text-4xl mb-3">Nos engagements</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">Ce à quoi vous pouvez nous tenir, à chaque étape de votre apprentissage.</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {commitments.map((c) => (
+              <div key={c.title} className="rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                  <c.icon className="h-5 w-5" />
+                </div>
+                <h3 className="font-serif text-xl mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
+              </div>
             ))}
           </div>
         </div>

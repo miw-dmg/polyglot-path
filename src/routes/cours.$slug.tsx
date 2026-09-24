@@ -5,6 +5,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { courseSessionsQuery, formatSessionDate } from "@/lib/sessions";
 import { Clock, Award, CheckCircle2, ShoppingBag, User } from "lucide-react";
 import { BookingCalendar } from "@/components/site/BookingCalendar";
+import { TrustBand } from "@/components/site/TrustBand";
 import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -75,6 +76,8 @@ function CoursePage() {
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
       <Header />
+      <TrustBand />
+
 
       <div className="mx-auto max-w-6xl px-6 py-12">
         <Link to="/catalogue" className="text-sm text-muted-foreground hover:text-sage-600">← Retour au catalogue</Link>
