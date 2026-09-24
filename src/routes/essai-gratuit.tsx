@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery, useQuery, useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { CheckCircle2, Clock, Video } from "lucide-react";
+import { CheckCircle2, Video } from "lucide-react";
+import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { coursesQuery, courseImage } from "@/lib/courses";
@@ -115,28 +116,11 @@ function TrialPage() {
           ) : sessions.length === 0 ? (
             <p className="text-sm text-muted-foreground">Aucun créneau disponible pour le moment.</p>
           ) : (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {sessions.map((s) => {
-                const full = s.spots_left <= 0;
-                return (
-                  <button
-                    key={s.id}
-                    type="button"
-                    disabled={full}
-                    onClick={() => setSessionId(s.id)}
-                    className={`rounded-xl bg-white p-4 text-left ring-1 transition-all disabled:opacity-40 ${
-                      s.id === sessionId ? "ring-2 ring-sage-600" : "ring-sage-100 hover:ring-sage-600/50"
-                    }`}
-                  >
-                    <div className="font-medium">{formatSessionDate(s.starts_at)}</div>
-                    <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="h-3 w-3" /> {s.duration_minutes} min ·{" "}
-                      {full ? "Complet" : `${s.spots_left} place${s.spots_left > 1 ? "s" : ""}`}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+            <BookingCalendar
+              slots={sessions}
+              selectedId={sessionId}
+              onSelect={(s) => setSessionId(s?.id ?? null)}
+            />
           )}
         </section>
 
@@ -152,6 +136,11 @@ function TrialPage() {
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-lg border border-sage-100 px-4 py-3" placeholder="camille@exemple.fr" />
             </label>
           </div>
+          {sessionId && (
+            <p className="mt-4 rounded-lg bg-sage-50 px-4 py-3 text-sm font-medium text-sage-700">
+              Créneau choisi : {formatSessionDate(sessions.find((s) => s.id === sessionId)?.starts_at ?? "")}
+            </p>
+          )}
           {mutation.error && <p className="mt-4 text-sm text-red-600">{(mutation.error as Error).message}</p>}
           <button
             type="button"
