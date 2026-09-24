@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowRight, BookOpen, CheckCircle2, Users, Sparkles, Wallet } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Users, Sparkles, Wallet, ShieldCheck, CalendarCheck, GraduationCap, UserCheck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CourseCard } from "@/components/site/CourseCard";
+import { TrustBand } from "@/components/site/TrustBand";
 import { coursesQuery } from "@/lib/courses";
 import heroImg from "@/assets/hero-study.jpg";
 
@@ -77,6 +78,11 @@ function Home() {
                   Comment ça marche
                 </a>
               </div>
+              <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-sage-600" /> Paiement sécurisé</span>
+                <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-sage-600" /> Sans compte requis</span>
+                <span className="inline-flex items-center gap-1.5"><Wallet className="h-3.5 w-3.5 text-sage-600" /> CPF accepté</span>
+              </p>
             </div>
             <div className="relative">
               <img src={heroImg} alt="Apprenante avec des écouteurs étudiant à son bureau" width={1024} height={768} className="aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" />
