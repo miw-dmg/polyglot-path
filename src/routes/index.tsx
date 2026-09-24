@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowRight, BookOpen, CheckCircle2, Users, Sparkles, Wallet, ShieldCheck, CalendarCheck, GraduationCap, UserCheck } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Users, Sparkles, Wallet, ShieldCheck, CalendarCheck, GraduationCap, UserCheck, HeartHandshake } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CourseCard } from "@/components/site/CourseCard";
@@ -40,6 +40,7 @@ const commitments = [
   { icon: GraduationCap, title: "Professeurs certifiés", text: "Nos professeurs sont diplômés et sélectionnés pour leur expérience de l'enseignement aux professionnels." },
   { icon: UserCheck, title: "Cours individuels en direct", text: "Chaque session est un tête-à-tête : toute l'attention du professeur est portée sur vous." },
   { icon: ShieldCheck, title: "Paiement sécurisé", text: "Le paiement par carte est traité par Shopify. Aucune donnée bancaire ne transite sur notre site." },
+  { icon: HeartHandshake, title: "Satisfait ou remboursé", text: "Si une session ne vous convient pas, nous vous remboursons. Notre objectif : que chaque cours soit un vrai plus pour vous." },
   { icon: CalendarCheck, title: "Créneau garanti", text: "Votre place est confirmée immédiatement après le paiement : le créneau est réservé pour vous." },
   { icon: Wallet, title: "Financement CPF", text: "Nos parcours certifiants sont éligibles au CPF en France. Notre équipe vous accompagne dans votre dossier." },
   { icon: Sparkles, title: "Séance d'essai gratuite", text: "Testez une session en direct dans la catégorie de votre choix, sans engagement." },
@@ -91,6 +92,7 @@ function Home() {
                 <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-sage-600" /> Paiement sécurisé</span>
                 <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-sage-600" /> Sans compte requis</span>
                 <span className="inline-flex items-center gap-1.5"><Wallet className="h-3.5 w-3.5 text-sage-600" /> CPF accepté</span>
+                <span className="inline-flex items-center gap-1.5"><HeartHandshake className="h-3.5 w-3.5 text-sage-600" /> Satisfait ou remboursé</span>
               </p>
             </div>
             <div className="relative">

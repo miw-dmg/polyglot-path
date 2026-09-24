@@ -152,7 +152,7 @@ function CoursePage() {
                   Voir le panier
                 </Link>
                 <ul className="mt-6 space-y-3 text-sm text-sage-900/80">
-                  {["Session en direct", "Créneau garanti après paiement", "Paiement sécurisé par Shopify", "Aucun compte requis"].map((f) => (
+                  {["Session en direct", "Créneau garanti après paiement", "Paiement sécurisé par Shopify", "Satisfait ou remboursé"].map((f) => (
                     <li key={f} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" /> {f}</li>
                   ))}
                 </ul>
