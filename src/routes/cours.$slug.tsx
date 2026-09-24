@@ -3,7 +3,8 @@ import { useSuspenseQuery, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { courseSessionsQuery, formatSessionDate } from "@/lib/sessions";
-import { Star, Clock, Award, CheckCircle2, ShoppingBag } from "lucide-react";
+import { Clock, Award, CheckCircle2, ShoppingBag } from "lucide-react";
+import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -120,6 +121,25 @@ function CoursePage() {
               </section>
             )}
 
+            <section className="mb-10" id="reservation">
+              <h2 className="font-serif text-2xl mb-2">Choisissez votre créneau</h2>
+              <p className="mb-4 text-sm text-muted-foreground">Session en direct · 1 place par créneau · heure de Paris</p>
+              {slotsLoading ? (
+                <p className="text-sm text-muted-foreground">Chargement des créneaux…</p>
+              ) : available.length === 0 ? (
+                <div className="rounded-lg bg-sage-50 p-4 text-sm">
+                  <p className="mb-2">Aucun créneau disponible pour le moment.</p>
+                  <Link to="/contact" className="font-semibold text-sage-600 hover:underline">Demander un créneau</Link>
+                </div>
+              ) : (
+                <BookingCalendar
+                  slots={available}
+                  selectedId={slotId}
+                  onSelect={(s) => setSlotId(s?.id ?? null)}
+                />
+              )}
+            </section>
+
           </div>
 
           {/* Sticky purchase */}
@@ -133,28 +153,15 @@ function CoursePage() {
                 {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
               </div>
               <div className="mb-4">
-                <div className="mb-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">1. Choisissez votre créneau</div>
-                <p className="mb-3 text-xs text-muted-foreground">Session en direct · 1 place par créneau · heure de Paris</p>
-                {slotsLoading ? (
-                  <p className="text-sm text-muted-foreground">Chargement des créneaux…</p>
-                ) : available.length === 0 ? (
-                  <div className="rounded-lg bg-sage-50 p-4 text-sm">
-                    <p className="mb-2">Aucun créneau disponible pour le moment.</p>
-                    <Link to="/contact" className="font-semibold text-sage-600 hover:underline">Demander un créneau</Link>
+                {chosen ? (
+                  <div className="rounded-lg bg-sage-50 px-3 py-2.5 text-sm">
+                    <span className="block font-semibold">{formatSessionDate(chosen.starts_at)}</span>
+                    <span className="block text-xs text-muted-foreground">{chosen.duration_minutes} min · en direct · 1 place</span>
                   </div>
                 ) : (
-                  <div className="max-h-72 space-y-2 overflow-y-auto pr-1">
-                    {available.map((s) => {
-                      const sel = s.id === slotId;
-                      return (
-                        <button key={s.id} type="button" onClick={() => setSlotId(sel ? null : s.id)}
-                          className={`w-full rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${sel ? "bg-sage-600 text-white" : "bg-sage-50 hover:bg-sage-100"}`}>
-                          <span className="block font-semibold">{formatSessionDate(s.starts_at)}</span>
-                          <span className="block text-xs opacity-80">{s.duration_minutes} min · en direct · 1 place</span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                  <a href="#reservation" className="block rounded-lg bg-sage-50 px-3 py-2.5 text-sm text-sage-700 hover:bg-sage-100">
+                    Choisissez votre créneau dans le calendrier ↓
+                  </a>
                 )}
               </div>
               <button
