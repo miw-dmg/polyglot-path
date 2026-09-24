@@ -92,6 +92,25 @@ function CoursePage() {
 
             <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
 
+            <section className="mb-10" id="reservation">
+              <h2 className="font-serif text-2xl mb-2">Choisissez votre créneau</h2>
+              <p className="mb-4 text-sm text-muted-foreground">Session en direct · 1 place par créneau · heure de Paris</p>
+              {slotsLoading ? (
+                <p className="text-sm text-muted-foreground">Chargement des créneaux…</p>
+              ) : available.length === 0 ? (
+                <div className="rounded-lg bg-sage-50 p-4 text-sm">
+                  <p className="mb-2">Aucun créneau disponible pour le moment.</p>
+                  <Link to="/contact" className="font-semibold text-sage-600 hover:underline">Demander un créneau</Link>
+                </div>
+              ) : (
+                <BookingCalendar
+                  slots={available}
+                  selectedId={slotId}
+                  onSelect={(s) => setSlotId(s?.id ?? null)}
+                />
+              )}
+            </section>
+
             <section className="mb-10">
               <h2 className="font-serif text-2xl mb-4">Description</h2>
               <p className="text-sage-900/80 leading-relaxed">{course.description}</p>
@@ -120,25 +139,6 @@ function CoursePage() {
                 </ol>
               </section>
             )}
-
-            <section className="mb-10" id="reservation">
-              <h2 className="font-serif text-2xl mb-2">Choisissez votre créneau</h2>
-              <p className="mb-4 text-sm text-muted-foreground">Session en direct · 1 place par créneau · heure de Paris</p>
-              {slotsLoading ? (
-                <p className="text-sm text-muted-foreground">Chargement des créneaux…</p>
-              ) : available.length === 0 ? (
-                <div className="rounded-lg bg-sage-50 p-4 text-sm">
-                  <p className="mb-2">Aucun créneau disponible pour le moment.</p>
-                  <Link to="/contact" className="font-semibold text-sage-600 hover:underline">Demander un créneau</Link>
-                </div>
-              ) : (
-                <BookingCalendar
-                  slots={available}
-                  selectedId={slotId}
-                  onSelect={(s) => setSlotId(s?.id ?? null)}
-                />
-              )}
-            </section>
 
           </div>
 
