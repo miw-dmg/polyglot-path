@@ -53,7 +53,7 @@ type ProductEdge = { node: { tags: string[]; variants: { edges: Array<{ node: { 
 
 /** Crée un panier Shopify (Storefront API) et renvoie l'URL de paiement. */
 export async function createShopifyCheckout(
-  items: Array<{ slug: string; title: string; sessionLabel?: string | null }>,
+  items: Array<{ slug: string; title: string; sessionLabel?: string | null; sessionId?: string | null }>,
 ): Promise<string | null> {
   const products = await storefrontApiRequest(PRODUCTS_QUERY);
   if (!products) return null;
@@ -66,11 +66,14 @@ export async function createShopifyCheckout(
     return {
       quantity: 1,
       merchandiseId: variantId,
-      attributes: item.sessionLabel ? [{ key: "Créneau", value: item.sessionLabel }] : [],
+      attributes: [
+        ...(item.sessionLabel ? [{ key: "Créneau", value: item.sessionLabel }] : []),
+        ...(item.sessionId ? [{ key: "_session_id", value: item.sessionId }] : []),
+      ],
     };
   });
 
-  const data = await storefrontApiRequest(CART_CREATE_MUTATION, { input: { lines } });
+  const data = await storefrontApiRequest(CART_CREATE_MUTATION, { input: { lines, attributes: items.filter((i) => i.sessionLabel).map((i) => ({ key: `Créneau — ${i.title}`, value: i.sessionLabel! })) } });
   if (!data) return null;
   const errors = data.data.cartCreate.userErrors;
   if (errors?.length) throw new Error(errors[0].message);

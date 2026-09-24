@@ -1,5 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { courseSessionsQuery, formatSessionDate } from "@/lib/sessions";
 import { Star, Clock, Award, CheckCircle2, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
@@ -40,14 +43,22 @@ function CoursePage() {
   const { slug } = Route.useParams();
   const { data: course } = useSuspenseQuery(courseBySlugQuery(slug));
   const cart = useCart();
+  const navigate = useNavigate();
+  const [slotId, setSlotId] = useState<string | null>(null);
+  const { data: sessions, isLoading: slotsLoading } = useQuery({ ...courseSessionsQuery(course?.id ?? ""), enabled: !!course, refetchInterval: 15000 });
   if (!course) return null;
+  const available = (sessions ?? []).filter((s) => s.spots_left > 0);
+  const chosen = available.find((s) => s.id === slotId) ?? null;
 
   const img = courseImage(course) ?? coursAnglaisImg;
   const inCart = cart.items.some((i) => i.courseId === course.id);
 
   function addToCart() {
-    if (!course) return;
-    const ok = cart.add({
+    if (!course || !chosen) return;
+    if (inCart) cart.remove(course.id);
+    cart.add({
+      sessionId: chosen.id,
+      sessionStartsAt: chosen.starts_at,
       courseId: course.id,
       slug: course.slug,
       title: course.title,
@@ -56,8 +67,8 @@ function CoursePage() {
       language: course.language,
       format: course.format,
     });
-    if (ok) toast.success("Ajouté au panier");
-    else toast.info("Déjà dans votre panier");
+    toast.success("Créneau ajouté au panier");
+    navigate({ to: "/panier" });
   }
 
   return (
@@ -74,8 +85,7 @@ function CoursePage() {
             </div>
             <h1 className="font-serif text-4xl md:text-5xl mb-4">{course.title}</h1>
             <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
-              <span className="inline-flex items-center gap-1"><Star className="h-4 w-4 fill-sage-600 text-sage-600" /> {course.rating} ({course.reviews_count} avis)</span>
-              {course.duration_hours && <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" /> {course.duration_hours}h</span>}
+                            {course.duration_hours && <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" /> {course.duration_hours}h</span>}
               <span className="inline-flex items-center gap-1"><Award className="h-4 w-4" /> Certificat inclus</span>
             </div>
 
@@ -110,23 +120,6 @@ function CoursePage() {
               </section>
             )}
 
-            <section>
-              <h2 className="font-serif text-2xl mb-4">Avis</h2>
-              <div className="space-y-4">
-                {[
-                  { name: "Émilie B.", text: "Très bonne pédagogie, je recommande vivement.", stars: 5 },
-                  { name: "Marc P.", text: "Contenu de grande qualité, j'ai beaucoup progressé.", stars: 5 },
-                ].map((r) => (
-                  <div key={r.name} className="rounded-xl bg-white p-5 ring-1 ring-sage-100">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-semibold text-sm">{r.name}</span>
-                      <span className="flex">{Array.from({ length: r.stars }).map((_, i) => <Star key={i} className="h-3 w-3 fill-sage-600 text-sage-600" />)}</span>
-                    </div>
-                    <p className="text-sm text-sage-900/80">{r.text}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
           </div>
 
           {/* Sticky purchase */}
@@ -139,12 +132,38 @@ function CoursePage() {
                 <span className="font-serif text-4xl font-bold text-sage-600">{formatPrice(course.price_cents)}</span>
                 {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
               </div>
+              <div className="mb-4">
+                <div className="mb-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">1. Choisissez votre créneau</div>
+                <p className="mb-3 text-xs text-muted-foreground">Session en direct · 1 place par créneau · heure de Paris</p>
+                {slotsLoading ? (
+                  <p className="text-sm text-muted-foreground">Chargement des créneaux…</p>
+                ) : available.length === 0 ? (
+                  <div className="rounded-lg bg-sage-50 p-4 text-sm">
+                    <p className="mb-2">Aucun créneau disponible pour le moment.</p>
+                    <Link to="/contact" className="font-semibold text-sage-600 hover:underline">Demander un créneau</Link>
+                  </div>
+                ) : (
+                  <div className="max-h-72 space-y-2 overflow-y-auto pr-1">
+                    {available.map((s) => {
+                      const sel = s.id === slotId;
+                      return (
+                        <button key={s.id} type="button" onClick={() => setSlotId(sel ? null : s.id)}
+                          className={`w-full rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${sel ? "bg-sage-600 text-white" : "bg-sage-50 hover:bg-sage-100"}`}>
+                          <span className="block font-semibold">{formatSessionDate(s.starts_at)}</span>
+                          <span className="block text-xs opacity-80">{s.duration_minutes} min · en direct · 1 place</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
               <button
                 onClick={addToCart}
-                className="w-full rounded-lg bg-sage-600 px-6 py-3.5 font-semibold text-white hover:bg-sage-900 transition-colors inline-flex items-center justify-center gap-2"
+                disabled={!chosen}
+                className="disabled:cursor-not-allowed disabled:opacity-50 w-full rounded-lg bg-sage-600 px-6 py-3.5 font-semibold text-white hover:bg-sage-900 transition-colors inline-flex items-center justify-center gap-2"
               >
                 <ShoppingBag className="h-4 w-4" />
-                {inCart ? "Dans le panier" : "Ajouter au panier"}
+                {chosen ? "Je réserve ce créneau" : "Choisissez un créneau"}
               </button>
               <Link to="/essai-gratuit" className="mt-2 block w-full text-center rounded-lg border border-sage-600 px-6 py-3 font-semibold text-sage-600 hover:bg-sage-50 transition-colors">
                 Séance d'essai gratuite
@@ -153,7 +172,7 @@ function CoursePage() {
                 Voir le panier
               </Link>
               <ul className="mt-6 space-y-3 text-sm text-sage-900/80">
-                {["Accès à vie aux contenus", "Certificat de réussite", "Support pédagogique inclus", "Garantie 30 jours satisfait ou remboursé"].map((f) => (
+                {["Session en direct", "Créneau garanti après paiement", "Paiement sécurisé par Shopify", "Aucun compte requis"].map((f) => (
                   <li key={f} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" /> {f}</li>
                 ))}
               </ul>

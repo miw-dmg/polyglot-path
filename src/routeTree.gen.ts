@@ -20,6 +20,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursSlugRouteImport } from './routes/cours.$slug'
 import { Route as AuthenticatedCompteRouteImport } from './routes/_authenticated/compte'
+import { Route as ApiPublicShopifyOrderRouteImport } from './routes/api/public/shopify-order'
 
 const PanierRoute = PanierRouteImport.update({
   id: '/panier',
@@ -75,6 +76,11 @@ const AuthenticatedCompteRoute = AuthenticatedCompteRouteImport.update({
   path: '/compte',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiPublicShopifyOrderRoute = ApiPublicShopifyOrderRouteImport.update({
+  id: '/api/public/shopify-order',
+  path: '/api/public/shopify-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/panier': typeof PanierRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
+  '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/panier': typeof PanierRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
+  '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/panier': typeof PanierRoute
   '/_authenticated/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
+  '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/panier'
     | '/compte'
     | '/cours/$slug'
+    | '/api/public/shopify-order'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/panier'
     | '/compte'
     | '/cours/$slug'
+    | '/api/public/shopify-order'
   id:
     | '__root__'
     | '/'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/panier'
     | '/_authenticated/compte'
     | '/cours/$slug'
+    | '/api/public/shopify-order'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   EssaiGratuitRoute: typeof EssaiGratuitRoute
   PanierRoute: typeof PanierRoute
   CoursSlugRoute: typeof CoursSlugRoute
+  ApiPublicShopifyOrderRoute: typeof ApiPublicShopifyOrderRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -246,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCompteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/shopify-order': {
+      id: '/api/public/shopify-order'
+      path: '/api/public/shopify-order'
+      fullPath: '/api/public/shopify-order'
+      preLoaderRoute: typeof ApiPublicShopifyOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -271,6 +291,7 @@ const rootRouteChildren: RootRouteChildren = {
   EssaiGratuitRoute: EssaiGratuitRoute,
   PanierRoute: PanierRoute,
   CoursSlugRoute: CoursSlugRoute,
+  ApiPublicShopifyOrderRoute: ApiPublicShopifyOrderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

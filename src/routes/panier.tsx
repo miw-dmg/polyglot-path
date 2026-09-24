@@ -22,7 +22,7 @@ export const Route = createFileRoute("/panier")({
 
 function SlotPicker({ item }: { item: CartItem }) {
   const cart = useCart();
-  const { data: sessions, isLoading } = useQuery(courseSessionsQuery(item.courseId));
+  const { data: sessions, isLoading } = useQuery({ ...courseSessionsQuery(item.courseId), refetchInterval: 15000 });
 
   return (
     <div className="mt-4 border-t border-sage-100 pt-4">
@@ -78,6 +78,7 @@ function Cart() {
           slug: i.slug,
           title: i.title,
           sessionLabel: i.sessionStartsAt ? formatSessionDate(i.sessionStartsAt) : null,
+          sessionId: i.sessionId ?? null,
         })),
       );
       if (url) window.open(url, "_blank");
@@ -132,6 +133,11 @@ function Cart() {
                         </div>
                       </div>
                     </div>
+                    {item.sessionStartsAt && (
+                      <p className="mt-3 rounded-lg bg-sage-50 px-3 py-2 text-xs font-semibold text-sage-600">
+                        {formatSessionDate(item.sessionStartsAt)} · heure de Paris · 1 place réservée
+                      </p>
+                    )}
                     <SlotPicker item={item} />
                   </div>
                 );
@@ -156,7 +162,7 @@ function Cart() {
                   className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sage-600 px-6 py-3.5 font-semibold text-white hover:bg-sage-900 transition-colors disabled:opacity-60"
                 >
                   {paying ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                  Passer au paiement
+                  Continuer vers le paiement sécurisé
                 </button>
               ) : (
                 <div>
@@ -166,7 +172,7 @@ function Cart() {
                   <p className="mt-2 text-center text-xs text-muted-foreground">Sélectionnez un créneau pour chaque cours.</p>
                 </div>
               )}
-              <p className="mt-3 text-center text-xs text-muted-foreground">Aucune inscription requise.</p>
+              <p className="mt-3 text-center text-xs text-muted-foreground">Paiement sécurisé par Shopify · Créneau garanti après paiement · Aucune inscription requise.</p>
               <Link to="/catalogue" className="mt-3 block text-center text-sm text-muted-foreground hover:text-sage-600">
                 Continuer mes achats
               </Link>
