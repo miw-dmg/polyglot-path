@@ -78,6 +78,7 @@ function TrialPage() {
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
       <Header />
+      <TrustBand />
       <main className="mx-auto max-w-5xl px-6 py-16">
         <span className="mb-4 inline-block rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sage-600">
           Sans engagement
