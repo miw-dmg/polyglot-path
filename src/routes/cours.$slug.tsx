@@ -1,13 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
 import { courseSessionsQuery, formatSessionDate } from "@/lib/sessions";
 import { Clock, Award, CheckCircle2, ShoppingBag, User } from "lucide-react";
 import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { TrustBand } from "@/components/site/TrustBand";
 import { AfterOrder, FaqSection, PackIncluded } from "@/components/site/Reassurance";
-import { toast } from "sonner";
+import { openCart } from "@/components/site/CartDrawer";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { courseBySlugQuery, courseImage, levelLabels, formatLabels } from "@/lib/courses";
@@ -46,7 +45,6 @@ function CoursePage() {
   const { slug } = Route.useParams();
   const { data: course } = useSuspenseQuery(courseBySlugQuery(slug));
   const cart = useCart();
-  const navigate = useNavigate();
   const [slotId, setSlotId] = useState<string | null>(null);
   const { data: sessions, isLoading: slotsLoading } = useQuery({ ...courseSessionsQuery(course?.id ?? ""), enabled: !!course, refetchInterval: 15000 });
   if (!course) return null;
@@ -70,8 +68,7 @@ function CoursePage() {
       language: course.language,
       format: course.format,
     });
-    toast.success("Créneau ajouté au panier");
-    navigate({ to: "/panier" });
+    openCart();
   }
 
   return (
