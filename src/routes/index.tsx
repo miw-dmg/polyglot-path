@@ -191,6 +191,27 @@ function Home() {
         </div>
       </section>
 
+      {/* Commitments */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-14">
+            <h2 className="font-serif text-3xl md:text-4xl mb-3">Nos engagements</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">Ce à quoi vous pouvez nous tenir, à chaque étape de votre apprentissage.</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {commitments.map((c) => (
+              <div key={c.title} className="rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                  <c.icon className="h-5 w-5" />
+                </div>
+                <h3 className="font-serif text-xl mb-2">{c.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="pb-24">
         <div className="mx-auto max-w-5xl px-6">
