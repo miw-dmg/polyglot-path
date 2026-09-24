@@ -6,6 +6,7 @@ import { courseSessionsQuery, formatSessionDate } from "@/lib/sessions";
 import { Clock, Award, CheckCircle2, ShoppingBag, User } from "lucide-react";
 import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { TrustBand } from "@/components/site/TrustBand";
+import { AfterOrder, FaqSection, PackIncluded } from "@/components/site/Reassurance";
 import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -115,6 +116,7 @@ function CoursePage() {
                 />
               )}
             </section>
+            <div className="mb-10"><AfterOrder /></div>
 
             <section className="mb-10">
               <div className="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-sage-100">
@@ -163,6 +165,7 @@ function CoursePage() {
               <h2 className="font-serif text-2xl mb-4">Description</h2>
               <p className="text-sage-900/80 leading-relaxed">{course.description}</p>
             </section>
+            {/10\s*H/i.test(course.title) && <PackIncluded />}
 
             {course.prerequisites && (
               <section className="mb-10">
@@ -192,6 +195,7 @@ function CoursePage() {
         </div>
       </div>
 
+      <div className="mx-auto max-w-3xl px-6 pb-16"><FaqSection /></div>
       <Footer />
     </div>
   );
