@@ -7,6 +7,7 @@ import { Clock, Award, CheckCircle2, ShoppingBag, User } from "lucide-react";
 import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { TrustBand } from "@/components/site/TrustBand";
 import { AfterOrder, FaqSection, PackIncluded } from "@/components/site/Reassurance";
+import { openCart } from "@/components/site/CartDrawer";
 import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -70,8 +71,7 @@ function CoursePage() {
       language: course.language,
       format: course.format,
     });
-    toast.success("Créneau ajouté au panier");
-    navigate({ to: "/panier" });
+    openCart();
   }
 
   return (
