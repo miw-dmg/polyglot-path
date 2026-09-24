@@ -79,7 +79,7 @@ function CoursePage() {
       <div className="mx-auto max-w-6xl px-6 py-12">
         <Link to="/catalogue" className="text-sm text-muted-foreground hover:text-sage-600">← Retour au catalogue</Link>
 
-        <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_380px]">
+        <div className="mt-8 mx-auto max-w-3xl">
           <div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
               {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
