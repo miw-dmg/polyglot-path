@@ -5,7 +5,6 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CourseCard } from "@/components/site/CourseCard";
 import { TrustBand } from "@/components/site/TrustBand";
-import { Teachers } from "@/components/site/Teachers";
 import { FaqSection } from "@/components/site/Reassurance";
 import { coursesQuery } from "@/lib/courses";
 import heroImg from "@/assets/hero-study.jpg";
@@ -215,7 +214,6 @@ function Home() {
         </div>
       </section>
 
-      <Teachers />
 
       <div className="mx-auto max-w-3xl px-6 pb-24"><FaqSection /></div>
 
