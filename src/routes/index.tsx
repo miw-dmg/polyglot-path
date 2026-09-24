@@ -100,22 +100,7 @@ function Home() {
       </header>
 
       {/* Trust figures */}
-      <section aria-label="Chiffres clés" className="border-y border-sage-100 bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-10 text-center sm:grid-cols-3">
-          <div>
-            <div className="font-serif text-4xl text-sage-600">+500</div>
-            <p className="mt-1 text-sm text-muted-foreground">étudiants ont utilisé nos cours</p>
-          </div>
-          <div>
-            <div className="font-serif text-4xl text-sage-600">+50</div>
-            <p className="mt-1 text-sm text-muted-foreground">professeurs certifiés employés</p>
-          </div>
-          <div>
-            <div className="font-serif text-4xl text-sage-600">98%</div>
-            <p className="mt-1 text-sm text-muted-foreground">de satisfaction client</p>
-          </div>
-        </div>
-      </section>
+      <TrustBand />
 
       {/* How it works */}
       <section id="how" className="py-24 bg-white">
