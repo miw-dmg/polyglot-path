@@ -136,6 +136,11 @@ function TrialPage() {
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-lg border border-sage-100 px-4 py-3" placeholder="camille@exemple.fr" />
             </label>
           </div>
+          {sessionId && (
+            <p className="mt-4 rounded-lg bg-sage-50 px-4 py-3 text-sm font-medium text-sage-700">
+              Créneau choisi : {formatSessionDate(sessions.find((s) => s.id === sessionId)?.starts_at ?? "")}
+            </p>
+          )}
           {mutation.error && <p className="mt-4 text-sm text-red-600">{(mutation.error as Error).message}</p>}
           <button
             type="button"
