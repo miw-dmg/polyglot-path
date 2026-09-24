@@ -152,7 +152,7 @@ function Cart() {
                   <p className="mt-2 text-center text-xs text-muted-foreground">Sélectionnez un créneau pour chaque cours.</p>
                 </div>
               )}
-              <p className="mt-3 text-center text-xs text-muted-foreground">Paiement sécurisé par Shopify · Créneau garanti après paiement · Aucune inscription requise.</p>
+              <p className="mt-3 text-center text-xs text-muted-foreground">Paiement sécurisé par Shopify · Créneau garanti après paiement · Satisfait ou remboursé.</p>
               <Link to="/catalogue" className="mt-3 block text-center text-sm text-muted-foreground hover:text-sage-600">
                 Continuer mes achats
               </Link>
