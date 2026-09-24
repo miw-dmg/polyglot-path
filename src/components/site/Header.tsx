@@ -4,6 +4,7 @@ import { ShoppingBag, User as UserIcon, Menu, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/lib/cart";
 import type { User } from "@supabase/supabase-js";
+import logoAsset from "@/assets/polylinguist-logo.png.asset.json";
 
 export function Header() {
   const navigate = useNavigate();
@@ -31,8 +32,8 @@ export function Header() {
     <nav className="sticky top-0 z-50 border-b border-sage-100 bg-cream-100/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <div className="flex items-center gap-8">
-          <Link to="/" className="font-serif text-2xl font-bold tracking-tight text-sage-600 underline decoration-sage-100 underline-offset-4">
-            Polylinguist.
+          <Link to="/" className="inline-flex items-center" aria-label="PolyLinguist — accueil">
+            <img src={logoAsset.url} alt="PolyLinguist" className="h-9 w-auto" />
           </Link>
           <div className="hidden gap-6 md:flex">
             {links.map((l) => (
