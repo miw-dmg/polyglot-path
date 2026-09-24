@@ -23,6 +23,9 @@ export function CourseCard({ course }: { course: Course }) {
             {formatPrice(course.price_cents)}{course.format === "abonnement" ? "/m" : ""}
           </span>
         </div>
+        <span className="mb-2 self-start rounded-full bg-sage-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sage-600">
+          Cours individuel
+        </span>
         <h3 className="mb-2 text-lg font-semibold leading-snug group-hover:text-sage-600 transition-colors">
           {course.title}
         </h3>

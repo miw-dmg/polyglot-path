@@ -3,7 +3,7 @@ import { useSuspenseQuery, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { courseSessionsQuery, formatSessionDate } from "@/lib/sessions";
-import { Clock, Award, CheckCircle2, ShoppingBag } from "lucide-react";
+import { Clock, Award, CheckCircle2, ShoppingBag, User } from "lucide-react";
 import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { toast } from "sonner";
 import { Header } from "@/components/site/Header";
@@ -85,16 +85,18 @@ function CoursePage() {
               {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
             </div>
             <h1 className="font-serif text-4xl md:text-5xl mb-4">{course.title}</h1>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
-                            {course.duration_hours && <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" /> {course.duration_hours}h</span>}
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-2">
+              {course.duration_hours && <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" /> {course.duration_hours}h</span>}
               <span className="inline-flex items-center gap-1"><Award className="h-4 w-4" /> Certificat inclus</span>
+              <span className="inline-flex items-center gap-1"><User className="h-4 w-4" /> Cours individuel · 1 élève, 1 professeur</span>
             </div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-sage-600 mb-8">Cours individuel en tête-à-tête</div>
 
             <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
 
             <section className="mb-10" id="reservation">
               <h2 className="font-serif text-2xl mb-2">Choisissez votre créneau</h2>
-              <p className="mb-4 text-sm text-muted-foreground">Session en direct · 1 place par créneau · heure de Paris</p>
+              <p className="mb-4 text-sm text-muted-foreground">Cours individuel en direct · 1 élève par créneau · heure de Paris</p>
               {slotsLoading ? (
                 <p className="text-sm text-muted-foreground">Chargement des créneaux…</p>
               ) : available.length === 0 ? (
