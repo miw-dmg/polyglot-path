@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { CheckCircle2, Video } from "lucide-react";
 import { BookingCalendar } from "@/components/site/BookingCalendar";
+import { TrustBand } from "@/components/site/TrustBand";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { coursesQuery, courseImage } from "@/lib/courses";
