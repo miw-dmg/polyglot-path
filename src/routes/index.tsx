@@ -36,6 +36,15 @@ const testimonials = [
   { name: "Sarah W.", quote: "Grâce aux sessions live et au suivi personnalisé, j'ai atteint mon objectif de score en quelques mois.", course: "Parcours certifiant TOEFL" },
 ];
 
+const commitments = [
+  { icon: GraduationCap, title: "Professeurs certifiés", text: "Nos professeurs sont diplômés et sélectionnés pour leur expérience de l'enseignement aux professionnels." },
+  { icon: UserCheck, title: "Cours individuels en direct", text: "Chaque session est un tête-à-tête : toute l'attention du professeur est portée sur vous." },
+  { icon: ShieldCheck, title: "Paiement sécurisé", text: "Le paiement par carte est traité par Shopify. Aucune donnée bancaire ne transite sur notre site." },
+  { icon: CalendarCheck, title: "Créneau garanti", text: "Votre place est confirmée immédiatement après le paiement : le créneau est réservé pour vous." },
+  { icon: Wallet, title: "Financement CPF", text: "Nos parcours certifiants sont éligibles au CPF en France. Notre équipe vous accompagne dans votre dossier." },
+  { icon: Sparkles, title: "Séance d'essai gratuite", text: "Testez une session en direct dans la catégorie de votre choix, sans engagement." },
+];
+
 function Home() {
   const { data: courses } = useSuspenseQuery(coursesQuery());
   const featured = courses.filter((c) => c.is_featured).slice(0, 3);
