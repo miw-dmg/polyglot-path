@@ -69,7 +69,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-20 border-t border-sage-50 pt-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Linguist Academy. Tous droits réservés.
+          © {new Date().getFullYear()} PolyLinguist. Tous droits réservés.
         </div>
       </div>
     </footer>
