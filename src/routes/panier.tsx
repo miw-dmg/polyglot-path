@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Trash2, ShoppingBag, CalendarDays } from "lucide-react";
+import { Trash2, ShoppingBag, CalendarDays, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { createShopifyCheckout } from "@/lib/shopify";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { useCart, formatPrice, type CartItem } from "@/lib/cart";
@@ -65,6 +68,26 @@ function SlotPicker({ item }: { item: CartItem }) {
 function Cart() {
   const cart = useCart();
   const allSlotsChosen = cart.items.length > 0 && cart.items.every((i) => !!i.sessionId);
+  const [paying, setPaying] = useState(false);
+
+  async function goToShopify() {
+    setPaying(true);
+    try {
+      const url = await createShopifyCheckout(
+        cart.items.map((i) => ({
+          slug: i.slug,
+          title: i.title,
+          sessionLabel: i.sessionStartsAt ? formatSessionDate(i.sessionStartsAt) : null,
+        })),
+      );
+      if (url) window.open(url, "_blank");
+      else toast.error("Paiement indisponible pour le moment.");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Erreur de paiement");
+    } finally {
+      setPaying(false);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
@@ -126,9 +149,15 @@ function Cart() {
                 <span className="font-serif text-2xl font-bold text-sage-600">{formatPrice(cart.totalCents)}</span>
               </div>
               {allSlotsChosen ? (
-                <Link to="/checkout" className="block w-full text-center rounded-lg bg-sage-600 px-6 py-3.5 font-semibold text-white hover:bg-sage-900 transition-colors">
+                <button
+                  type="button"
+                  disabled={paying}
+                  onClick={goToShopify}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sage-600 px-6 py-3.5 font-semibold text-white hover:bg-sage-900 transition-colors disabled:opacity-60"
+                >
+                  {paying ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
                   Passer au paiement
-                </Link>
+                </button>
               ) : (
                 <div>
                   <button disabled className="w-full cursor-not-allowed rounded-lg bg-sage-600/50 px-6 py-3.5 font-semibold text-white">
