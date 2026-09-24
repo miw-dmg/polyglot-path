@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
 
 const steps = [
   { icon: Sparkles, title: "Choisissez votre catégorie", text: "Conversation, anglais des affaires ou parcours certifiant : sélectionnez le cours adapté à votre objectif." },
-  { icon: BookOpen, title: "Sélectionnez un créneau", text: "Parcourez les sessions en direct disponibles et réservez la date et l'heure qui vous conviennent." },
+  { icon: BookOpen, title: "Sélectionnez un créneau", text: "Parcourez les sessions individuelles en direct disponibles et réservez la date et l'heure qui vous conviennent." },
   { icon: Users, title: "Payez en toute sécurité", text: "Paiement par carte en quelques clics, sans création de compte. Votre place est confirmée immédiatement." },
   { icon: CheckCircle2, title: "Rejoignez la session en direct", text: "Recevez votre lien de visioconférence par e-mail et connectez-vous au jour et à l'heure choisis." },
 ];
@@ -61,13 +61,13 @@ function Home() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className="max-w-xl">
               <span className="mb-4 inline-block rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold tracking-wider uppercase text-sage-600">
-                Apprentissage immersif
+                Cours individuels en direct
               </span>
               <h1 className="mb-6 font-serif text-5xl leading-[1.1] md:text-6xl">
                 Maîtrisez l'Anglais avec <span className="italic">assurance</span>.
               </h1>
               <p className="mb-8 text-lg text-sage-900/70 leading-relaxed">
-                Des sessions en direct avec des professeurs certifiés, à réserver selon vos disponibilités, pour transformer votre apprentissage en réussite.
+                Des cours individuels en tête-à-tête avec un professeur certifié, en sessions en direct à réserver selon vos disponibilités, pour transformer votre apprentissage en réussite.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/catalogue" className="rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft hover:-translate-y-0.5 transition-all">
