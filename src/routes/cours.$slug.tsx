@@ -124,7 +124,8 @@ function CoursePage() {
                 </div>
                 {course.slug === "anglais-toefl" && (
                   <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
-                    Dont 310 € d'inscription à l'examen TOEFL iBT, réglés directement auprès d'ITS, le fournisseur officiel du TOEFL iBT.
+                    Dont 310 € d'inscription à l'examen TOEFL iBT, réglés directement auprès d'ITS, le fournisseur officiel du TOEFL iBT.{" "}
+                    <Link to="/toefl-ibt" className="font-semibold text-sage-600 hover:underline">Tout savoir sur l'examen →</Link>
                   </p>
                 )}
                 <div className="mb-4">
