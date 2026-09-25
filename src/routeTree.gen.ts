@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ToeflIbtRouteImport } from './routes/toefl-ibt'
 import { Route as PanierRouteImport } from './routes/panier'
 import { Route as EssaiGratuitRouteImport } from './routes/essai-gratuit'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -22,6 +23,11 @@ import { Route as CoursSlugRouteImport } from './routes/cours.$slug'
 import { Route as AuthenticatedCompteRouteImport } from './routes/_authenticated/compte'
 import { Route as ApiPublicShopifyOrderRouteImport } from './routes/api/public/shopify-order'
 
+const ToeflIbtRoute = ToeflIbtRouteImport.update({
+  id: '/toefl-ibt',
+  path: '/toefl-ibt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PanierRoute = PanierRouteImport.update({
   id: '/panier',
   path: '/panier',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
+  '/toefl-ibt': typeof ToeflIbtRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
   '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
+  '/toefl-ibt': typeof ToeflIbtRoute
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
   '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
+  '/toefl-ibt': typeof ToeflIbtRoute
   '/_authenticated/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
   '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/essai-gratuit'
     | '/panier'
+    | '/toefl-ibt'
     | '/compte'
     | '/cours/$slug'
     | '/api/public/shopify-order'
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/essai-gratuit'
     | '/panier'
+    | '/toefl-ibt'
     | '/compte'
     | '/cours/$slug'
     | '/api/public/shopify-order'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/essai-gratuit'
     | '/panier'
+    | '/toefl-ibt'
     | '/_authenticated/compte'
     | '/cours/$slug'
     | '/api/public/shopify-order'
@@ -176,12 +188,20 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EssaiGratuitRoute: typeof EssaiGratuitRoute
   PanierRoute: typeof PanierRoute
+  ToeflIbtRoute: typeof ToeflIbtRoute
   CoursSlugRoute: typeof CoursSlugRoute
   ApiPublicShopifyOrderRoute: typeof ApiPublicShopifyOrderRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/toefl-ibt': {
+      id: '/toefl-ibt'
+      path: '/toefl-ibt'
+      fullPath: '/toefl-ibt'
+      preLoaderRoute: typeof ToeflIbtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/panier': {
       id: '/panier'
       path: '/panier'
@@ -290,6 +310,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EssaiGratuitRoute: EssaiGratuitRoute,
   PanierRoute: PanierRoute,
+  ToeflIbtRoute: ToeflIbtRoute,
   CoursSlugRoute: CoursSlugRoute,
   ApiPublicShopifyOrderRoute: ApiPublicShopifyOrderRoute,
 }
