@@ -184,7 +184,8 @@ export default function ToeflPage() {
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <Link
-                    to="/cours/anglais-toefl"
+                    to="/cours/$slug"
+                    params={{ slug: "anglais-toefl" }}
                     className="inline-flex items-center gap-2 rounded-lg bg-sage-600 px-5 py-3 font-semibold text-white hover:bg-sage-900 transition-colors"
                   >
                     Découvrir le parcours <ArrowRight className="h-4 w-4" />
