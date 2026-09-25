@@ -1,7 +1,7 @@
 import { GraduationCap, Users, ThumbsUp } from "lucide-react";
 
 const figures = [
-  { icon: Users, value: "+500", label: "étudiants ont utilisé nos cours" },
+  { icon: Users, value: "+1 000", label: "étudiants ont utilisé nos cours" },
   { icon: GraduationCap, value: "+50", label: "professeurs certifiés employés" },
   { icon: ThumbsUp, value: "98%", label: "de satisfaction client" },
 ];
