@@ -84,9 +84,9 @@ function Home() {
                 <Link to="/catalogue" className="rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft hover:-translate-y-0.5 transition-all">
                   Je réserve en ligne
                 </Link>
-                <a href="#how" className="rounded-lg border border-sage-100 bg-white px-8 py-4 font-medium hover:bg-sage-50 transition-colors">
-                  Comment ça marche
-                </a>
+                <Link to="/essai-gratuit" className="rounded-lg border border-sage-100 bg-white px-8 py-4 font-medium hover:bg-sage-50 transition-colors">
+                  Séance d'essai gratuite
+                </Link>
               </div>
               <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                 <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-sage-600" /> Paiement sécurisé</span>
