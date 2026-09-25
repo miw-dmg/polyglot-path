@@ -30,7 +30,7 @@ function About() {
         <div className="grid gap-6 sm:grid-cols-3 my-12">
           {[
             { n: "1 000+", l: "Apprenants" },
-            { n: "6", l: "Langues" },
+            { n: "50+", l: "PROFESSEURS" },
             { n: "4.8/5", l: "Note moyenne" },
           ].map((s) => (
             <div key={s.l} className="rounded-2xl bg-white p-6 text-center ring-1 ring-sage-100">
