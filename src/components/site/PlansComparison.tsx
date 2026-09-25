@@ -8,7 +8,7 @@ const plans: Plan[] = [
   { slug: "cours-a-la-demande", name: "Cours à la demande", sub: "1H", price: "50 €", perHour: "50 € / heure", goal: "Besoin ponctuel, préparation d'une réunion ou d'un entretien urgent.", cta: "Réserver une heure" },
   { slug: "anglais-conversationnel", name: "Anglais Conversationnel", sub: "Pack 10H", price: "299 €", perHour: "soit 29,90 € / heure", goal: "Débloquer la fluidité et gagner en confiance au quotidien.", cta: "Choisir cette formule" },
   { slug: "anglais-affaires", name: "Business English", sub: "Pack 10H", price: "349 €", perHour: "soit 34,90 € / heure", goal: "Négociation, réunions internationales, pitchs et vocabulaire sectoriel.", cta: "Choisir cette formule", featured: true },
-  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "449 €", perHour: "soit 44,90 € / heure", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
+  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "759 €", perHour: "dont 310 € d'inscription TOEFL iBT · soit 44,90 € / heure de cours", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
 ];
 
 type Cell = string | boolean;
