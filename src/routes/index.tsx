@@ -223,7 +223,7 @@ function Home() {
           <div className="rounded-3xl bg-sage-900 p-12 md:p-16 text-center text-white">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">Prêt à commencer l'aventure ?</h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              Rejoignez plus de 500 étudiants qui ont transformé leur manière d'apprendre l'anglais.
+              Rejoignez plus de 1000 étudiants qui ont transformé leur manière d'apprendre l'anglais.
             </p>
             <Link to="/catalogue" className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 font-medium text-sage-900 hover:-translate-y-0.5 transition-all">
               Je réserve en ligne <ArrowRight className="h-4 w-4" />
