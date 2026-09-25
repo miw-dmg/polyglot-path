@@ -75,7 +75,7 @@ function Home() {
                 Maîtrisez l'Anglais avec <span className="italic">assurance</span>.
               </h1>
               <p className="hero-enter mb-8 text-lg text-sage-900/70 leading-relaxed" style={{ animationDelay: "240ms" }}>
-                Des cours individuels en tête-à-tête avec un professeur certifié, en sessions en direct à réserver selon vos disponibilités, pour transformer votre apprentissage en réussite.
+                Des cours individuels avec un professeur certifié, en ligne et à réserver selon vos disponibilités, pour améliorer votre niveau en Anglais dans les affaires ou dans la vie de tous les jours.
               </p>
               <div className="hero-enter flex flex-wrap gap-4" style={{ animationDelay: "360ms" }}>
                 <Link to="/catalogue" className="rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft hover:-translate-y-0.5 transition-all">
