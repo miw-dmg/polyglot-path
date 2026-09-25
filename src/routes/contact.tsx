@@ -68,7 +68,7 @@ function Contact() {
           </form>
 
           <aside className="space-y-6">
-            <Info icon={Mail} label="Email" value="hello@linguist.fr" />
+            <Info icon={Mail} label="Email" value="contact@polylinguist.fr" />
             <Info icon={MessageSquare} label="Support" value="Lun-Ven · 9h-18h" />
             <Info icon={MapPin} label="Adresse" value="12 rue des Langues, 75011 Paris" />
           </aside>
