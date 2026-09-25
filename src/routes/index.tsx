@@ -32,12 +32,6 @@ const steps = [
   { icon: CheckCircle2, title: "Rejoignez la session en direct", text: "Recevez votre lien de visioconférence par e-mail et connectez-vous au jour et à l'heure choisis." },
 ];
 
-const testimonials = [
-  { name: "Clara D.", quote: "Une approche radicalement différente. Les sessions en direct m'ont permis de prendre la parole en anglais sans stress.", course: "Anglais Conversationnel" },
-  { name: "Julien R.", quote: "Pouvoir réserver mes créneaux selon mon agenda a tout changé. Le contenu est très structuré et concret.", course: "Business English" },
-  { name: "Sarah W.", quote: "Grâce aux sessions live et au suivi personnalisé, j'ai atteint mon objectif de score en quelques mois.", course: "Parcours certifiant TOEFL" },
-];
-
 const commitments = [
   { icon: GraduationCap, title: "Professeurs certifiés", text: "Nos professeurs sont diplômés et sélectionnés pour leur expérience de l'enseignement aux professionnels." },
   { icon: UserCheck, title: "Cours individuels en direct", text: "Chaque session est un tête-à-tête : toute l'attention du professeur est portée sur vous." },
@@ -176,23 +170,9 @@ function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 className="font-serif text-3xl text-center mb-16">Ils apprennent avec nous</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {testimonials.map((t) => (
-              <blockquote key={t.name} className="rounded-2xl bg-white p-8 ring-1 ring-sage-100">
-                <p className="italic text-sage-900/80 leading-relaxed mb-6">"{t.quote}"</p>
-                <footer>
-                  <div className="font-semibold">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.course}</div>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Client video testimonials */}
+      <VideoTestimonials />
+
 
       {/* Commitments */}
       <section className="py-24 bg-white">
@@ -218,8 +198,6 @@ function Home() {
 
       <div className="mx-auto max-w-3xl px-6 pb-24"><FaqSection /></div>
 
-      {/* Client video testimonials */}
-      <VideoTestimonials />
 
       {/* CTA */}
       <section className="pb-24">
