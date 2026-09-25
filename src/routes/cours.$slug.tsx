@@ -91,7 +91,15 @@ function CoursePage() {
               <span className="inline-flex items-center gap-1"><Award className="h-4 w-4" /> Certificat inclus</span>
               <span className="inline-flex items-center gap-1"><User className="h-4 w-4" /> Cours individuel · 1 élève, 1 professeur</span>
             </div>
-            <div className="text-[10px] font-bold uppercase tracking-widest text-sage-600 mb-8">Cours individuel en tête-à-tête</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-sage-600 mb-4">Cours individuel en tête-à-tête</div>
+            {course.slug === "anglais-toefl" && (
+              <Link
+                to="/toefl-ibt"
+                className="mb-8 inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-4 py-2 text-sm font-semibold text-sage-700 shadow-soft transition hover:border-sage-400 hover:text-sage-900"
+              >
+                <Award className="h-4 w-4" /> Tout savoir sur l'examen TOEFL iBT →
+              </Link>
+            )}
 
             <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="aspect-video w-full rounded-2xl object-cover shadow-soft mb-10" />
 
