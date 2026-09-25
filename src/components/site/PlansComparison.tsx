@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Minus } from "lucide-react";
+import { Reveal } from "@/components/site/Reveal";
 
 type Plan = { slug: string; name: string; sub: string; price: string; perHour: string; goal: string; cta: string; featured?: boolean };
 
@@ -32,6 +33,7 @@ function Value({ v }: { v: Cell }) {
 export function PlansComparison() {
   return (
     <section className="py-16 bg-white">
+      <Reveal>
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center mb-8">
           <h2 className="font-serif text-2xl md:text-3xl mb-2">Comparez nos formules</h2>
@@ -87,6 +89,7 @@ export function PlansComparison() {
           </Link>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

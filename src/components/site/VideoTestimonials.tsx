@@ -1,4 +1,5 @@
 import { Play } from "lucide-react";
+import { Reveal } from "@/components/site/Reveal";
 
 export type ClientVideo = {
   src: string;
@@ -28,7 +29,8 @@ export function VideoTestimonials() {
         </div>
         <div className="grid gap-8 md:grid-cols-3">
           {clientVideos.map((v, i) => (
-            <figure key={i} className="group overflow-hidden rounded-2xl bg-cream-100 ring-1 ring-sage-100">
+            <Reveal key={i} delay={i * 100}>
+            <figure className="group h-full overflow-hidden rounded-2xl bg-cream-100 ring-1 ring-sage-100">
               <div className="relative aspect-video bg-sage-900">
                 {v.src ? (
                   <video
@@ -53,6 +55,7 @@ export function VideoTestimonials() {
                 <div className="text-xs text-muted-foreground">{v.course}</div>
               </figcaption>
             </figure>
+            </Reveal>
           ))}
         </div>
       </div>
