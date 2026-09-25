@@ -29,7 +29,7 @@ function About() {
 
         <div className="grid gap-6 sm:grid-cols-3 my-12">
           {[
-            { n: "10 000+", l: "Apprenants" },
+            { n: "1 000+", l: "Apprenants" },
             { n: "6", l: "Langues" },
             { n: "4.8/5", l: "Note moyenne" },
           ].map((s) => (
