@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
 import { CartDrawer } from "@/components/site/CartDrawer";
+import { CallButton } from "@/components/site/CallButton";
 
 function NotFoundComponent() {
   return (
