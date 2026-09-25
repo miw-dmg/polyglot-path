@@ -45,7 +45,7 @@ export function PlansComparison() {
               <tr>
                 <th className="w-[19%] bg-cream-100 p-3 text-left align-bottom text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Formules</th>
                 {plans.map((p) => (
-                  <th key={p.slug} className={`p-3 text-left align-top font-normal ${p.featured ? "bg-sage-50" : "bg-cream-100"}`}>
+                  <th key={p.slug} className="p-3 text-left align-top font-normal bg-cream-100">
 
                     <div className="font-serif text-sm leading-tight">{p.name}</div>
                     <div className="text-[11px] text-muted-foreground">{p.sub}</div>
@@ -61,15 +61,16 @@ export function PlansComparison() {
                 <tr key={r.label} className="border-t border-sage-100">
                   <th className="p-2.5 text-left font-medium">{r.label}</th>
                   {r.cells.map((c, i) => (
-                    <td key={i} className={`p-2.5 text-center text-[12px] text-sage-900/80 ${plans[i].featured ? "bg-sage-50/60" : ""}`}><Value v={c} /></td>
+                    <td key={i} className="p-2.5 text-center text-[12px] text-sage-900/80"><Value v={c} /></td>
                   ))}
                 </tr>
               ))}
               <tr className="border-t border-sage-100">
                 <td className="p-2.5" />
                 {plans.map((p) => (
-                  <td key={p.slug} className={`p-2.5 ${p.featured ? "bg-sage-50/60" : ""}`}>
-                    <Link to="/cours/$slug" params={{ slug: p.slug }} className={`flex items-center justify-center gap-1 rounded-md px-2 py-2 text-[11px] font-semibold transition-all hover:-translate-y-0.5 ${p.featured ? "bg-sage-600 text-white" : "border border-sage-100 bg-white text-sage-900 hover:bg-sage-50"}`}>
+                  <td key={p.slug} className="p-2.5">
+                    <Link to="/cours/$slug" params={{ slug: p.slug }} className="flex items-center justify-center gap-1 rounded-md px-2 py-2 text-[11px] font-semibold transition-all hover:-translate-y-0.5 border border-sage-100 bg-white text-sage-900 hover:bg-sage-50">
+
                       {p.cta} <ArrowRight className="h-3 w-3" />
                     </Link>
                   </td>
