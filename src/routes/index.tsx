@@ -8,6 +8,7 @@ import { TrustBand } from "@/components/site/TrustBand";
 import { FaqSection } from "@/components/site/Reassurance";
 import { VideoTestimonials } from "@/components/site/VideoTestimonials";
 import { coursesQuery } from "@/lib/courses";
+import { PlansComparison } from "@/components/site/PlansComparison";
 import heroImg from "@/assets/hero-study.jpg";
 
 export const Route = createFileRoute("/")({
@@ -152,6 +153,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <PlansComparison />
 
       {/* CPF */}
       <section className="py-16 bg-white">
