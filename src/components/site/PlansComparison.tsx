@@ -31,27 +31,27 @@ function Value({ v }: { v: Cell }) {
 
 export function PlansComparison() {
   return (
-    <section className="py-24 bg-white">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl mb-3">Comparez nos formules</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Des cours individuels en direct adaptés à vos disponibilités et à vos objectifs professionnels.</p>
+    <section className="py-16 bg-white">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="text-center mb-8">
+          <h2 className="font-serif text-2xl md:text-3xl mb-2">Comparez nos formules</h2>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">Des cours individuels en direct adaptés à vos disponibilités et à vos objectifs professionnels.</p>
         </div>
 
         <p className="mb-3 text-center text-xs text-muted-foreground md:hidden">Faites glisser le tableau horizontalement →</p>
         <div className="overflow-x-auto rounded-2xl ring-1 ring-sage-100">
-          <table className="w-full min-w-[860px] border-collapse text-sm">
+          <table className="w-full min-w-[720px] border-collapse text-[13px]">
             <thead>
               <tr>
-                <th className="w-[22%] bg-cream-100 p-5 text-left align-bottom text-xs font-bold uppercase tracking-widest text-muted-foreground">Formules</th>
+                <th className="w-[19%] bg-cream-100 p-3 text-left align-bottom text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Formules</th>
                 {plans.map((p) => (
-                  <th key={p.slug} className={`p-5 text-left align-top font-normal ${p.featured ? "bg-sage-50" : "bg-cream-100"}`}>
-                    {p.featured && <span className="mb-2 inline-block rounded-full bg-sage-600 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Le plus choisi</span>}
-                    <div className="font-serif text-lg leading-tight">{p.name}</div>
-                    <div className="text-xs text-muted-foreground">{p.sub}</div>
-                    <div className="mt-3 text-2xl font-semibold">{p.price}</div>
-                    <div className="text-xs text-muted-foreground">{p.perHour}</div>
-                    <p className="mt-3 text-xs leading-relaxed text-sage-900/70">{p.goal}</p>
+                  <th key={p.slug} className={`p-3 text-left align-top font-normal ${p.featured ? "bg-sage-50" : "bg-cream-100"}`}>
+                    {p.featured && <span className="mb-1.5 inline-block rounded-full bg-sage-600 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white">Le plus choisi</span>}
+                    <div className="font-serif text-sm leading-tight">{p.name}</div>
+                    <div className="text-[11px] text-muted-foreground">{p.sub}</div>
+                    <div className="mt-1.5 text-lg font-semibold">{p.price}</div>
+                    <div className="text-[11px] text-muted-foreground">{p.perHour}</div>
+                    <p className="mt-1.5 text-[11px] leading-snug text-sage-900/70">{p.goal}</p>
                   </th>
                 ))}
               </tr>
@@ -59,18 +59,18 @@ export function PlansComparison() {
             <tbody>
               {rows.map((r) => (
                 <tr key={r.label} className="border-t border-sage-100">
-                  <th className="p-4 text-left font-medium">{r.label}</th>
+                  <th className="p-2.5 text-left font-medium">{r.label}</th>
                   {r.cells.map((c, i) => (
-                    <td key={i} className={`p-4 text-center text-sage-900/80 ${plans[i].featured ? "bg-sage-50/60" : ""}`}><Value v={c} /></td>
+                    <td key={i} className={`p-2.5 text-center text-[12px] text-sage-900/80 ${plans[i].featured ? "bg-sage-50/60" : ""}`}><Value v={c} /></td>
                   ))}
                 </tr>
               ))}
               <tr className="border-t border-sage-100">
-                <td className="p-4" />
+                <td className="p-2.5" />
                 {plans.map((p) => (
-                  <td key={p.slug} className={`p-4 ${p.featured ? "bg-sage-50/60" : ""}`}>
-                    <Link to="/cours/$slug" params={{ slug: p.slug }} className={`flex items-center justify-center gap-1.5 rounded-lg px-4 py-3 text-xs font-semibold transition-all hover:-translate-y-0.5 ${p.featured ? "bg-sage-600 text-white" : "border border-sage-100 bg-white text-sage-900 hover:bg-sage-50"}`}>
-                      {p.cta} <ArrowRight className="h-3.5 w-3.5" />
+                  <td key={p.slug} className={`p-2.5 ${p.featured ? "bg-sage-50/60" : ""}`}>
+                    <Link to="/cours/$slug" params={{ slug: p.slug }} className={`flex items-center justify-center gap-1 rounded-md px-2 py-2 text-[11px] font-semibold transition-all hover:-translate-y-0.5 ${p.featured ? "bg-sage-600 text-white" : "border border-sage-100 bg-white text-sage-900 hover:bg-sage-50"}`}>
+                      {p.cta} <ArrowRight className="h-3 w-3" />
                     </Link>
                   </td>
                 ))}
@@ -79,9 +79,9 @@ export function PlansComparison() {
           </table>
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-4 rounded-2xl bg-cream-100 p-6 text-center ring-1 ring-sage-100 md:flex-row md:justify-between md:text-left">
-          <p className="text-sage-900/80"><span className="font-semibold">Vous hésitez encore ?</span> Réservez votre séance d'essai gratuite de 20 minutes pour évaluer votre niveau sans engagement.</p>
-          <Link to="/essai-gratuit" className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-sage-900 px-6 py-3 text-sm font-medium text-white hover:-translate-y-0.5 transition-all">
+        <div className="mt-6 flex flex-col items-center gap-3 rounded-xl bg-cream-100 p-5 text-center ring-1 ring-sage-100 md:flex-row md:justify-between md:text-left">
+          <p className="text-sm text-sage-900/80"><span className="font-semibold">Vous hésitez encore ?</span> Réservez votre séance d'essai gratuite de 20 minutes pour évaluer votre niveau sans engagement.</p>
+          <Link to="/essai-gratuit" className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-sage-900 px-5 py-2.5 text-sm font-medium text-white hover:-translate-y-0.5 transition-all">
             Séance d'essai gratuite <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
