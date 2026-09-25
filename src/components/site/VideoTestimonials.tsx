@@ -23,7 +23,7 @@ export function VideoTestimonials() {
         <div className="text-center mb-14">
           <h2 className="font-serif text-3xl md:text-4xl mb-3">Ils témoignent en vidéo</h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Découvrez ce que nos étudiants disent de leurs sessions en direct.
+            Découvrez ce que nos étudiants disent de leurs expériences PolyLinguist.
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
