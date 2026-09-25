@@ -49,6 +49,10 @@ export function Footer() {
                 {loading ? "..." : "S'abonner"}
               </button>
             </form>
+            <div className="mt-6 space-y-1.5 text-sm">
+              <a href="mailto:contact@polylinguist.fr" className="block font-medium hover:text-sage-600 transition-colors">contact@polylinguist.fr</a>
+              <a href="tel:+33628540270" className="block text-muted-foreground hover:text-sage-600 transition-colors">+33 6 28 54 02 70</a>
+            </div>
           </div>
           <div>
             <h4 className="mb-4 text-xs font-bold uppercase tracking-widest">Navigation</h4>
