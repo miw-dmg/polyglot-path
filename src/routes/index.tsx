@@ -198,8 +198,6 @@ function Home() {
 
       <div className="mx-auto max-w-3xl px-6 pb-24"><FaqSection /></div>
 
-      {/* Client video testimonials */}
-      <VideoTestimonials />
 
       {/* CTA */}
       <section className="pb-24">
