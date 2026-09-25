@@ -21,10 +21,10 @@ function About() {
       <div className="mx-auto max-w-3xl px-6 py-20">
         <h1 className="font-serif text-5xl mb-6">À propos de Linguist</h1>
         <p className="text-lg text-sage-900/80 leading-relaxed mb-6">
-          Linguist est née d'une conviction simple : apprendre une langue ne devrait jamais être ennuyeux. C'est une rencontre — avec une culture, une manière de penser, des gens.
+          PolyLinguist est née d'une conviction simple : apprendre une langue doit être accessible partout et en tout le temps. C'est une rencontre avec une culture, une manière de penser et surtout des gens.
         </p>
         <p className="text-sage-900/80 leading-relaxed mb-6">
-          Nos cours sont conçus par des linguistes passionnés et des locuteurs natifs certifiés. Toutes nos formations se déroulent en sessions live en petit groupe, à réserver selon vos disponibilités, avec un accompagnement personnalisé pour vous faire progresser durablement.
+          Nos cours sont conçus par des linguistes passionnés et des locuteurs certifiés. Toutes nos formations se déroulent en sessions live individuelles, à réserver selon vos disponibilités, avec un accompagnement personnalisé pour vous faire progresser durablement.
         </p>
 
         <div className="grid gap-6 sm:grid-cols-3 my-12">
@@ -42,7 +42,7 @@ function About() {
 
         <h2 className="font-serif text-3xl mt-12 mb-4">Notre méthode</h2>
         <p className="text-sage-900/80 leading-relaxed mb-6">
-          Chaque cours suit une progression structurée, avec des objectifs clairs à chaque étape. Nous croyons en la pratique active : écouter, parler, écrire et comprendre — toujours en contexte.
+          Chaque cours suit une progression structurée, avec des objectifs clairs à chaque étape. Nous croyons en la pratique active : écouter, parler, écrire et comprendre.
         </p>
 
         <div className="mt-12">
