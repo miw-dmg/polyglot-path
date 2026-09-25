@@ -6,6 +6,7 @@ import { Footer } from "@/components/site/Footer";
 import { CourseCard } from "@/components/site/CourseCard";
 import { TrustBand } from "@/components/site/TrustBand";
 import { FaqSection } from "@/components/site/Reassurance";
+import { Reveal } from "@/components/site/Reveal";
 import { VideoTestimonials } from "@/components/site/VideoTestimonials";
 import { coursesQuery } from "@/lib/courses";
 import { PlansComparison } from "@/components/site/PlansComparison";
@@ -67,16 +68,16 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className="max-w-xl">
-              <span className="mb-4 inline-block rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold tracking-wider uppercase text-sage-600">
+              <span className="hero-enter mb-4 inline-block rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold tracking-wider uppercase text-sage-600">
                 Cours individuels en direct
               </span>
-              <h1 className="mb-6 font-serif text-5xl leading-[1.1] md:text-6xl">
+              <h1 className="hero-enter mb-6 font-serif text-5xl leading-[1.1] md:text-6xl" style={{ animationDelay: "120ms" }}>
                 Maîtrisez l'Anglais avec <span className="italic">assurance</span>.
               </h1>
-              <p className="mb-8 text-lg text-sage-900/70 leading-relaxed">
+              <p className="hero-enter mb-8 text-lg text-sage-900/70 leading-relaxed" style={{ animationDelay: "240ms" }}>
                 Des cours individuels en tête-à-tête avec un professeur certifié, en sessions en direct à réserver selon vos disponibilités, pour transformer votre apprentissage en réussite.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="hero-enter flex flex-wrap gap-4" style={{ animationDelay: "360ms" }}>
                 <Link to="/catalogue" className="rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft hover:-translate-y-0.5 transition-all">
                   Je réserve en ligne
                 </Link>
@@ -84,16 +85,16 @@ function Home() {
                   Séance d'essai gratuite
                 </Link>
               </div>
-              <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+              <p className="hero-enter mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground" style={{ animationDelay: "480ms" }}>
                 <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-sage-600" /> Paiement sécurisé</span>
                 <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-sage-600" /> Sans compte requis</span>
                 <span className="inline-flex items-center gap-1.5"><Wallet className="h-3.5 w-3.5 text-sage-600" /> CPF accepté</span>
                 <span className="inline-flex items-center gap-1.5"><HeartHandshake className="h-3.5 w-3.5 text-sage-600" /> Satisfait ou remboursé</span>
               </p>
             </div>
-            <div className="relative">
+            <div className="hero-enter relative" style={{ animationDelay: "300ms" }}>
               <img src={heroImg} alt="Apprenante avec des écouteurs étudiant à son bureau" width={1024} height={768} className="aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" />
-              <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-soft">
+              <div className="animate-float-soft absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-soft">
                 <div className="flex gap-2 mb-2">
                   <div className="h-2 w-12 rounded-full bg-sage-600"></div>
                   <div className="h-2 w-8 rounded-full bg-sage-100"></div>
@@ -118,14 +119,16 @@ function Home() {
           </div>
           <div className="grid gap-6 md:grid-cols-4">
             {steps.map((s, i) => (
-              <div key={s.title} className="rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
-                  <s.icon className="h-5 w-5" />
+              <Reveal key={s.title} delay={i * 100} className="h-full">
+                <div className="h-full rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Étape {i + 1}</div>
+                  <h3 className="font-serif text-xl mb-2">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Étape {i + 1}</div>
-                <h3 className="font-serif text-xl mb-2">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
           <div className="mt-10 text-center">
@@ -149,7 +152,11 @@ function Home() {
             </Link>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((c) => <CourseCard key={c.id} course={c} />)}
+            {featured.map((c, i) => (
+              <Reveal key={c.id} delay={i * 80} className="h-full">
+                <CourseCard course={c} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -185,14 +192,16 @@ function Home() {
             <p className="text-muted-foreground max-w-xl mx-auto">Ce à quoi vous pouvez nous tenir, à chaque étape de votre apprentissage.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {commitments.map((c) => (
-              <div key={c.title} className="rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
-                  <c.icon className="h-5 w-5" />
+            {commitments.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 80} className="h-full">
+                <div className="h-full rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
+                    <c.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-serif text-xl mb-2">{c.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
                 </div>
-                <h3 className="font-serif text-xl mb-2">{c.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -205,6 +214,7 @@ function Home() {
       {/* CTA */}
       <section className="pb-24">
         <div className="mx-auto max-w-5xl px-6">
+          <Reveal>
           <div className="rounded-3xl bg-sage-900 p-12 md:p-16 text-center text-white">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">Prêt à commencer l'aventure ?</h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
@@ -214,6 +224,7 @@ function Home() {
               Je réserve en ligne <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+          </Reveal>
         </div>
       </section>
 
