@@ -46,7 +46,7 @@ export function PlansComparison() {
                 <th className="w-[19%] bg-cream-100 p-3 text-left align-bottom text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Formules</th>
                 {plans.map((p) => (
                   <th key={p.slug} className={`p-3 text-left align-top font-normal ${p.featured ? "bg-sage-50" : "bg-cream-100"}`}>
-                    {p.featured && <span className="mb-1.5 inline-block rounded-full bg-sage-600 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white">Le plus choisi</span>}
+
                     <div className="font-serif text-sm leading-tight">{p.name}</div>
                     <div className="text-[11px] text-muted-foreground">{p.sub}</div>
                     <div className="mt-1.5 text-lg font-semibold">{p.price}</div>
