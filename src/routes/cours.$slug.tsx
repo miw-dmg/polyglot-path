@@ -118,10 +118,15 @@ function CoursePage() {
                 <div className="mb-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                   {formatLabels[course.format]}
                 </div>
-                <div className="mb-6 flex items-baseline gap-2">
+                <div className="mb-2 flex items-baseline gap-2">
                   <span className="font-serif text-4xl font-bold text-sage-600">{formatPrice(course.price_cents)}</span>
                   {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
                 </div>
+                {course.slug === "anglais-toefl" && (
+                  <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
+                    Dont 310 € d'inscription à l'examen TOEFL iBT, réglés directement auprès d'ITS, le fournisseur officiel du TOEFL iBT.
+                  </p>
+                )}
                 <div className="mb-4">
                   {chosen ? (
                     <div className="rounded-lg bg-sage-50 px-3 py-2.5 text-sm">
