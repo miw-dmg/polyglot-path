@@ -51,10 +51,6 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden xl:flex flex-col items-end mr-1 text-xs leading-snug">
-            <a href="mailto:contact@polylinguist.fr" className="font-medium hover:text-sage-600 transition-colors">contact@polylinguist.fr</a>
-            <a href="tel:+33628540270" className="text-muted-foreground hover:text-sage-600 transition-colors">+33 6 28 54 02 70</a>
-          </div>
           <Link to="/catalogue" className="hidden lg:inline-flex items-center rounded-full bg-sage-600 px-5 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-sage-900">
             Je réserve en ligne
           </Link>
