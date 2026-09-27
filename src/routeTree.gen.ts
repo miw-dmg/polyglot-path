@@ -22,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursSlugRouteImport } from './routes/cours.$slug'
 import { Route as AuthenticatedCompteRouteImport } from './routes/_authenticated/compte'
 import { Route as ApiPublicShopifyOrderRouteImport } from './routes/api/public/shopify-order'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const ToeflIbtRoute = ToeflIbtRouteImport.update({
   id: '/toefl-ibt',
@@ -87,6 +88,12 @@ const ApiPublicShopifyOrderRoute = ApiPublicShopifyOrderRouteImport.update({
   path: '/api/public/shopify-order',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
   '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -115,6 +123,7 @@ export interface FileRoutesByTo {
   '/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
   '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -131,6 +140,7 @@ export interface FileRoutesById {
   '/_authenticated/compte': typeof AuthenticatedCompteRoute
   '/cours/$slug': typeof CoursSlugRoute
   '/api/public/shopify-order': typeof ApiPublicShopifyOrderRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/compte'
     | '/cours/$slug'
     | '/api/public/shopify-order'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/compte'
     | '/cours/$slug'
     | '/api/public/shopify-order'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -176,6 +188,7 @@ export interface FileRouteTypes {
     | '/_authenticated/compte'
     | '/cours/$slug'
     | '/api/public/shopify-order'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -191,6 +204,7 @@ export interface RootRouteChildren {
   ToeflIbtRoute: typeof ToeflIbtRoute
   CoursSlugRoute: typeof CoursSlugRoute
   ApiPublicShopifyOrderRoute: typeof ApiPublicShopifyOrderRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -286,6 +300,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicShopifyOrderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -313,6 +334,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToeflIbtRoute: ToeflIbtRoute,
   CoursSlugRoute: CoursSlugRoute,
   ApiPublicShopifyOrderRoute: ApiPublicShopifyOrderRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

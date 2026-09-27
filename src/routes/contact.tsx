@@ -5,7 +5,7 @@ import { z } from "zod";
 import { Mail, MapPin, MessageSquare } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { supabase } from "@/integrations/supabase/client";
+import { submitContact } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -34,7 +34,12 @@ function Contact() {
     const parsed = schema.safeParse(form);
     if (!parsed.success) return toast.error(parsed.error.issues[0].message);
     setLoading(true);
-    const { error } = await supabase.from("contact_messages").insert(parsed.data);
+    let error: unknown = null;
+    try {
+      await submitContact({ data: parsed.data });
+    } catch (err) {
+      error = err;
+    }
     setLoading(false);
     if (error) return toast.error("Une erreur est survenue, réessayez ou écrivez à contact@polylinguist.fr");
     toast.success("Message envoyé. Nous vous répondons sous 24h.");

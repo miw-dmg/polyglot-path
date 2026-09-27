@@ -69,6 +69,22 @@ export const bookTrialSession = createServerFn({ method: "POST" })
     });
     if (bookingError) throw new Error(bookingError.message);
 
+    try {
+      const slot = new Intl.DateTimeFormat("fr-FR", {
+        dateStyle: "full",
+        timeStyle: "short",
+        timeZone: "Europe/Paris",
+      }).format(new Date(session.starts_at));
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("admin-notification", "contact@polylinguist.fr", {
+        templateData: { kind: "trial", name: data.name, email: data.email, course: course.title, slot },
+        idempotencyKey: `trial-admin-${order.id}`,
+      });
+    } catch (e) {
+      console.error("trial email failed", e);
+    }
+
+
     return {
       orderId: order.id,
       courseTitle: course.title,
