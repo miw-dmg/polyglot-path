@@ -15,7 +15,7 @@ import { AfterOrder } from "@/components/site/Reassurance";
 export const Route = createFileRoute("/panier")({
   head: () => ({
     meta: [
-      { title: "Panier — Linguist" },
+      { title: "Panier — PolyLinguist" },
       { name: "description", content: "Votre sélection de cours de langues." },
     ],
   }),

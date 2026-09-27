@@ -15,7 +15,7 @@ const searchSchema = z.object({
 export const Route = createFileRoute("/auth")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
-    meta: [{ title: "Connexion — Linguist" }, { name: "description", content: "Connectez-vous ou créez votre compte Linguist." }],
+    meta: [{ title: "Connexion — PolyLinguist" }, { name: "description", content: "Connectez-vous ou créez votre compte Linguist." }],
   }),
   component: AuthPage,
 });
