@@ -15,10 +15,10 @@ import heroImg from "@/assets/hero-study.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Linguist — Cours d'anglais en direct, sessions à réserver" },
+      { title: "PolyLinguist — Cours d'anglais en direct, sessions à réserver" },
       { name: "description", content: "Apprenez l'anglais avec des sessions en direct à réserver selon vos disponibilités : conversation, anglais des affaires et préparation certifiante TOEFL." },
-      { property: "og:title", content: "Linguist — Cours d'anglais en direct" },
-      { property: "og:description", content: "Apprenez l'anglais avec assurance. Sessions en direct avec des professeurs certifiés, à réserver en ligne." },
+      { property: "og:title", content: "PolyLinguist — Cours d'anglais en direct, sessions à réserver" },
+      { property: "og:description", content: "Apprenez l'anglais avec des sessions en direct à réserver selon vos disponibilités : conversation, anglais des affaires et préparation certifiante TOEFL." },
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(coursesQuery()),
