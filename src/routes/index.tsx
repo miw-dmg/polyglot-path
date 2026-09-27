@@ -88,7 +88,6 @@ function Home() {
               <p className="hero-enter mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground" style={{ animationDelay: "480ms" }}>
                 <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-sage-600" /> Paiement sécurisé</span>
                 <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-sage-600" /> Sans compte requis</span>
-                <span className="inline-flex items-center gap-1.5"><Wallet className="h-3.5 w-3.5 text-sage-600" /> CPF accepté</span>
                 <span className="inline-flex items-center gap-1.5"><HeartHandshake className="h-3.5 w-3.5 text-sage-600" /> Satisfait ou remboursé</span>
               </p>
             </div>
@@ -163,22 +162,6 @@ function Home() {
 
       <PlansComparison />
 
-      {/* CPF */}
-      <section className="py-16 bg-white">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="flex flex-col items-center gap-6 rounded-3xl bg-sage-50/70 p-8 text-center md:flex-row md:text-left">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sage-600 text-white">
-              <Wallet className="h-6 w-6" />
-            </div>
-            <div>
-              <h2 className="font-serif text-2xl mb-2">Financement CPF accepté en France</h2>
-              <p className="text-sage-900/70 leading-relaxed">
-                Nos parcours certifiants sont éligibles au Compte Personnel de Formation (CPF). Vous pouvez utiliser vos heures CPF pour financer tout ou partie de votre formation. Notre équipe vous accompagne pas à pas dans la constitution de votre dossier.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Client video testimonials */}
       <VideoTestimonials />
