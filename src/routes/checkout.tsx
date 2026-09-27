@@ -16,9 +16,9 @@ export const Route = createFileRoute("/checkout")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Paiement — Linguist" },
+      { title: "Paiement — PolyLinguist" },
       { name: "description", content: "Réglez votre commande de sessions d'anglais en direct, sans créer de compte." },
-      { property: "og:title", content: "Paiement — Linguist" },
+      { property: "og:title", content: "Paiement — PolyLinguist" },
       { property: "og:description", content: "Paiement rapide, sans inscription." },
     ],
   }),

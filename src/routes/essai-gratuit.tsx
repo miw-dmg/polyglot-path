@@ -15,9 +15,9 @@ import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 export const Route = createFileRoute("/essai-gratuit")({
   head: () => ({
     meta: [
-      { title: "Séance d'essai gratuite — Linguist" },
+      { title: "Séance d'essai gratuite — PolyLinguist" },
       { name: "description", content: "Réservez une séance d'essai gratuite en direct avec un professeur certifié : conversation, anglais des affaires ou parcours certifiant. Sans engagement." },
-      { property: "og:title", content: "Séance d'essai gratuite — Linguist" },
+      { property: "og:title", content: "Séance d'essai gratuite — PolyLinguist" },
       { property: "og:description", content: "Testez gratuitement une séance en direct avec un professeur certifié. Sans carte bancaire, sans engagement." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

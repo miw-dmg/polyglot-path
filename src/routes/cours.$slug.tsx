@@ -21,7 +21,7 @@ export const Route = createFileRoute("/cours/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: loaderData ? [
-      { title: `${loaderData.title} — Linguist` },
+      { title: `${loaderData.title} — PolyLinguist` },
       { name: "description", content: loaderData.summary ?? loaderData.description ?? "" },
       { property: "og:title", content: loaderData.title },
       { property: "og:description", content: loaderData.summary ?? "" },

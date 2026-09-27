@@ -10,9 +10,9 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Linguist" },
+      { title: "Contact — PolyLinguist" },
       { name: "description", content: "Une question ? Notre équipe vous répond sous 24h ouvrées." },
-      { property: "og:title", content: "Contact — Linguist" },
+      { property: "og:title", content: "Contact — PolyLinguist" },
       { property: "og:description", content: "Une question ? Contactez notre équipe." },
     ],
   }),

@@ -22,9 +22,9 @@ export const Route = createFileRoute("/catalogue")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
-      { title: "Catalogue de cours — Linguist" },
+      { title: "Catalogue de cours — PolyLinguist" },
       { name: "description", content: "Parcourez tous nos cours d'anglais en direct : sessions à réserver, filtrables par langue et niveau." },
-      { property: "og:title", content: "Catalogue de cours — Linguist" },
+      { property: "og:title", content: "Catalogue de cours — PolyLinguist" },
       { property: "og:description", content: "Parcourez tous nos cours en direct, filtrables par langue et niveau." },
     ],
   }),
