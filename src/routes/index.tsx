@@ -7,7 +7,7 @@ import { CourseCard } from "@/components/site/CourseCard";
 import { TrustBand } from "@/components/site/TrustBand";
 import { FaqSection } from "@/components/site/Reassurance";
 import { Reveal } from "@/components/site/Reveal";
-import { VideoTestimonials } from "@/components/site/VideoTestimonials";
+// import { VideoTestimonials } from "@/components/site/VideoTestimonials";
 import { coursesQuery } from "@/lib/courses";
 import { PlansComparison } from "@/components/site/PlansComparison";
 import heroImg from "@/assets/hero-study.jpg";
@@ -162,10 +162,8 @@ function Home() {
 
       <PlansComparison />
 
-
-      {/* Client video testimonials */}
-      <VideoTestimonials />
-
+      {/* Client video testimonials — hidden until videos are ready */}
+      {/* <VideoTestimonials /> */}
 
       {/* Commitments */}
       <section className="py-24 bg-white">
