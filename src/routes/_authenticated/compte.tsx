@@ -9,7 +9,7 @@ import { formatPrice } from "@/lib/cart";
 import { courseImage } from "@/lib/courses";
 
 export const Route = createFileRoute("/_authenticated/compte")({
-  head: () => ({ meta: [{ title: "Mon compte — Linguist" }] }),
+  head: () => ({ meta: [{ title: "Mon compte — PolyLinguist" }] }),
   component: Account,
 });
 
