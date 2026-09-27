@@ -162,10 +162,8 @@ function Home() {
 
       <PlansComparison />
 
-
-      {/* Client video testimonials */}
-      <VideoTestimonials />
-
+      {/* Client video testimonials — hidden until videos are ready */}
+      {/* <VideoTestimonials /> */}
 
       {/* Commitments */}
       <section className="py-24 bg-white">
