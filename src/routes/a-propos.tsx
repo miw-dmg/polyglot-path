@@ -19,7 +19,7 @@ function About() {
     <div className="min-h-screen bg-cream-100 text-sage-900">
       <Header />
       <div className="mx-auto max-w-3xl px-6 py-20">
-        <h1 className="font-serif text-5xl mb-6">À propos de Linguist</h1>
+        <h1 className="font-serif text-5xl mb-6">À propos de PolyLinguist</h1>
         <p className="text-lg text-sage-900/80 leading-relaxed mb-6">
           PolyLinguist est née d'une conviction simple : apprendre une langue doit être accessible partout et en tout le temps. C'est une rencontre avec une culture, une manière de penser et surtout des gens.
         </p>

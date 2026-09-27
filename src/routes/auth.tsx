@@ -70,7 +70,7 @@ function AuthPage() {
         <div className="rounded-2xl bg-white p-8 shadow-soft ring-1 ring-sage-100">
           <h1 className="font-serif text-3xl mb-2">{mode === "signup" ? "Créer un compte" : "Connexion"}</h1>
           <p className="text-sm text-muted-foreground mb-6">
-            {mode === "signup" ? "Rejoignez Linguist en quelques secondes." : "Accédez à votre espace personnel."}
+            {mode === "signup" ? "Rejoignez PolyLinguist en quelques secondes." : "Accédez à votre espace personnel."}
           </p>
 
           <form onSubmit={submit} className="space-y-4">
