@@ -64,7 +64,7 @@ function Catalogue() {
 
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-12">
-          <h1 className="font-serif text-4xl md:text-5xl mb-3">Catalogue</h1>
+          <h1 className="font-serif text-4xl md:text-5xl mb-3">Catalogue des cours d'anglais en direct</h1>
           <p className="text-muted-foreground max-w-2xl">
             {filtered.length} cours {filtered.length > 1 ? "disponibles" : "disponible"}. Trouvez celui qui vous correspond.
           </p>
@@ -142,7 +142,7 @@ function Catalogue() {
 function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">{label}</h3>
+      <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">{label}</h2>
       <div className="flex flex-wrap gap-2">{children}</div>
     </div>
   );

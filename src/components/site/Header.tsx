@@ -71,7 +71,7 @@ export function Header() {
               <UserIcon className="h-4 w-4" /> Mon compte
             </Link>
           )}
-          <button onClick={() => setOpen((o) => !o)} className="inline-flex md:hidden h-10 w-10 items-center justify-center rounded-full hover:bg-sage-50">
+          <button aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen((o) => !o)} className="inline-flex md:hidden h-10 w-10 items-center justify-center rounded-full hover:bg-sage-50">
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
