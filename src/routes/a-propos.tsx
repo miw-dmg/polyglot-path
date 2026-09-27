@@ -6,7 +6,7 @@ export const Route = createFileRoute("/a-propos")({
   head: () => ({
     meta: [
       { title: "À propos — PolyLinguist" },
-      { name: "description", content: "Linguist est une plateforme dédiée à l'apprentissage des langues avec passion et rigueur." },
+      { name: "description", content: "PolyLinguist est une plateforme dédiée à l'apprentissage des langues avec passion et rigueur." },
       { property: "og:title", content: "À propos — PolyLinguist" },
       { property: "og:description", content: "Notre mission : rendre l'apprentissage des langues accessible, vivant et durable." },
     ],
