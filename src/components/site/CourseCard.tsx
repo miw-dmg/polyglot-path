@@ -15,25 +15,13 @@ export function CourseCard({ course }: { course: Course }) {
         <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="h-full w-full object-cover transition-transform group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <div className="mb-2 flex items-start justify-between gap-2">
-          <span className="pt-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+        <div className="mb-2 flex items-start justify-between gap-3">
+          <span className="flex-1 min-w-0 pt-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground line-clamp-1">
             {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
           </span>
-          <span className="flex flex-col items-end">
-            {course.slug === "anglais-toefl" ? (
-              <>
-                <span className="text-lg font-serif font-bold text-sage-600">
-                  {formatPrice(44900)}
-                </span>
-                <span className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
-                  + 310 € de frais d'inscription à l'examen
-                </span>
-              </>
-            ) : (
-              <span className="text-lg font-serif font-bold text-sage-600">
-                {formatPrice(course.price_cents)}{course.format === "abonnement" ? "/m" : ""}
-              </span>
-            )}
+          <span className="shrink-0 text-lg font-serif font-bold text-sage-600 whitespace-nowrap">
+            {formatPrice(course.slug === "anglais-toefl" ? 44900 : course.price_cents)}
+            {course.format === "abonnement" ? "/m" : ""}
           </span>
         </div>
         <span className="mb-2 self-start rounded-full bg-sage-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sage-600">
@@ -42,7 +30,12 @@ export function CourseCard({ course }: { course: Course }) {
         <h3 className="mb-2 text-lg font-semibold leading-snug group-hover:text-sage-600 transition-colors">
           {course.title}
         </h3>
-        <p className="mb-6 flex-1 text-sm text-muted-foreground line-clamp-2">{course.summary}</p>
+        <p className="mb-2 flex-1 text-sm text-muted-foreground line-clamp-2">{course.summary}</p>
+        {course.slug === "anglais-toefl" && (
+          <p className="mb-2 text-[11px] leading-tight text-muted-foreground">
+            + 310 € de frais d'inscription à l'examen
+          </p>
+        )}
         <span className="w-full text-center rounded-lg border border-sage-600 py-2.5 text-sm font-semibold text-sage-600 group-hover:bg-sage-600 group-hover:text-white transition-all">
           Voir le cours
         </span>
