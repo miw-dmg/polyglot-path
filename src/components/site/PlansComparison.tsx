@@ -49,8 +49,8 @@ export function PlansComparison() {
                 {plans.map((p) => (
                   <th key={p.slug} className="p-3 text-left align-top font-normal bg-cream-100">
 
-                    <div className="font-serif text-xs leading-tight">{p.name}</div>
-                    <div className="text-[11px] text-muted-foreground">{p.sub}</div>
+                    <div className="min-h-8 font-serif text-xs leading-tight">{p.name}</div>
+                    <div className="min-h-4 text-[11px] text-muted-foreground">{p.sub}</div>
                     <div className="mt-1.5 text-lg font-semibold">{p.price}</div>
                     <div className="text-[11px] text-muted-foreground">{p.perHour}</div>
                     <p className="mt-1.5 text-[11px] leading-snug text-sage-900/70">{p.goal}</p>
