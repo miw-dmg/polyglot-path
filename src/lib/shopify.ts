@@ -53,7 +53,7 @@ type ProductEdge = { node: { tags: string[]; variants: { edges: Array<{ node: { 
 
 /** Crée un panier Shopify (Storefront API) et renvoie l'URL de paiement. */
 export async function createShopifyCheckout(
-  items: Array<{ slug: string; title: string; sessionLabel?: string | null; sessionId?: string | null; withExam?: boolean }>,
+  items: Array<{ slug: string; title: string; sessionLabel?: string | null; sessionId?: string | null; withExam?: boolean; examDate?: string | null; expressFee?: boolean }>,
 ): Promise<string | null> {
   const products = await storefrontApiRequest(PRODUCTS_QUERY);
   if (!products) return null;
@@ -74,7 +74,14 @@ export async function createShopifyCheckout(
     if (!item.withExam) return [line];
     const exam = edges.find((e) => e.node.tags.includes("inscription-toefl"))?.node.variants.edges[0]?.node.id;
     if (!exam) throw new Error("Inscription à l'examen indisponible pour le moment.");
-    return [line, { quantity: 1, merchandiseId: exam, attributes: [] as Array<{ key: string; value: string }> }];
+    const examAttrs = item.examDate ? [{ key: "Date d'examen souhaitée", value: item.examDate }] : [];
+    const out = [line, { quantity: 1, merchandiseId: exam, attributes: examAttrs }];
+    if (item.expressFee) {
+      const express = edges.find((e) => e.node.tags.includes("express-fee-toefl"))?.node.variants.edges[0]?.node.id;
+      if (!express) throw new Error("Express Fee indisponible pour le moment.");
+      out.push({ quantity: 1, merchandiseId: express, attributes: examAttrs });
+    }
+    return out;
   });
 
   const data = await storefrontApiRequest(CART_CREATE_MUTATION, { input: { lines, attributes: items.filter((i) => i.sessionLabel).map((i) => ({ key: `Créneau — ${i.title}`, value: i.sessionLabel! })) } });
