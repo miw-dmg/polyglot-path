@@ -60,7 +60,6 @@ export function Footer() {
               <li><Link to="/catalogue" className="hover:text-sage-600">Tous les cours</Link></li>
               <li><Link to="/a-propos" className="hover:text-sage-600">À propos</Link></li>
               <li><Link to="/contact" className="hover:text-sage-600">Contact</Link></li>
-              <li><Link to="/auth" className="hover:text-sage-600">Mon compte</Link></li>
             </ul>
           </div>
           <div>
