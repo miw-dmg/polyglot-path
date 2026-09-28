@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery, useQuery, useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { CheckCircle2, Video } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { BookingCalendar } from "@/components/site/BookingCalendar";
 import { TrustBand } from "@/components/site/TrustBand";
 import { Header } from "@/components/site/Header";
@@ -57,11 +57,6 @@ function TrialPage() {
             <p className="mb-6 text-sage-900/70">
               {r.courseTitle} — {formatSessionDate(r.startsAt)}. Un email de confirmation est envoyé à {email}.
             </p>
-            {r.meetingUrl && (
-              <a href={r.meetingUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-sage-600 px-6 py-3 font-medium text-white">
-                <Video className="h-4 w-4" /> Lien de la visioconférence
-              </a>
-            )}
             <div className="mt-8">
               <Link to="/catalogue" className="text-sm font-semibold text-sage-600 hover:underline">
                 Découvrir le catalogue →
