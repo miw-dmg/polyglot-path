@@ -15,12 +15,19 @@ export function CourseCard({ course }: { course: Course }) {
         <img src={img} alt={course.title} loading="lazy" width={1024} height={1024} className="h-full w-full object-cover transition-transform group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+        <div className="mb-2 flex items-start justify-between gap-2">
+          <span className="pt-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
             {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
           </span>
-          <span className="text-lg font-serif font-bold text-sage-600">
-            {formatPrice(course.price_cents)}{course.format === "abonnement" ? "/m" : ""}
+          <span className="flex flex-col items-end">
+            <span className="text-lg font-serif font-bold text-sage-600">
+              {formatPrice(course.price_cents)}{course.format === "abonnement" ? "/m" : ""}
+            </span>
+            {course.slug === "anglais-toefl" && (
+              <span className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
+                dont 310 € de frais d'inscription à l'examen
+              </span>
+            )}
           </span>
         </div>
         <span className="mb-2 self-start rounded-full bg-sage-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sage-600">
