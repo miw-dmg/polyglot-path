@@ -53,17 +53,17 @@ type ProductEdge = { node: { tags: string[]; variants: { edges: Array<{ node: { 
 
 /** Crée un panier Shopify (Storefront API) et renvoie l'URL de paiement. */
 export async function createShopifyCheckout(
-  items: Array<{ slug: string; title: string; sessionLabel?: string | null; sessionId?: string | null }>,
+  items: Array<{ slug: string; title: string; sessionLabel?: string | null; sessionId?: string | null; withExam?: boolean }>,
 ): Promise<string | null> {
   const products = await storefrontApiRequest(PRODUCTS_QUERY);
   if (!products) return null;
   const edges: ProductEdge[] = products.data.products.edges;
 
-  const lines = items.map((item) => {
+  const lines = items.flatMap((item) => {
     const match = edges.find((e) => e.node.tags.includes(item.slug));
     const variantId = match?.node.variants.edges[0]?.node.id;
     if (!variantId) throw new Error(`Cours indisponible sur la boutique : ${item.title}`);
-    return {
+    const line = {
       quantity: 1,
       merchandiseId: variantId,
       attributes: [
@@ -71,6 +71,10 @@ export async function createShopifyCheckout(
         ...(item.sessionId ? [{ key: "_session_id", value: item.sessionId }] : []),
       ],
     };
+    if (!item.withExam) return [line];
+    const exam = edges.find((e) => e.node.tags.includes("inscription-toefl"))?.node.variants.edges[0]?.node.id;
+    if (!exam) throw new Error("Inscription à l'examen indisponible pour le moment.");
+    return [line, { quantity: 1, merchandiseId: exam, attributes: [] as Array<{ key: string; value: string }> }];
   });
 
   const data = await storefrontApiRequest(CART_CREATE_MUTATION, { input: { lines, attributes: items.filter((i) => i.sessionLabel).map((i) => ({ key: `Créneau — ${i.title}`, value: i.sessionLabel! })) } });
