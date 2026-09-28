@@ -136,6 +136,7 @@ function RootComponent() {
       <Outlet />
       <CartDrawer />
       <CallButton />
+      <ContentsquareTag />
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
