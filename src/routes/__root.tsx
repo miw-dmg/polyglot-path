@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { CallButton } from "@/components/site/CallButton";
+import { ContentsquareTag } from "@/components/site/ContentsquareTag";
 
 function NotFoundComponent() {
   return (
@@ -135,6 +136,7 @@ function RootComponent() {
       <Outlet />
       <CartDrawer />
       <CallButton />
+      <ContentsquareTag />
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
