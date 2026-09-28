@@ -11,7 +11,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { courseBySlugQuery, courseImage, levelLabels, formatLabels } from "@/lib/courses";
 import coursAnglaisImg from "@/assets/cours-anglais.jpg";
-import { useCart, formatPrice, EXAM_FEE_CENTS } from "@/lib/cart";
+import { useCart, formatPrice, EXAM_FEE_CENTS, EXPRESS_FEE_CENTS, isExpressDate } from "@/lib/cart";
 
 export const Route = createFileRoute("/cours/$slug")({
   loader: async ({ context, params }) => {
@@ -47,6 +47,7 @@ function CoursePage() {
   const cart = useCart();
   const [slotId, setSlotId] = useState<string | null>(null);
   const [withExam, setWithExam] = useState(true);
+  const [examDate, setExamDate] = useState("");
   const { data: sessions, isLoading: slotsLoading } = useQuery({ ...courseSessionsQuery(course?.id ?? ""), enabled: !!course, refetchInterval: 15000 });
   if (!course) return null;
   const available = (sessions ?? []).filter((s) => s.spots_left > 0);
@@ -55,7 +56,8 @@ function CoursePage() {
   const img = courseImage(course) ?? coursAnglaisImg;
   const inCart = cart.items.some((i) => i.courseId === course.id);
   const isToefl = course.slug === "anglais-toefl";
-  const totalCents = course.price_cents + (isToefl && withExam ? EXAM_FEE_CENTS : 0);
+  const express = isToefl && withExam && isExpressDate(examDate);
+  const totalCents = course.price_cents + (isToefl && withExam ? EXAM_FEE_CENTS : 0) + (express ? EXPRESS_FEE_CENTS : 0);
 
   function addToCart() {
     if (!course || !chosen) return;
@@ -71,6 +73,8 @@ function CoursePage() {
       language: course.language,
       format: course.format,
       withExam: isToefl && withExam,
+      examDate: isToefl && withExam && examDate ? examDate : null,
+      expressFee: express,
     });
     openCart();
   }
@@ -158,8 +162,26 @@ function CoursePage() {
                         </span>
                       </label>
                     ))}
+                    {withExam && (
+                      <div className="rounded-xl border border-sage-200 p-3">
+                        <label htmlFor="exam-date" className="block text-sm font-semibold text-sage-900">Date d'examen souhaitée</label>
+                        <input
+                          id="exam-date"
+                          type="date"
+                          min={new Date().toISOString().slice(0, 10)}
+                          value={examDate}
+                          onChange={(e) => setExamDate(e.target.value)}
+                          className="mt-2 w-full rounded-lg border border-sage-200 bg-white px-3 py-2 text-sm"
+                        />
+                        {express ? (
+                          <p className="mt-2 text-xs font-semibold text-sage-900">Examen dans moins de 7 jours : Express Fee de 49 € ajouté.</p>
+                        ) : (
+                          <p className="mt-2 text-xs text-sage-900/70">Une Express Fee de 49 € s'applique si l'examen a lieu dans moins de 7 jours.</p>
+                        )}
+                      </div>
+                    )}
                     <p className="text-xs text-muted-foreground">
-                      10 heures de cours : {formatPrice(course.price_cents)}{withExam ? ` + inscription : ${formatPrice(EXAM_FEE_CENTS)}` : ""}
+                      10 heures de cours : {formatPrice(course.price_cents)}{withExam ? ` + inscription : ${formatPrice(EXAM_FEE_CENTS)}` : ""}{express ? ` + Express Fee : ${formatPrice(EXPRESS_FEE_CENTS)}` : ""}
                     </p>
                     <Link to="/toefl-ibt" className="inline-block text-sm font-semibold text-sage-600 hover:underline">Tout savoir sur l'examen →</Link>
                   </div>
