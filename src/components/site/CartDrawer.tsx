@@ -46,6 +46,8 @@ export function CartDrawer() {
           sessionLabel: i.sessionStartsAt ? formatSessionDate(i.sessionStartsAt) : null,
           sessionId: i.sessionId ?? null,
           withExam: !!i.withExam,
+          examDate: i.examDate ?? null,
+          expressFee: !!i.expressFee,
         })),
       );
       if (url) window.open(url, "_blank");
@@ -160,7 +162,7 @@ function CartLine({ item, onRemove }: { item: CartItem; onRemove: () => void }) 
           <span className="font-serif text-base font-bold text-sage-600">{formatPrice(item.priceCents)}</span>
           {item.slug === "anglais-toefl" && item.withExam && (
             <span className="block text-[11px] leading-snug text-muted-foreground">
-              dont 310 € d'inscription à l'examen TOEFL iBT
+              dont 310 € d'inscription à l'examen TOEFL iBT{item.expressFee ? " + 49 € d'Express Fee" : ""}
             </span>
           )}
         </div>

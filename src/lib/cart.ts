@@ -12,9 +12,20 @@ export type CartItem = {
   sessionStartsAt?: string | null;
   /** Parcours TOEFL : inscription à l'examen ajoutée (310 €, incluse dans priceCents). */
   withExam?: boolean;
+  examDate?: string | null;
+  expressFee?: boolean;
 };
 
 export const EXAM_FEE_CENTS = 31000;
+export const EXPRESS_FEE_CENTS = 4900;
+
+/** Vrai si la date d'examen (YYYY-MM-DD) est dans moins de 7 jours. */
+export function isExpressDate(date: string | null | undefined) {
+  if (!date) return false;
+  const exam = new Date(date + "T00:00:00").getTime();
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  return (exam - today.getTime()) / 86400000 < 7;
+}
 
 const KEY = "linguist_cart_v1";
 
