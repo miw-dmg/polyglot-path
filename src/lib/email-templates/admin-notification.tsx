@@ -17,7 +17,15 @@ const AdminNotification = ({ kind = 'contact', name, email, course, slot, messag
     <Preview>{kind === 'trial' ? `Nouvelle séance d'essai : ${name ?? ''}` : `Nouveau message de ${name ?? ''}`}</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Text style={brand}>PolyLinguist</Text>
+        <Section style={{ marginBottom: '16px' }}>
+          <Img
+            src="https://www.polylinguist.fr/polylinguist-logo.png"
+            width="160"
+            height="33"
+            alt="PolyLinguist"
+            style={logo}
+          />
+        </Section>
         <Heading style={h1}>
           {kind === 'trial' ? "Nouvelle réservation de séance d'essai" : 'Nouveau message de contact'}
         </Heading>
