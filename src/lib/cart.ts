@@ -10,7 +10,11 @@ export type CartItem = {
   format: string;
   sessionId?: string | null;
   sessionStartsAt?: string | null;
+  /** Parcours TOEFL : inscription à l'examen ajoutée (310 €, incluse dans priceCents). */
+  withExam?: boolean;
 };
+
+export const EXAM_FEE_CENTS = 31000;
 
 const KEY = "linguist_cart_v1";
 

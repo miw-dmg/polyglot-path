@@ -60,6 +60,7 @@ function Cart() {
           title: i.title,
           sessionLabel: i.sessionStartsAt ? formatSessionDate(i.sessionStartsAt) : null,
           sessionId: i.sessionId ?? null,
+          withExam: !!i.withExam,
         })),
       );
       if (url) window.open(url, "_blank");
@@ -109,9 +110,9 @@ function Cart() {
                         <div className="mt-2 flex items-center justify-between">
                           <div>
                             <span className="font-serif text-lg font-bold text-sage-600">{formatPrice(item.priceCents)}</span>
-                            {item.slug === "anglais-toefl" && (
+                            {item.slug === "anglais-toefl" && item.withExam && (
                               <p className="text-xs leading-snug text-muted-foreground">
-                                dont 310 € de frais d'inscription à l'examen TOEFL iBT
+                                dont 310 € d'inscription à l'examen TOEFL iBT
                               </p>
                             )}
                           </div>
