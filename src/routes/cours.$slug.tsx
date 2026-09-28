@@ -11,7 +11,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { courseBySlugQuery, courseImage, levelLabels, formatLabels } from "@/lib/courses";
 import coursAnglaisImg from "@/assets/cours-anglais.jpg";
-import { useCart, formatPrice } from "@/lib/cart";
+import { useCart, formatPrice, EXAM_FEE_CENTS } from "@/lib/cart";
 
 export const Route = createFileRoute("/cours/$slug")({
   loader: async ({ context, params }) => {
@@ -46,6 +46,7 @@ function CoursePage() {
   const { data: course } = useSuspenseQuery(courseBySlugQuery(slug));
   const cart = useCart();
   const [slotId, setSlotId] = useState<string | null>(null);
+  const [withExam, setWithExam] = useState(true);
   const { data: sessions, isLoading: slotsLoading } = useQuery({ ...courseSessionsQuery(course?.id ?? ""), enabled: !!course, refetchInterval: 15000 });
   if (!course) return null;
   const available = (sessions ?? []).filter((s) => s.spots_left > 0);
@@ -53,6 +54,8 @@ function CoursePage() {
 
   const img = courseImage(course) ?? coursAnglaisImg;
   const inCart = cart.items.some((i) => i.courseId === course.id);
+  const isToefl = course.slug === "anglais-toefl";
+  const totalCents = course.price_cents + (isToefl && withExam ? EXAM_FEE_CENTS : 0);
 
   function addToCart() {
     if (!course || !chosen) return;
@@ -63,10 +66,11 @@ function CoursePage() {
       courseId: course.id,
       slug: course.slug,
       title: course.title,
-      priceCents: course.price_cents,
+      priceCents: totalCents,
       imageUrl: course.image_url,
       language: course.language,
       format: course.format,
+      withExam: isToefl && withExam,
     });
     openCart();
   }
@@ -127,18 +131,37 @@ function CoursePage() {
                   {formatLabels[course.format]}
                 </div>
                 <div className="mb-2 flex items-baseline gap-2">
-                  <span className="font-serif text-4xl font-bold text-sage-600">{formatPrice(course.price_cents)}</span>
+                  <span className="font-serif text-4xl font-bold text-sage-600">{formatPrice(totalCents)}</span>
                   {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
                 </div>
-                {course.slug === "anglais-toefl" && (
-                  <div className="mb-4 rounded-xl border border-sage-200 bg-sage-50 p-4">
-                    <p className="text-sm font-semibold leading-relaxed text-sage-900">
-                      Frais d'inscription TOEFL iBT inclus : 310 €
+                {isToefl && (
+                  <div className="mb-4 space-y-2">
+                    <p className="text-sm font-semibold text-sage-900">Inscription à l'examen TOEFL iBT</p>
+                    {[
+                      { v: true, label: "Oui, inscrivez-moi à l'examen", sub: "+ 310 € de frais officiels (ITS) · nous vous aidons à choisir votre date" },
+                      { v: false, label: "Non, préparation uniquement", sub: "Je m'inscris moi-même ou plus tard" },
+                    ].map((o) => (
+                      <label
+                        key={String(o.v)}
+                        className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition ${withExam === o.v ? "border-sage-600 bg-sage-50" : "border-sage-200 hover:border-sage-400"}`}
+                      >
+                        <input
+                          type="radio"
+                          name="exam"
+                          checked={withExam === o.v}
+                          onChange={() => setWithExam(o.v)}
+                          className="mt-1 accent-[var(--color-sage-600)]"
+                        />
+                        <span>
+                          <span className="block text-sm font-semibold text-sage-900">{o.label}</span>
+                          <span className="block text-xs text-sage-900/70">{o.sub}</span>
+                        </span>
+                      </label>
+                    ))}
+                    <p className="text-xs text-muted-foreground">
+                      10 heures de cours : {formatPrice(course.price_cents)}{withExam ? ` + inscription : ${formatPrice(EXAM_FEE_CENTS)}` : ""}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-sage-900/80">
-                      Sur les 759 €, 310 € correspondent aux frais officiels d'inscription à l'examen TOEFL iBT, réglés directement auprès d'ITS, le fournisseur officiel du test. Il reste donc 449 € pour vos 10 heures de cours individuels.
-                    </p>
-                    <Link to="/toefl-ibt" className="mt-2 inline-block text-sm font-semibold text-sage-600 hover:underline">Tout savoir sur l'examen →</Link>
+                    <Link to="/toefl-ibt" className="inline-block text-sm font-semibold text-sage-600 hover:underline">Tout savoir sur l'examen →</Link>
                   </div>
                 )}
                 <div className="mb-4">
