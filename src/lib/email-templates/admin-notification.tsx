@@ -67,7 +67,7 @@ export const template = {
 
 const main = { backgroundColor: '#ffffff', fontFamily: 'Inter, Arial, sans-serif', color: '#1a1a1a' }
 const container = { padding: '32px 28px', maxWidth: '560px' }
-const brand = { fontFamily: 'Georgia, serif', fontSize: '18px', color: '#5f7a64', margin: '0 0 16px' }
+const logo = { display: 'block', border: '0', outline: 'none', textDecoration: 'none', height: 'auto', maxWidth: '160px' }
 const h1 = { fontFamily: 'Georgia, serif', fontSize: '24px', fontWeight: 'normal', margin: '0 0 16px' }
 const hr = { borderColor: '#e5e5e5', margin: '16px 0' }
 const label = { fontSize: '12px', textTransform: 'uppercase' as const, letterSpacing: '0.05em', color: '#777', margin: '12px 0 2px' }
