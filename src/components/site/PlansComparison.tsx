@@ -15,6 +15,7 @@ type Cell = string | boolean;
 const rows: { label: string; cells: Cell[] }[] = [
   { label: "Format du cours", cells: Array(4).fill("Individuel, 1 élève, 1 professeur certifié") },
   { label: "Durée totale", cells: ["1 heure", "10 heures", "10 heures", "10 heures"] },
+  { label: "Frais d'inscription à l'examen (310 €)", cells: [false, false, false, "Inclus dans le prix"] },
   { label: "Économie horaire", cells: ["Tarif unitaire", "-40 %", "-30 %", "Tarif parcours certifiant"] },
   { label: "Bilan de niveau & diagnostic initial", cells: [false, true, true, true] },
   { label: "Synthèse de vocabulaire après chaque session", cells: ["Synthèse basique", "Fiche sur-mesure", "Fiche sur-mesure", "Fiche sur-mesure"] },

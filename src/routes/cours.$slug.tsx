@@ -131,10 +131,15 @@ function CoursePage() {
                   {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
                 </div>
                 {course.slug === "anglais-toefl" && (
-                  <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
-                    Dont 310 € d'inscription à l'examen TOEFL iBT, réglés directement auprès d'ITS, le fournisseur officiel du TOEFL iBT.{" "}
-                    <Link to="/toefl-ibt" className="font-semibold text-sage-600 hover:underline">Tout savoir sur l'examen →</Link>
-                  </p>
+                  <div className="mb-4 rounded-xl border border-sage-200 bg-sage-50 p-4">
+                    <p className="text-sm font-semibold leading-relaxed text-sage-900">
+                      Frais d'inscription TOEFL iBT inclus : 310 €
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-sage-900/80">
+                      Sur les 759 €, 310 € correspondent aux frais officiels d'inscription à l'examen TOEFL iBT, réglés directement auprès d'ITS, le fournisseur officiel du test. Il reste donc 449 € pour vos 10 heures de cours individuels.
+                    </p>
+                    <Link to="/toefl-ibt" className="mt-2 inline-block text-sm font-semibold text-sage-600 hover:underline">Tout savoir sur l'examen →</Link>
+                  </div>
                 )}
                 <div className="mb-4">
                   {chosen ? (

@@ -157,6 +157,11 @@ function CartLine({ item, onRemove }: { item: CartItem; onRemove: () => void }) 
             {item.title}
           </Link>
           <span className="font-serif text-base font-bold text-sage-600">{formatPrice(item.priceCents)}</span>
+          {item.slug === "anglais-toefl" && (
+            <span className="block text-[11px] leading-snug text-muted-foreground">
+              dont 310 € de frais d'inscription à l'examen TOEFL iBT
+            </span>
+          )}
         </div>
         <button onClick={onRemove} className="self-start text-xs text-muted-foreground hover:text-destructive" aria-label="Retirer du panier">
           <X className="h-4 w-4" />

@@ -107,7 +107,14 @@ function Cart() {
                         <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{item.language} · {item.format}</div>
                         <Link to="/cours/$slug" params={{ slug: item.slug }} className="font-semibold hover:text-sage-600 line-clamp-1">{item.title}</Link>
                         <div className="mt-2 flex items-center justify-between">
-                          <span className="font-serif text-lg font-bold text-sage-600">{formatPrice(item.priceCents)}</span>
+                          <div>
+                            <span className="font-serif text-lg font-bold text-sage-600">{formatPrice(item.priceCents)}</span>
+                            {item.slug === "anglais-toefl" && (
+                              <p className="text-xs leading-snug text-muted-foreground">
+                                dont 310 € de frais d'inscription à l'examen TOEFL iBT
+                              </p>
+                            )}
+                          </div>
                           <button onClick={() => cart.remove(item.courseId)} className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-destructive">
                             <Trash2 className="h-3.5 w-3.5" /> Retirer
                           </button>
