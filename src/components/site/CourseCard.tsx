@@ -20,12 +20,18 @@ export function CourseCard({ course }: { course: Course }) {
             {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
           </span>
           <span className="flex flex-col items-end">
-            <span className="text-lg font-serif font-bold text-sage-600">
-              {formatPrice(course.price_cents)}{course.format === "abonnement" ? "/m" : ""}
-            </span>
-            {course.slug === "anglais-toefl" && (
-              <span className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
-                dont 310 € de frais d'inscription à l'examen
+            {course.slug === "anglais-toefl" ? (
+              <>
+                <span className="text-lg font-serif font-bold text-sage-600">
+                  {formatPrice(44900)}
+                </span>
+                <span className="mt-0.5 text-[11px] leading-tight text-muted-foreground">
+                  + 310 € de frais d'inscription à l'examen
+                </span>
+              </>
+            ) : (
+              <span className="text-lg font-serif font-bold text-sage-600">
+                {formatPrice(course.price_cents)}{course.format === "abonnement" ? "/m" : ""}
               </span>
             )}
           </span>
