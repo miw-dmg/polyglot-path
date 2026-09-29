@@ -22,7 +22,7 @@ export function Header() {
 
   const links = [
     { to: "/", label: "Accueil" },
-    { to: "/catalogue", label: "Catalogue" },
+    { to: "/catalogue", label: "Cours" },
     { to: "/essai-gratuit", label: "Essai gratuit" },
     { to: "/a-propos", label: "À propos" },
     { to: "/contact", label: "Contact" },
