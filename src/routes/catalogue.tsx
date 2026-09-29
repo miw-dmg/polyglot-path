@@ -63,7 +63,7 @@ function Catalogue() {
 
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-12">
-          <h1 className="font-serif text-4xl md:text-5xl mb-3">Catalogue des cours d'anglais en direct</h1>
+          <h1 className="font-serif text-4xl md:text-5xl mb-3">Cours en direct</h1>
           <p className="text-muted-foreground max-w-2xl">
             {filtered.length} cours {filtered.length > 1 ? "disponibles" : "disponible"}. Trouvez celui qui vous correspond.
           </p>
