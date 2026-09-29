@@ -138,7 +138,7 @@ export function CartDrawer() {
               >
                 Voir le panier
               </button>
-              <p className="mt-3 text-center text-xs text-muted-foreground">Paiement sécurisé par Shopify · Satisfait ou remboursé.</p>
+              <p className="mt-3 text-center text-xs text-muted-foreground">Paiement sécurisé · Satisfait ou remboursé.</p>
             </div>
           </>
         )}
