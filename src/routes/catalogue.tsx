@@ -6,7 +6,6 @@ import { z } from "zod";
 import { Search } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { TrustBand } from "@/components/site/TrustBand";
 import { CourseCard } from "@/components/site/CourseCard";
 import { PlansComparison } from "@/components/site/PlansComparison";
 import { coursesQuery, levelLabels, formatLabels, type Course } from "@/lib/courses";
@@ -131,7 +130,6 @@ function Catalogue() {
         </div>
       </div>
 
-      <TrustBand />
 
       <PlansComparison />
 

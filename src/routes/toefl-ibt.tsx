@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Clock, Award, CheckCircle2, ArrowRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { TrustBand } from "@/components/site/TrustBand";
 import { Reveal } from "@/components/site/Reveal";
 import { FaqSection } from "@/components/site/Reassurance";
 
@@ -65,7 +64,6 @@ export default function ToeflPage() {
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
       <Header />
-      <TrustBand />
 
       <main className="mx-auto max-w-4xl px-6 py-16">
         <Reveal>
