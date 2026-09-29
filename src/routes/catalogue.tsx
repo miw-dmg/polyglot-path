@@ -59,7 +59,6 @@ function Catalogue() {
   return (
     <div className="min-h-screen bg-cream-100 text-sage-900">
       <Header />
-      <TrustBand />
 
 
       <div className="mx-auto max-w-7xl px-6 py-16">
