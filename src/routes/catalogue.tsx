@@ -131,6 +131,8 @@ function Catalogue() {
         </div>
       </div>
 
+      <TrustBand />
+
       <PlansComparison />
 
       <Footer />
