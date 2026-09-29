@@ -71,8 +71,24 @@ function Catalogue() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
+          {/* Grid */}
+          <div className="order-1 lg:order-2">
+            {filtered.length === 0 ? (
+              <div className="rounded-2xl bg-white p-12 text-center ring-1 ring-sage-100">
+                <p className="text-muted-foreground">Aucun cours ne correspond à votre recherche.</p>
+                <Link to="/catalogue" search={{}} className="mt-4 inline-block text-sm font-semibold text-sage-600 hover:underline">
+                  Voir tous les cours
+                </Link>
+              </div>
+            ) : (
+              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                {filtered.map((c) => <CourseCard key={c.id} course={c} />)}
+              </div>
+            )}
+          </div>
+
           {/* Filters */}
-          <aside className="space-y-8">
+          <aside className="order-2 space-y-8 lg:order-1">
             <div>
               <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Recherche</label>
               <div className="relative">
@@ -113,22 +129,6 @@ function Catalogue() {
               </button>
             )}
           </aside>
-
-          {/* Grid */}
-          <div>
-            {filtered.length === 0 ? (
-              <div className="rounded-2xl bg-white p-12 text-center ring-1 ring-sage-100">
-                <p className="text-muted-foreground">Aucun cours ne correspond à votre recherche.</p>
-                <Link to="/catalogue" search={{}} className="mt-4 inline-block text-sm font-semibold text-sage-600 hover:underline">
-                  Voir tous les cours
-                </Link>
-              </div>
-            ) : (
-              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {filtered.map((c) => <CourseCard key={c.id} course={c} />)}
-              </div>
-            )}
-          </div>
         </div>
       </div>
 
