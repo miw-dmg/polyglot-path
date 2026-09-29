@@ -111,9 +111,6 @@ export function BookingCalendar({
                     sel ? "border-sage-600 bg-sage-600 text-primary-foreground" : "border-sage-100 hover:border-sage-600"
                   }`}>
                   <span className="font-medium">{fmt(s.starts_at)}</span>
-                  <span className={`rounded border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${sel ? "border-primary-foreground/40" : "border-sage-100"}`}>
-                    {s.spots_left} place restante
-                  </span>
                 </button>
               );
             })}
