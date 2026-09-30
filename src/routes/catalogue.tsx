@@ -88,10 +88,12 @@ function Catalogue() {
           {/* Filters */}
           <aside className="order-2 space-y-8 lg:order-1">
             <div>
-              <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Recherche</label>
+              <label htmlFor="catalogue-search" className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Recherche</label>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <input
+                  id="catalogue-search"
+                  type="search"
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder="Anglais, business..."

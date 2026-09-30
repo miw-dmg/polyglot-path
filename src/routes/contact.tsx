@@ -57,16 +57,16 @@ function Contact() {
         <div className="grid gap-12 lg:grid-cols-[1fr_300px]">
           <form onSubmit={submit} className="space-y-5 rounded-2xl bg-white p-8 ring-1 ring-sage-100">
             <div>
-              <label className="text-sm font-medium block mb-2">Nom</label>
-              <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border border-sage-100 bg-white px-4 py-2.5 focus:border-sage-600 focus:outline-none" />
+              <label htmlFor="contact-name" className="text-sm font-medium block mb-2">Nom</label>
+              <input id="contact-name" name="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full rounded-lg border border-sage-100 bg-white px-4 py-2.5 focus:border-sage-600 focus:outline-none" />
             </div>
             <div>
-              <label className="text-sm font-medium block mb-2">Email</label>
-              <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full rounded-lg border border-sage-100 bg-white px-4 py-2.5 focus:border-sage-600 focus:outline-none" />
+              <label htmlFor="contact-email" className="text-sm font-medium block mb-2">Email</label>
+              <input id="contact-email" name="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full rounded-lg border border-sage-100 bg-white px-4 py-2.5 focus:border-sage-600 focus:outline-none" />
             </div>
             <div>
-              <label className="text-sm font-medium block mb-2">Message</label>
-              <textarea rows={6} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full rounded-lg border border-sage-100 bg-white px-4 py-2.5 focus:border-sage-600 focus:outline-none resize-none" />
+              <label htmlFor="contact-message" className="text-sm font-medium block mb-2">Message</label>
+              <textarea id="contact-message" name="message" rows={6} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full rounded-lg border border-sage-100 bg-white px-4 py-2.5 focus:border-sage-600 focus:outline-none resize-none" />
             </div>
             <button disabled={loading} className="w-full sm:w-auto rounded-lg bg-sage-600 px-6 py-3 font-semibold text-white hover:bg-sage-900 transition-colors disabled:opacity-60">
               {loading ? "Envoi..." : "Envoyer le message"}
