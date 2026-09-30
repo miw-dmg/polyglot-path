@@ -13,14 +13,7 @@ import { PlansComparison } from "@/components/site/PlansComparison";
 import heroImg from "@/assets/hero-study.jpg";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "PolyLinguist — Cours d'anglais en direct, sessions à réserver" },
-      { name: "description", content: "Apprenez l'anglais avec des sessions en direct à réserver selon vos disponibilités : conversation, anglais des affaires et préparation certifiante TOEFL." },
-      { property: "og:title", content: "PolyLinguist — Cours d'anglais en direct, sessions à réserver" },
-      { property: "og:description", content: "Apprenez l'anglais avec des sessions en direct à réserver selon vos disponibilités : conversation, anglais des affaires et préparation certifiante TOEFL." },
-    ],
-  }),
+  // Inherits title/description/og from __root.tsx (identical values, no duplicate meta).
   loader: ({ context }) => context.queryClient.ensureQueryData(coursesQuery()),
   errorComponent: ({ error }) => <div className="p-8">{error.message}</div>,
   notFoundComponent: () => <div className="p-8">Introuvable</div>,
