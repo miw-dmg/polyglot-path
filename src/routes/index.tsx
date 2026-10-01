@@ -102,6 +102,28 @@ function Home() {
       {/* Trust figures */}
       <TrustBand />
 
+      {/* Featured courses */}
+      <section className="py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="font-serif text-3xl mb-2">Cours populaires</h2>
+              <p className="text-muted-foreground">Sélectionnés pour leur qualité pédagogique.</p>
+            </div>
+            <Link to="/catalogue" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-600 hover:underline">
+              Je réserve en ligne <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {featured.map((c, i) => (
+              <Reveal key={c.id} delay={i * 80} className="h-full">
+                <CourseCard course={c} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section id="how" className="py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6">
@@ -127,28 +149,6 @@ function Home() {
             <Link to="/catalogue" className="inline-flex items-center gap-2 rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft transition-all hover:-translate-y-0.5">
               Je réserve en ligne <ArrowRight className="h-4 w-4" />
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured courses */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="font-serif text-3xl mb-2">Cours populaires</h2>
-              <p className="text-muted-foreground">Sélectionnés pour leur qualité pédagogique.</p>
-            </div>
-            <Link to="/catalogue" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-600 hover:underline">
-              Je réserve en ligne <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((c, i) => (
-              <Reveal key={c.id} delay={i * 80} className="h-full">
-                <CourseCard course={c} />
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
