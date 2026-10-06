@@ -27,7 +27,7 @@ export function isExpressDate(date: string | null | undefined) {
   return (exam - today.getTime()) / 86400000 < 7;
 }
 
-const KEY = "linguist_cart_v1";
+const KEY = "linguist_cart_v2";
 
 function read(): CartItem[] {
   if (typeof window === "undefined") return [];
