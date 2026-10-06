@@ -5,10 +5,10 @@ import { Reveal } from "@/components/site/Reveal";
 type Plan = { slug: string; name: string; sub: string; price: string; perHour: string; goal: string; cta: string; featured?: boolean };
 
 const plans: Plan[] = [
-  { slug: "cours-a-la-demande", name: "Cours à la demande", sub: "1H", price: "50 €", perHour: "50 € / heure", goal: "Besoin ponctuel, préparation d'une réunion ou d'un entretien urgent.", cta: "Réserver une heure" },
-  { slug: "anglais-conversationnel", name: "Anglais Conversationnel", sub: "Pack 10H", price: "19,99 €", perHour: "soit 2 € / heure", goal: "Débloquer la fluidité et gagner en confiance au quotidien.", cta: "Choisir cette formule" },
-  { slug: "anglais-affaires", name: "Business English", sub: "Pack 10H", price: "24,99 €", perHour: "soit 2,50 € / heure", goal: "Négociation, réunions internationales, pitchs et vocabulaire sectoriel.", cta: "Choisir cette formule", featured: true },
-  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "29,99 €", perHour: "+310 € d'inscription TOEFL iBT · soit 3 € / heure de cours", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
+  { slug: "cours-a-la-demande", name: "Cours à la demande", sub: "1H", price: "19,99 €", perHour: "19,99 € / heure", goal: "Besoin ponctuel, préparation d'une réunion ou d'un entretien urgent.", cta: "Réserver une heure" },
+  { slug: "anglais-conversationnel", name: "Anglais Conversationnel", sub: "Pack 10H", price: "199,99 €", perHour: "soit 19,99 € / heure", goal: "Débloquer la fluidité et gagner en confiance au quotidien.", cta: "Choisir cette formule" },
+  { slug: "anglais-affaires", name: "Business English", sub: "Pack 10H", price: "249,99 €", perHour: "soit 24,99 € / heure", goal: "Négociation, réunions internationales, pitchs et vocabulaire sectoriel.", cta: "Choisir cette formule", featured: true },
+  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "299,99 €", perHour: "+310 € d'inscription TOEFL iBT · soit 29,99 € / heure de cours", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
 ];
 
 type Cell = string | boolean;
