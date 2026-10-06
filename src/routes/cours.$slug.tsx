@@ -27,7 +27,7 @@ export const Route = createFileRoute("/cours/$slug")({
       ...(courseImage(loaderData) ? [{ property: "og:image", content: courseImage(loaderData)! }] : []),
     ] : [],
   }),
-  errorComponent: ({ error }) => <div className="p-8">{error.message}</div>,
+  errorComponent: ({ error }) => <div className="p-8">{(error as Error).message}</div>,
   notFoundComponent: () => (
     <div className="min-h-screen bg-cream-100">
       <Header />
