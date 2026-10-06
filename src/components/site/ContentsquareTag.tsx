@@ -20,13 +20,22 @@ export function ContentsquareTag() {
       loaded.current = true;
       window._uxa.push(["setPath", window.location.pathname + window.location.search]);
 
-      if (!document.getElementById("contentsquare-tag")) {
+      const inject = () => {
+        if (document.getElementById("contentsquare-tag")) return;
         const script = document.createElement("script");
         script.id = "contentsquare-tag";
         script.async = true;
         script.src = `https://t.contentsquare.net/uxa/${TAG_ID}.js`;
         document.head.appendChild(script);
-      }
+      };
+      // Defer the tracker so it doesn't compete with the first render on mobile.
+      const start = () => {
+        const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void }).requestIdleCallback;
+        if (ric) ric(inject, { timeout: 3000 });
+        else setTimeout(inject, 1500);
+      };
+      if (document.readyState === "complete") start();
+      else window.addEventListener("load", start, { once: true });
       return;
     }
 

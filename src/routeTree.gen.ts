@@ -9,54 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ToeflIbtRouteImport } from './routes/toefl-ibt'
-import { Route as PanierRouteImport } from './routes/panier'
-import { Route as EssaiGratuitRouteImport } from './routes/essai-gratuit'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CheckoutRouteImport } from './routes/checkout'
-import { Route as CatalogueRouteImport } from './routes/catalogue'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AProposRouteImport } from './routes/a-propos'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CoursSlugRouteImport } from './routes/cours.$slug'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AProposRouteImport } from './routes/a-propos'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CatalogueRouteImport } from './routes/catalogue'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EssaiGratuitRouteImport } from './routes/essai-gratuit'
+import { Route as PanierRouteImport } from './routes/panier'
+import { Route as ToeflIbtRouteImport } from './routes/toefl-ibt'
 import { Route as AuthenticatedCompteRouteImport } from './routes/_authenticated/compte'
+import { Route as CoursSlugRouteImport } from './routes/cours.$slug'
 import { Route as ApiPublicShopifyOrderRouteImport } from './routes/api/public/shopify-order'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
-const ToeflIbtRoute = ToeflIbtRouteImport.update({
-  id: '/toefl-ibt',
-  path: '/toefl-ibt',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PanierRoute = PanierRouteImport.update({
-  id: '/panier',
-  path: '/panier',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EssaiGratuitRoute = EssaiGratuitRouteImport.update({
-  id: '/essai-gratuit',
-  path: '/essai-gratuit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckoutRoute = CheckoutRouteImport.update({
-  id: '/checkout',
-  path: '/checkout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CatalogueRoute = CatalogueRouteImport.update({
-  id: '/catalogue',
-  path: '/catalogue',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AProposRoute = AProposRouteImport.update({
@@ -64,24 +38,50 @@ const AProposRoute = AProposRouteImport.update({
   path: '/a-propos',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const CatalogueRoute = CatalogueRouteImport.update({
+  id: '/catalogue',
+  path: '/catalogue',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CoursSlugRoute = CoursSlugRouteImport.update({
-  id: '/cours/$slug',
-  path: '/cours/$slug',
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EssaiGratuitRoute = EssaiGratuitRouteImport.update({
+  id: '/essai-gratuit',
+  path: '/essai-gratuit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanierRoute = PanierRouteImport.update({
+  id: '/panier',
+  path: '/panier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToeflIbtRoute = ToeflIbtRouteImport.update({
+  id: '/toefl-ibt',
+  path: '/toefl-ibt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedCompteRoute = AuthenticatedCompteRouteImport.update({
   id: '/compte',
   path: '/compte',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const CoursSlugRoute = CoursSlugRouteImport.update({
+  id: '/cours/$slug',
+  path: '/cours/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicShopifyOrderRoute = ApiPublicShopifyOrderRouteImport.update({
   id: '/api/public/shopify-order',
@@ -209,60 +209,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/toefl-ibt': {
-      id: '/toefl-ibt'
-      path: '/toefl-ibt'
-      fullPath: '/toefl-ibt'
-      preLoaderRoute: typeof ToeflIbtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/panier': {
-      id: '/panier'
-      path: '/panier'
-      fullPath: '/panier'
-      preLoaderRoute: typeof PanierRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/essai-gratuit': {
-      id: '/essai-gratuit'
-      path: '/essai-gratuit'
-      fullPath: '/essai-gratuit'
-      preLoaderRoute: typeof EssaiGratuitRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkout': {
-      id: '/checkout'
-      path: '/checkout'
-      fullPath: '/checkout'
-      preLoaderRoute: typeof CheckoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/catalogue': {
-      id: '/catalogue'
-      path: '/catalogue'
-      fullPath: '/catalogue'
-      preLoaderRoute: typeof CatalogueRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/a-propos': {
-      id: '/a-propos'
-      path: '/a-propos'
-      fullPath: '/a-propos'
-      preLoaderRoute: typeof AProposRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -272,18 +223,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/a-propos': {
+      id: '/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof AProposRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cours/$slug': {
-      id: '/cours/$slug'
-      path: '/cours/$slug'
-      fullPath: '/cours/$slug'
-      preLoaderRoute: typeof CoursSlugRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogue': {
+      id: '/catalogue'
+      path: '/catalogue'
+      fullPath: '/catalogue'
+      preLoaderRoute: typeof CatalogueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/essai-gratuit': {
+      id: '/essai-gratuit'
+      path: '/essai-gratuit'
+      fullPath: '/essai-gratuit'
+      preLoaderRoute: typeof EssaiGratuitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panier': {
+      id: '/panier'
+      path: '/panier'
+      fullPath: '/panier'
+      preLoaderRoute: typeof PanierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/toefl-ibt': {
+      id: '/toefl-ibt'
+      path: '/toefl-ibt'
+      fullPath: '/toefl-ibt'
+      preLoaderRoute: typeof ToeflIbtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/compte': {
@@ -292,6 +285,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/compte'
       preLoaderRoute: typeof AuthenticatedCompteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/cours/$slug': {
+      id: '/cours/$slug'
+      path: '/cours/$slug'
+      fullPath: '/cours/$slug'
+      preLoaderRoute: typeof CoursSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/public/shopify-order': {
       id: '/api/public/shopify-order'
