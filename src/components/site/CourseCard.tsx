@@ -20,7 +20,7 @@ export function CourseCard({ course }: { course: Course }) {
             {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
           </span>
           <span className="shrink-0 text-lg font-serif font-bold text-sage-600 whitespace-nowrap">
-            {formatPrice(course.slug === "anglais-toefl" ? 44900 : course.price_cents)}
+            {formatPrice(course.price_cents)}
             {course.format === "abonnement" ? "/m" : ""}
           </span>
         </div>

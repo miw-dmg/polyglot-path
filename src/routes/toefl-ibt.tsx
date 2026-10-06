@@ -136,7 +136,7 @@ export default function ToeflPage() {
                 L'inscription au TOEFL iBT se fait auprès d'ITS, le fournisseur officiel du TOEFL iBT. Elle coûte <strong>310 €</strong> et se règle directement auprès d'ITS, indépendamment de votre préparation. Vous choisissez ensuite votre date et votre centre d'examen parmi les sessions proposées toute l'année.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Dans notre parcours certifiant, l'inscription à l'examen est incluse : nous vous accompagnons dans le choix de votre date, et les 310 € d'inscription sont réglés directement auprès d'ITS.
+                Dans notre parcours certifiant, l'inscription à l'examen est proposée en option : si vous la choisissez, nous vous accompagnons dans le choix de votre date et les 310 € de frais officiels sont ajoutés à votre commande.
               </p>
             </div>
           </section>
@@ -172,13 +172,13 @@ export default function ToeflPage() {
           <section className="mt-16">
             <h2 className="font-serif text-3xl mb-4">Comment PolyLinguist vous prépare</h2>
             <p className="text-sage-900/80 leading-relaxed mb-6">
-              Notre parcours certifiant vous prépare aux quatre épreuves du TOEFL iBT en cours individuels en direct : dix séances de 60 minutes en tête-à-tête avec un professeur certifié, deux tests blancs complets, des fiches de vocabulaire après chaque séance et un plan d'action personnalisé. L'inscription à l'examen est incluse dans le parcours.
+              Notre parcours certifiant vous prépare aux quatre épreuves du TOEFL iBT en cours individuels en direct : dix séances de 60 minutes en tête-à-tête avec un professeur certifié, deux tests blancs complets, des fiches de vocabulaire après chaque séance et un plan d'action personnalisé. L'inscription à l'examen est disponible en option.
             </p>
             <div className="rounded-2xl bg-white p-6 ring-1 ring-sage-100 shadow-soft">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <div className="font-serif text-2xl font-bold text-sage-600">759 €</div>
-                  <div className="text-xs text-muted-foreground">dont 310 € d'inscription à l'examen (ITS)</div>
+                  <div className="font-serif text-2xl font-bold text-sage-600">29,99 €</div>
+                  <div className="text-xs text-muted-foreground">+ 310 € d'inscription à l'examen (ITS) en option</div>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <Link

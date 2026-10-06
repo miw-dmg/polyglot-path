@@ -6,16 +6,16 @@ type Plan = { slug: string; name: string; sub: string; price: string; perHour: s
 
 const plans: Plan[] = [
   { slug: "cours-a-la-demande", name: "Cours à la demande", sub: "1H", price: "50 €", perHour: "50 € / heure", goal: "Besoin ponctuel, préparation d'une réunion ou d'un entretien urgent.", cta: "Réserver une heure" },
-  { slug: "anglais-conversationnel", name: "Anglais Conversationnel", sub: "Pack 10H", price: "299 €", perHour: "soit 29,90 € / heure", goal: "Débloquer la fluidité et gagner en confiance au quotidien.", cta: "Choisir cette formule" },
-  { slug: "anglais-affaires", name: "Business English", sub: "Pack 10H", price: "349 €", perHour: "soit 34,90 € / heure", goal: "Négociation, réunions internationales, pitchs et vocabulaire sectoriel.", cta: "Choisir cette formule", featured: true },
-  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "449 €", perHour: "+310 € d'inscription TOEFL iBT · soit 44,90 € / heure de cours", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
+  { slug: "anglais-conversationnel", name: "Anglais Conversationnel", sub: "Pack 10H", price: "19,99 €", perHour: "soit 2 € / heure", goal: "Débloquer la fluidité et gagner en confiance au quotidien.", cta: "Choisir cette formule" },
+  { slug: "anglais-affaires", name: "Business English", sub: "Pack 10H", price: "24,99 €", perHour: "soit 2,50 € / heure", goal: "Négociation, réunions internationales, pitchs et vocabulaire sectoriel.", cta: "Choisir cette formule", featured: true },
+  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "29,99 €", perHour: "+310 € d'inscription TOEFL iBT · soit 3 € / heure de cours", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
 ];
 
 type Cell = string | boolean;
 const rows: { label: string; cells: Cell[] }[] = [
   { label: "Format du cours", cells: Array(4).fill("Individuel, 1 élève, 1 professeur certifié") },
   { label: "Durée totale", cells: ["1 heure", "10 heures", "10 heures", "10 heures"] },
-  { label: "Frais d'inscription à l'examen (310 €)", cells: [false, false, false, "Inclus dans le prix"] },
+  { label: "Frais d'inscription à l'examen (310 €)", cells: [false, false, false, "En option"] },
   { label: "Économie horaire", cells: ["Tarif unitaire", "-40 %", "-30 %", "Tarif parcours certifiant"] },
   { label: "Bilan de niveau & diagnostic initial", cells: [false, true, true, true] },
   { label: "Synthèse de vocabulaire après chaque session", cells: ["Synthèse basique", "Fiche sur-mesure", "Fiche sur-mesure", "Fiche sur-mesure"] },
