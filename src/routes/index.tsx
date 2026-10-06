@@ -15,7 +15,7 @@ import heroImg from "@/assets/hero-study.webp";
 export const Route = createFileRoute("/")({
   // Inherits title/description/og from __root.tsx (identical values, no duplicate meta).
   loader: ({ context }) => context.queryClient.ensureQueryData(coursesQuery()),
-  errorComponent: ({ error }) => <div className="p-8">{error.message}</div>,
+  errorComponent: ({ error }) => <div className="p-8">{(error as Error).message}</div>,
   notFoundComponent: () => <div className="p-8">Introuvable</div>,
   component: Home,
 });

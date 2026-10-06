@@ -28,7 +28,7 @@ export const Route = createFileRoute("/catalogue")({
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(coursesQuery()),
-  errorComponent: ({ error }) => <div className="p-8">{error.message}</div>,
+  errorComponent: ({ error }) => <div className="p-8">{(error as Error).message}</div>,
   notFoundComponent: () => <div className="p-8">Introuvable</div>,
   component: Catalogue,
 });
