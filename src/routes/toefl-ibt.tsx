@@ -177,7 +177,7 @@ export default function ToeflPage() {
             <div className="rounded-2xl bg-white p-6 ring-1 ring-sage-100 shadow-soft">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <div className="font-serif text-2xl font-bold text-sage-600">29,99 €</div>
+                  <div className="font-serif text-2xl font-bold text-sage-600">299,99 €</div>
                   <div className="text-xs text-muted-foreground">+ 310 € d'inscription à l'examen (ITS) en option</div>
                 </div>
                 <div className="flex flex-wrap gap-3">
