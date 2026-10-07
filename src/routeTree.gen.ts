@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AProposRouteImport } from './routes/a-propos'
+import { Route as AnglaisConversationRouteImport } from './routes/anglais-conversation'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -36,6 +37,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AProposRoute = AProposRouteImport.update({
   id: '/a-propos',
   path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnglaisConversationRoute = AnglaisConversationRouteImport.update({
+  id: '/anglais-conversation',
+  path: '/anglais-conversation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -98,6 +104,7 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/anglais-conversation': typeof AnglaisConversationRoute
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/anglais-conversation': typeof AnglaisConversationRoute
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/a-propos': typeof AProposRoute
+  '/anglais-conversation': typeof AnglaisConversationRoute
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/a-propos'
+    | '/anglais-conversation'
     | '/auth'
     | '/catalogue'
     | '/checkout'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/a-propos'
+    | '/anglais-conversation'
     | '/auth'
     | '/catalogue'
     | '/checkout'
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/a-propos'
+    | '/anglais-conversation'
     | '/auth'
     | '/catalogue'
     | '/checkout'
@@ -195,6 +207,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AProposRoute: typeof AProposRoute
+  AnglaisConversationRoute: typeof AnglaisConversationRoute
   AuthRoute: typeof AuthRoute
   CatalogueRoute: typeof CatalogueRoute
   CheckoutRoute: typeof CheckoutRoute
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/a-propos'
       fullPath: '/a-propos'
       preLoaderRoute: typeof AProposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anglais-conversation': {
+      id: '/anglais-conversation'
+      path: '/anglais-conversation'
+      fullPath: '/anglais-conversation'
+      preLoaderRoute: typeof AnglaisConversationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -325,6 +345,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AProposRoute: AProposRoute,
+  AnglaisConversationRoute: AnglaisConversationRoute,
   AuthRoute: AuthRoute,
   CatalogueRoute: CatalogueRoute,
   CheckoutRoute: CheckoutRoute,
