@@ -89,7 +89,7 @@ function Home() {
                 Cours d'anglais individuels en ligne
               </span>
               <h1 className="hero-enter mb-6 font-serif text-5xl leading-[1.1] md:text-6xl" style={{ animationDelay: "120ms" }}>
-                Parlez anglais avec <span className="italic">confiance</span>, enfin.
+                Parlez anglais avec <span className="italic">confiance</span>.
               </h1>
               <p className="hero-enter mb-8 text-lg text-sage-900/70 leading-relaxed" style={{ animationDelay: "240ms" }}>
                 Des cours d'anglais individuels en ligne avec un professeur, adaptés à votre niveau, votre métier et vos objectifs.
