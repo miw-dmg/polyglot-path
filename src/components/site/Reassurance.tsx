@@ -2,6 +2,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CheckCircle2, Mail, CalendarPlus, Video } from "lucide-react";
 
 const faqs = [
+  { q: "La première séance est-elle vraiment gratuite ?", a: "Oui. La séance d'essai dure 20 minutes, elle est 100 % gratuite et ne demande ni carte bancaire ni création de compte." },
+  { q: "Dois-je m'engager après la séance ?", a: "Non. Après la séance, vous êtes libre de réserver un cours ou un pack, ou de vous arrêter là." },
+  { q: "Comment se déroulent les cours ?", a: "Chaque cours est un tête-à-tête en direct, en visioconférence, avec un professeur. Vous réservez vos créneaux en ligne selon vos disponibilités, de 8h à 22h." },
+  { q: "Quels examens préparez-vous ?", a: "Nous proposons un parcours de préparation au TOEFL iBT. L'inscription à l'examen est en option lors de l'achat." },
   { q: "Que se passe-t-il en cas d'imprévu ?", a: "Vous pouvez reporter votre créneau sans frais jusqu'à 24h avant la séance, par simple email ou via le lien reçu." },
   { q: "Comment s'applique la garantie Satisfait ou remboursé ?", a: "Si votre premier cours individuel ne répond pas entièrement à vos attentes, nous vous remboursons intégralement sur simple demande sous 48h." },
   { q: "Quel matériel ou logiciel est nécessaire ?", a: "Aucun logiciel à installer. Un simple navigateur web sur ordinateur, tablette ou smartphone avec webcam et micro suffit." },

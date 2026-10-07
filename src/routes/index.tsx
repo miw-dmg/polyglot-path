@@ -11,10 +11,18 @@ import { Reveal } from "@/components/site/Reveal";
 // import { VideoTestimonials } from "@/components/site/VideoTestimonials";
 import { coursesQuery } from "@/lib/courses";
 import { PlansComparison } from "@/components/site/PlansComparison";
+import { Testimonials } from "@/components/site/Testimonials";
 import heroImg from "@/assets/hero-study.webp";
 
 export const Route = createFileRoute("/")({
-  // Inherits title/description/og from __root.tsx (identical values, no duplicate meta).
+  head: () => ({
+    meta: [
+      { title: "Cours d'anglais en ligne avec professeur | PolyLinguist" },
+      { name: "description", content: "Améliorez votre anglais avec des cours individuels en ligne adaptés à votre niveau et vos objectifs. Testez gratuitement votre première séance." },
+      { property: "og:title", content: "Cours d'anglais en ligne avec professeur | PolyLinguist" },
+      { property: "og:description", content: "Améliorez votre anglais avec des cours individuels en ligne adaptés à votre niveau et vos objectifs. Testez gratuitement votre première séance." },
+    ],
+  }),
   loader: ({ context }) => context.queryClient.ensureQueryData(coursesQuery()),
   errorComponent: ({ error }) => <div className="p-8">{(error as Error).message}</div>,
   notFoundComponent: () => <div className="p-8">Introuvable</div>,
@@ -140,6 +148,7 @@ function Home() {
 
       {/* Trust figures */}
       <TrustBand />
+      <Testimonials />
 
       {/* How it works */}
       <section id="how" className="py-24 bg-white">
