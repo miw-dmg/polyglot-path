@@ -133,6 +133,39 @@ export type Database = {
           },
         ]
       }
+      leads: {
+        Row: {
+          booked: boolean
+          created_at: string
+          email: string
+          first_name: string
+          goal: string
+          id: string
+          phone: string | null
+          source: string | null
+        }
+        Insert: {
+          booked?: boolean
+          created_at?: string
+          email: string
+          first_name: string
+          goal: string
+          id?: string
+          phone?: string | null
+          source?: string | null
+        }
+        Update: {
+          booked?: boolean
+          created_at?: string
+          email?: string
+          first_name?: string
+          goal?: string
+          id?: string
+          phone?: string | null
+          source?: string | null
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           email: string

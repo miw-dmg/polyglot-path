@@ -43,6 +43,13 @@
       "when": 1790345656561,
       "tag": "0005_create_contact_messages",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791372883106,
+      "tag": "0006_create_leads",
+      "breakpoints": true
     }
   ]
 }

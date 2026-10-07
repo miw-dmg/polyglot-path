@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowRight, BookOpen, CheckCircle2, Users, Sparkles, Wallet, ShieldCheck, CalendarCheck, GraduationCap, UserCheck, HeartHandshake } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, ShieldCheck, CalendarCheck, GraduationCap, UserCheck, HeartHandshake, Gift, MessageCircle, Briefcase, Award } from "lucide-react";
+import { track } from "@/lib/track";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CourseCard } from "@/components/site/CourseCard";
@@ -21,20 +22,35 @@ export const Route = createFileRoute("/")({
 });
 
 const steps = [
-  { icon: Sparkles, title: "Choisissez votre catégorie", text: "Conversation, anglais des affaires ou parcours certifiant : sélectionnez le cours adapté à votre objectif." },
-  { icon: BookOpen, title: "Sélectionnez un créneau", text: "Parcourez les sessions individuelles en direct disponibles et réservez la date et l'heure qui vous conviennent." },
-  { icon: Users, title: "Payez en toute sécurité", text: "Paiement par carte en quelques clics, sans création de compte. Votre place est confirmée immédiatement." },
-  { icon: CheckCircle2, title: "Rejoignez la session en direct", text: "Recevez votre lien de visioconférence par e-mail et connectez-vous au jour et à l'heure choisis." },
+  { title: "Réservez votre séance gratuite", text: "20 minutes pour parler avec un professeur et identifier vos besoins." },
+  { title: "Recevez votre plan", text: "Nous vous recommandons une approche adaptée à votre niveau et votre objectif." },
+  { title: "Progressez à votre rythme", text: "Cours individuels, professeur dédié et programme personnalisé." },
 ];
 
+const goals = [
+  { icon: MessageCircle, title: "Parler anglais avec aisance", text: "Pour ceux qui comprennent l'anglais mais manquent de confiance à l'oral.", cta: "Améliorer mon anglais oral", slug: "anglais-conversationnel" },
+  { icon: Briefcase, title: "Anglais professionnel", text: "Pour les réunions, présentations, entretiens, emails et échanges professionnels.", cta: "Améliorer mon anglais professionnel", slug: "anglais-affaires" },
+  { icon: Award, title: "Préparer un examen", text: "Préparation au TOEFL iBT avec un parcours structuré et des tests blancs.", cta: "Préparer mon examen", slug: "anglais-toefl" },
+] as const;
+
 const commitments = [
-  { icon: GraduationCap, title: "Professeurs certifiés", text: "Nos professeurs sont diplômés et sélectionnés pour leur expérience de l'enseignement aux professionnels." },
-  { icon: UserCheck, title: "Cours individuels en direct", text: "Chaque session est un tête-à-tête : toute l'attention du professeur est portée sur vous." },
-  { icon: ShieldCheck, title: "Paiement sécurisé", text: "Le paiement par carte est traité par Shopify. Aucune donnée bancaire ne transite sur notre site." },
-  { icon: HeartHandshake, title: "Satisfait ou remboursé", text: "Si une session ne vous convient pas, nous vous remboursons. Notre objectif : que chaque cours soit un vrai plus pour vous." },
-  { icon: CalendarCheck, title: "Créneau garanti", text: "Votre place est confirmée immédiatement après le paiement : le créneau est réservé pour vous." },
-  { icon: Sparkles, title: "Séance d'essai gratuite", text: "Testez une session en direct dans la catégorie de votre choix, sans engagement." },
+  { icon: UserCheck, title: "Cours 100 % individuels", text: "Un professeur dédié à votre progression, toute son attention est portée sur vous." },
+  { icon: Sparkles, title: "Programme personnalisé", text: "Votre niveau et vos objectifs déterminent le contenu de chaque cours." },
+  { icon: GraduationCap, title: "Professeurs sélectionnés", text: "Des enseignants diplômés, choisis pour leur expérience auprès des adultes et des professionnels." },
+  { icon: CalendarCheck, title: "Flexible", text: "Réservez vos cours en ligne selon votre emploi du temps, de 8h à 22h." },
 ];
+
+function TrialCta({ location, light = false }: { location: string; light?: boolean }) {
+  return (
+    <Link
+      to="/essai-gratuit"
+      onClick={() => { track("cta_click", { location }); track("free_trial_start", { location }); }}
+      className={`inline-flex items-center justify-center gap-2 rounded-lg px-8 py-4 font-medium shadow-soft transition-all hover:-translate-y-0.5 ${light ? "bg-white text-sage-900" : "bg-sage-600 text-white"}`}
+    >
+      <Gift className="h-4 w-4" /> Je réserve ma séance gratuite
+    </Link>
+  );
+}
 
 function Home() {
   const { data: courses } = useSuspenseQuery(coursesQuery());
@@ -57,30 +73,31 @@ function Home() {
       <Header />
 
       {/* Hero */}
-      <header className="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32">
+      <header className="relative overflow-hidden pt-10 pb-20 md:pt-24 md:pb-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className="max-w-xl">
               <span className="hero-enter mb-4 inline-block rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold tracking-wider uppercase text-sage-600">
-                Cours individuels en direct
+                Cours d'anglais individuels en ligne
               </span>
               <h1 className="hero-enter mb-6 font-serif text-5xl leading-[1.1] md:text-6xl" style={{ animationDelay: "120ms" }}>
-                Maîtrisez l'Anglais avec <span className="italic">assurance</span>.
+                Parlez anglais avec <span className="italic">confiance</span>, enfin.
               </h1>
               <p className="hero-enter mb-8 text-lg text-sage-900/70 leading-relaxed" style={{ animationDelay: "240ms" }}>
-                Des cours individuels avec un professeur certifié, en ligne et à réserver selon vos disponibilités, pour améliorer votre niveau en Anglais dans les affaires ou dans la vie de tous les jours.
+                Des cours d'anglais individuels en ligne avec un professeur, adaptés à votre niveau, votre métier et vos objectifs.
               </p>
-              <div className="hero-enter flex flex-wrap gap-4" style={{ animationDelay: "360ms" }}>
-                <Link to="/catalogue" className="rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft hover:-translate-y-0.5 transition-all">
-                  Je réserve en ligne
+              <div className="hero-enter flex flex-col gap-3 sm:flex-row sm:items-center" style={{ animationDelay: "360ms" }}>
+                <Link to="/essai-gratuit" onClick={() => { track("cta_click", { location: "hero" }); track("free_trial_start", { location: "hero" }); }} className="inline-flex items-center justify-center gap-2 rounded-lg bg-sage-600 px-8 py-4 text-lg font-semibold text-white shadow-soft transition-all hover:-translate-y-0.5">
+                  <Gift className="h-5 w-5" /> Testez votre anglais gratuitement
                 </Link>
-                <Link to="/essai-gratuit" className="rounded-lg border border-sage-100 bg-white px-8 py-4 font-medium hover:bg-sage-50 transition-colors">
-                  Séance d'essai gratuite
+                <Link to="/catalogue" onClick={() => track("cta_click", { location: "hero_secondary" })} className="inline-flex items-center justify-center gap-1 px-4 py-3 text-sm font-medium text-sage-600 hover:underline">
+                  Découvrir nos cours <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
+              <p className="hero-enter mt-3 text-sm font-medium text-sage-900/70" style={{ animationDelay: "420ms" }}>20 minutes · 100 % gratuit · Sans carte bancaire</p>
               <p className="hero-enter mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground" style={{ animationDelay: "480ms" }}>
                 <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-sage-600" /> Paiement sécurisé</span>
-                <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-sage-600" /> Sans compte requis</span>
+                <span className="inline-flex items-center gap-1.5"><UserCheck className="h-3.5 w-3.5 text-sage-600" /> Cours 100 % individuels</span>
                 <span className="inline-flex items-center gap-1.5"><HeartHandshake className="h-3.5 w-3.5 text-sage-600" /> Satisfait ou remboursé</span>
               </p>
             </div>
@@ -99,19 +116,107 @@ function Home() {
         </div>
       </header>
 
+      {/* Free trial */}
+      <section className="pb-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <Reveal>
+            <div className="grid gap-8 rounded-3xl bg-white p-8 ring-1 ring-sage-100 md:grid-cols-[1.3fr_1fr] md:items-center md:p-12">
+              <div>
+                <h2 className="mb-3 font-serif text-3xl md:text-4xl">Votre première séance est offerte</h2>
+                <p className="mb-6 text-sage-900/70">Découvrez votre niveau, échangez avec un professeur et repartez avec des conseils personnalisés pour progresser.</p>
+                <TrialCta location="trial_block" />
+              </div>
+              <ul className="space-y-3">
+                {["Évaluation de votre niveau", "Échange avec un professeur", "Conseils personnalisés"].map((b) => (
+                  <li key={b} className="flex items-center gap-3 rounded-xl bg-cream-100 px-4 py-3 font-medium">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-sage-600" /> {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Trust figures */}
       <TrustBand />
 
-      {/* Featured courses */}
+      {/* How it works */}
+      <section id="how" className="py-24 bg-white">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center mb-14">
+            <h2 className="font-serif text-3xl md:text-4xl mb-3">Commencez simplement</h2>
+            <p className="text-muted-foreground">Trois étapes, sans engagement.</p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {steps.map((s, i) => (
+              <Reveal key={s.title} delay={i * 100} className="h-full">
+                <div className="h-full rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
+                  <div className="mb-3 font-serif text-4xl text-sage-600">0{i + 1}</div>
+                  <h3 className="font-serif text-xl mb-2">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-10 text-center"><TrialCta location="how" /></div>
+        </div>
+      </section>
+
+      {/* Goals */}
+      <section className="py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center mb-14">
+            <h2 className="font-serif text-3xl md:text-4xl mb-3">Quel est votre objectif ?</h2>
+            <p className="text-muted-foreground">Choisissez le parcours qui vous correspond.</p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {goals.map((g, i) => (
+              <Reveal key={g.slug} delay={i * 80} className="h-full">
+                <div className="flex h-full flex-col rounded-2xl bg-white p-6 ring-1 ring-sage-100">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600"><g.icon className="h-5 w-5" /></div>
+                  <h3 className="font-serif text-xl mb-2">{g.title}</h3>
+                  <p className="mb-6 flex-1 text-sm text-muted-foreground leading-relaxed">{g.text}</p>
+                  <Link to="/cours/$slug" params={{ slug: g.slug }} onClick={() => track("cta_click", { location: "goal", goal: g.slug })} className="inline-flex items-center gap-2 text-sm font-semibold text-sage-600 hover:underline">
+                    {g.cta} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center mb-14">
+            <h2 className="font-serif text-3xl md:text-4xl mb-3">Pourquoi apprendre l'anglais avec PolyLinguist ?</h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {commitments.map((c, i) => (
+              <Reveal key={c.title} delay={i * 80} className="h-full">
+                <div className="h-full rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600"><c.icon className="h-5 w-5" /></div>
+                  <h3 className="font-serif text-xl mb-2">{c.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Offers */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="font-serif text-3xl mb-2">Cours populaires</h2>
-              <p className="text-muted-foreground">Sélectionnés pour leur qualité pédagogique.</p>
+              <h2 className="font-serif text-3xl mb-2">Nos offres</h2>
+              <p className="text-muted-foreground">Un cours à l'unité ou un pack de 10 heures, au tarif horaire le plus avantageux.</p>
             </div>
             <Link to="/catalogue" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-600 hover:underline">
-              Je réserve en ligne <ArrowRight className="h-4 w-4" />
+              Voir tous les cours <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -124,63 +229,7 @@ function Home() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how" className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl mb-3">Comment ça marche ?</h2>
-            <p className="text-muted-foreground">Réservez votre session en direct en quatre étapes simples.</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-4">
-            {steps.map((s, i) => (
-              <Reveal key={s.title} delay={i * 100} className="h-full">
-                <div className="h-full rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">Étape {i + 1}</div>
-                  <h3 className="font-serif text-xl mb-2">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link to="/catalogue" className="inline-flex items-center gap-2 rounded-lg bg-sage-600 px-8 py-4 font-medium text-white shadow-soft transition-all hover:-translate-y-0.5">
-              Je réserve en ligne <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <PlansComparison />
-
-      {/* Client video testimonials — hidden until videos are ready */}
-      {/* <VideoTestimonials /> */}
-
-      {/* Commitments */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-14">
-            <h2 className="font-serif text-3xl md:text-4xl mb-3">Nos engagements</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Ce à quoi vous pouvez nous tenir, à chaque étape de votre apprentissage.</p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {commitments.map((c, i) => (
-              <Reveal key={c.title} delay={(i % 3) * 80} className="h-full">
-                <div className="h-full rounded-2xl bg-cream-100 p-6 ring-1 ring-sage-100">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-sage-100 text-sage-600">
-                    <c.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-serif text-xl mb-2">{c.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{c.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
 
       <div className="mx-auto max-w-3xl px-6 pb-24"><FaqSection /></div>
 
@@ -190,13 +239,11 @@ function Home() {
         <div className="mx-auto max-w-5xl px-6">
           <Reveal>
           <div className="rounded-3xl bg-sage-900 p-12 md:p-16 text-center text-white">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">Prêt à commencer l'aventure ?</h2>
+            <h2 className="font-serif text-3xl md:text-4xl mb-4">Prêt à parler anglais avec confiance ?</h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              Rejoignez plus de 1000 étudiants qui ont transformé leur manière d'apprendre l'anglais.
+              Rejoignez plus de 1 000 étudiants. Commencez par une séance gratuite de 20 minutes, sans engagement.
             </p>
-            <Link to="/catalogue" className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 font-medium text-sage-900 hover:-translate-y-0.5 transition-all">
-              Je réserve en ligne <ArrowRight className="h-4 w-4" />
-            </Link>
+            <TrialCta location="final" light />
           </div>
           </Reveal>
         </div>
