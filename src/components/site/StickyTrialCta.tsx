@@ -6,6 +6,8 @@ export function StickyTrialCta() {
   const path = useRouterState({ select: (s) => s.location.pathname });
   if (path.startsWith("/essai-gratuit") || path.startsWith("/panier") || path.startsWith("/checkout")) return null;
   return (
+    <>
+    <div aria-hidden className="h-16 md:hidden" />
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sage-100 bg-cream-100/95 p-3 backdrop-blur md:hidden">
       <Link
         to="/essai-gratuit"
@@ -15,5 +17,6 @@ export function StickyTrialCta() {
         <Gift className="h-4 w-4" /> Séance gratuite
       </Link>
     </div>
+    </>
   );
 }
