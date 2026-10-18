@@ -45,7 +45,7 @@ function CoursePage() {
   const { data: course } = useSuspenseQuery(courseBySlugQuery(slug));
   const cart = useCart();
   const [slotId, setSlotId] = useState<string | null>(null);
-  const [withExam, setWithExam] = useState(true);
+  const [withExam, setWithExam] = useState(false);
   const [examDate, setExamDate] = useState("");
   const { data: sessions, isLoading: slotsLoading } = useQuery({ ...courseSessionsQuery(course?.id ?? ""), enabled: !!course, refetchInterval: 15000 });
   if (!course) return null;
