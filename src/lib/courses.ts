@@ -90,6 +90,10 @@ export const courseBySlugQuery = (slug: string) =>
     },
   });
 
+const TOEFL_DESCRIPTION =
+  "Préparation complète au TOEFL iBT : sessions en direct avec un professeur, supports en ligne et accompagnement vers votre objectif de score. Inscription à l'examen TOEFL iBT (310 €, via ITS) en option.";
+
 function mergeShop(c: Course, s: ShopifyCourseData): Course {
-  return { ...c, title: s.title, price_cents: s.priceCents, description: s.description || c.description, summary: s.description || c.summary, image_url: s.imageUrl ?? c.image_url };
+  const desc = c.slug === "anglais-toefl" ? TOEFL_DESCRIPTION : s.description || c.description;
+  return { ...c, title: s.title, price_cents: s.priceCents, description: desc, summary: desc, image_url: s.imageUrl ?? c.image_url };
 }
