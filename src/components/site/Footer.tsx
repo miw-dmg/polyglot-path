@@ -53,6 +53,14 @@ export function Footer() {
               <a href="mailto:contact@polylinguist.fr" className="block font-medium hover:text-sage-600 transition-colors">contact@polylinguist.fr</a>
               <a href="tel:+33628540270" className="block text-muted-foreground hover:text-sage-600 transition-colors">+33 6 28 54 02 70</a>
             </div>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm">
+              <a href="https://fr.trustpilot.com/review/polylinguist.fr" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-sage-100 bg-white px-4 py-2 font-medium hover:border-sage-600 transition-colors">
+                Nos avis sur Trustpilot
+              </a>
+              <a href="https://fr.trustpilot.com/evaluate/polylinguist.fr" target="_blank" rel="noopener noreferrer" className="rounded-lg bg-sage-600 px-4 py-2 font-medium text-white hover:bg-sage-900 transition-colors">
+                Laisser un avis
+              </a>
+            </div>
           </div>
           <div>
             <h4 className="mb-4 text-xs font-bold uppercase tracking-widest">Navigation</h4>
