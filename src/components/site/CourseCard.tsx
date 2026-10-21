@@ -17,19 +17,21 @@ export function CourseCard({ course }: { course: Course }) {
         <img src={img} alt={course.title} loading="lazy" decoding="async" width={1024} height={1024} className="h-full w-full object-cover transition-transform group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <div className="mb-2 flex items-start justify-between gap-3">
-          <span className="flex-1 min-w-0 pt-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground line-clamp-1">
+        <div className="mb-2">
+          <span className="block text-[10px] font-bold uppercase tracking-wider text-muted-foreground line-clamp-1">
             {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
           </span>
-          <span className="shrink-0 text-right whitespace-nowrap">
-            <span className="block text-lg font-serif font-bold text-sage-600">
-              {formatPrice(sessionCents)}
-              {isPack ? "/Session" : ""}
+          <div className="mt-1 flex items-start justify-end gap-3">
+            <span className="text-right whitespace-nowrap">
+              <span className="block text-lg font-serif font-bold text-sage-600">
+                {formatPrice(sessionCents)}
+                {isPack ? "/Session" : ""}
+              </span>
+              <span className="block text-[11px] text-muted-foreground">
+                {isPack ? `Pack de ${course.duration_hours} h · ${formatPrice(course.price_cents)}` : "1 session d'une heure"}
+              </span>
             </span>
-            <span className="block text-[11px] text-muted-foreground">
-              {isPack ? `Pack de ${course.duration_hours} h · ${formatPrice(course.price_cents)}` : "1 session d'une heure"}
-            </span>
-          </span>
+          </div>
         </div>
         <span className="mb-2 self-start rounded-full bg-sage-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sage-600">
           Cours individuel
