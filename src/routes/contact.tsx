@@ -76,7 +76,7 @@ function Contact() {
           <aside className="space-y-6">
             <Info icon={Mail} label="Email" value="contact@polylinguist.fr" />
             <Info icon={MessageSquare} label="Support" value="Lun-Dim · 9h-20h" />
-            <Info icon={MapPin} label="Adresse" value="7 rue albert voisin, 06300 Nice" />
+            <Info icon={MapPin} label="Adresse" value="7 Rue Albert Voisin, 06300 Nice" />
           </aside>
         </div>
       </div>
