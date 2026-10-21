@@ -5,6 +5,8 @@ import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 
 export function CourseCard({ course }: { course: Course }) {
   const img = courseImage(course) ?? coursAnglaisImg;
+  const isPack = (course.duration_hours ?? 1) > 1;
+  const sessionCents = isPack ? Math.floor(course.price_cents / (course.duration_hours ?? 1)) : course.price_cents;
   return (
     <Link
       to="/cours/$slug"
@@ -19,9 +21,14 @@ export function CourseCard({ course }: { course: Course }) {
           <span className="flex-1 min-w-0 pt-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground line-clamp-1">
             {course.language} · {levelLabels[course.level]} · {formatLabels[course.format]}
           </span>
-          <span className="shrink-0 text-lg font-serif font-bold text-sage-600 whitespace-nowrap">
-            {formatPrice(course.price_cents)}
-            {course.format === "abonnement" ? "/m" : ""}
+          <span className="shrink-0 text-right whitespace-nowrap">
+            <span className="block text-lg font-serif font-bold text-sage-600">
+              {formatPrice(sessionCents)}
+              {isPack ? "/Session" : ""}
+            </span>
+            <span className="block text-[11px] text-muted-foreground">
+              {isPack ? `Pack de ${course.duration_hours} h · ${formatPrice(course.price_cents)}` : "1 session d'une heure"}
+            </span>
           </span>
         </div>
         <span className="mb-2 self-start rounded-full bg-sage-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sage-600">

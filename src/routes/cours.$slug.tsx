@@ -55,6 +55,8 @@ function CoursePage() {
   const img = courseImage(course) ?? coursAnglaisImg;
   const inCart = cart.items.some((i) => i.courseId === course.id);
   const isToefl = course.slug === "anglais-toefl";
+  const isPack = (course.duration_hours ?? 1) > 1;
+  const sessionCents = isPack ? Math.floor(course.price_cents / (course.duration_hours ?? 1)) : course.price_cents;
   const express = isToefl && withExam && isExpressDate(examDate);
   const totalCents = course.price_cents + (isToefl && withExam ? EXAM_FEE_CENTS : 0) + (express ? EXPRESS_FEE_CENTS : 0);
 
@@ -133,9 +135,16 @@ function CoursePage() {
                   {formatLabels[course.format]}
                 </div>
                 <div className="mb-2 flex items-baseline gap-2">
-                  <span className="font-serif text-4xl font-bold text-sage-600">{formatPrice(totalCents)}</span>
-                  {course.format === "abonnement" && <span className="text-sm text-muted-foreground">/mois</span>}
+                  <span className="font-serif text-4xl font-bold text-sage-600">
+                    {formatPrice(isPack ? sessionCents : totalCents)}
+                  </span>
+                  {isPack && <span className="text-sm text-muted-foreground">/Session</span>}
                 </div>
+                {isPack && (
+                  <p className="mb-4 text-sm text-muted-foreground">
+                    Total à payer : {formatPrice(totalCents)} ({course.duration_hours} sessions de 1 h)
+                  </p>
+                )}
                 {isToefl && (
                   <div className="mb-4 space-y-2">
                     <p className="text-sm font-semibold text-sage-900">Inscription à l'examen TOEFL iBT</p>
