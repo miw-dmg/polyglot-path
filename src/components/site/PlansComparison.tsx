@@ -2,13 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 
-type Plan = { slug: string; name: string; sub: string; price: string; perHour: string; goal: string; cta: string; featured?: boolean };
+type Plan = { slug: string; name: string; sub: string; price: string; total: string; goal: string; cta: string; featured?: boolean };
 
 const plans: Plan[] = [
-  { slug: "cours-a-la-demande", name: "Cours à la demande", sub: "1H", price: "19,99 €", perHour: "19,99 € / heure", goal: "Besoin ponctuel, préparation d'une réunion ou d'un entretien urgent.", cta: "Réserver une heure" },
-  { slug: "anglais-conversationnel", name: "Anglais Conversationnel", sub: "Pack 10H", price: "199,99 €", perHour: "soit 19,99 € / heure", goal: "Débloquer la fluidité et gagner en confiance au quotidien.", cta: "Choisir cette formule" },
-  { slug: "anglais-affaires", name: "Business English", sub: "Pack 10H", price: "249,99 €", perHour: "soit 24,99 € / heure", goal: "Négociation, réunions internationales, pitchs et vocabulaire sectoriel.", cta: "Choisir cette formule", featured: true },
-  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "299,99 €", perHour: "+310 € d'inscription TOEFL iBT · soit 29,99 € / heure de cours", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
+  { slug: "cours-a-la-demande", name: "Cours à la demande", sub: "1H", price: "19,99 €", total: "par session d'une heure", goal: "Besoin ponctuel, préparation d'une réunion ou d'un entretien urgent.", cta: "Réserver une heure" },
+  { slug: "anglais-conversationnel", name: "Anglais Conversationnel", sub: "Pack 10H", price: "19,99 €/Session", total: "Pack 10 h · 199,99 €", goal: "Débloquer la fluidité et gagner en confiance au quotidien.", cta: "Choisir cette formule" },
+  { slug: "anglais-affaires", name: "Business English", sub: "Pack 10H", price: "24,99 €/Session", total: "Pack 10 h · 249,99 €", goal: "Négociation, réunions internationales, pitchs et vocabulaire sectoriel.", cta: "Choisir cette formule", featured: true },
+  { slug: "anglais-toefl", name: "Parcours Certifiant ", sub: "Pack 10H", price: "29,99 €/Session", total: "Pack 10 h · 299,99 € + 310 € d'inscription TOEFL en option", goal: "Réussir les tests officiels avec entraînements ciblés et examens blancs.", cta: "Choisir cette formule" },
 ];
 
 type Cell = string | boolean;
@@ -53,7 +53,7 @@ export function PlansComparison() {
                     <div className="min-h-8 font-serif text-xs leading-tight">{p.name}</div>
                     <div className="min-h-4 text-[11px] text-muted-foreground">{p.sub}</div>
                     <div className="mt-1.5 text-lg font-semibold">{p.price}</div>
-                    <div className="text-[11px] text-muted-foreground">{p.perHour}</div>
+                    <div className="text-[11px] text-muted-foreground">{p.total}</div>
                     <p className="mt-1.5 text-[11px] leading-snug text-sage-900/70">{p.goal}</p>
                   </th>
                 ))}
