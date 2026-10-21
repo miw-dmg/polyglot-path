@@ -7,6 +7,10 @@ import courseSpanishImg from "@/assets/course-spanish.jpg";
 import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 import coursConversationImg from "@/assets/cours-conversation.jpg";
 import coursAffairesImg from "@/assets/cours-affaires.jpg";
+import imgConversationnelAsset from "@/assets/cours-conversationnel.jpg.asset.json";
+import imgADemandeAsset from "@/assets/cours-a-la-demande.jpg.asset.json";
+import imgToeflAsset from "@/assets/cours-toefl.jpg.asset.json";
+import imgAffairesAsset from "@/assets/cours-affaires.jpg.asset.json";
 
 export type Course = {
   id: string;
