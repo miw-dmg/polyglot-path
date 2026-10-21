@@ -7,6 +7,10 @@ import courseSpanishImg from "@/assets/course-spanish.jpg";
 import coursAnglaisImg from "@/assets/cours-anglais.jpg";
 import coursConversationImg from "@/assets/cours-conversation.jpg";
 import coursAffairesImg from "@/assets/cours-affaires.jpg";
+import imgConversationnelAsset from "@/assets/cours-conversationnel.jpg.asset.json";
+import imgADemandeAsset from "@/assets/cours-a-la-demande.jpg.asset.json";
+import imgToeflAsset from "@/assets/cours-toefl.jpg.asset.json";
+import imgAffairesAsset from "@/assets/cours-affaires.jpg.asset.json";
 
 export type Course = {
   id: string;
@@ -34,7 +38,17 @@ const imageMap: Record<string, string> = {
   "/src/assets/course-spanish.jpg": courseSpanishImg,
 };
 
+// Images officielles par cours : elles priment sur l'image Shopify (cdn.shopify.com).
+const slugImages: Record<string, string> = {
+  "anglais-conversationnel": imgConversationnelAsset.url,
+  "cours-a-la-demande": imgADemandeAsset.url,
+  "anglais-toefl": imgToeflAsset.url,
+  "anglais-affaires": imgAffairesAsset.url,
+};
+
 export function courseImage(course: { slug: string; image_url: string | null; language: string }): string | null {
+  const slugImg = slugImages[course.slug];
+  if (slugImg) return slugImg;
   const resolved = resolveImage(course.image_url, course.language);
   if (resolved) return resolved;
   if (course.slug.includes("conversation")) return coursConversationImg;
