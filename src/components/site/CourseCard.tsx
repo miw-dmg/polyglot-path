@@ -27,7 +27,7 @@ export function CourseCard({ course }: { course: Course }) {
               {isPack ? "/Session" : ""}
             </span>
             <span className="block text-[11px] text-muted-foreground">
-              Pack de {course.duration_hours} h · {formatPrice(course.price_cents)}
+              {isPack ? `Pack de ${course.duration_hours} h · ${formatPrice(course.price_cents)}` : "1 session d'une heure"}
             </span>
           </span>
         </div>
