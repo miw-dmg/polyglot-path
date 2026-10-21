@@ -38,7 +38,17 @@ const imageMap: Record<string, string> = {
   "/src/assets/course-spanish.jpg": courseSpanishImg,
 };
 
+// Images officielles par cours : elles priment sur l'image Shopify (cdn.shopify.com).
+const slugImages: Record<string, string> = {
+  "anglais-conversationnel": imgConversationnelAsset.url,
+  "cours-a-la-demande": imgADemandeAsset.url,
+  "anglais-toefl": imgToeflAsset.url,
+  "anglais-affaires": imgAffairesAsset.url,
+};
+
 export function courseImage(course: { slug: string; image_url: string | null; language: string }): string | null {
+  const slugImg = slugImages[course.slug];
+  if (slugImg) return slugImg;
   const resolved = resolveImage(course.image_url, course.language);
   if (resolved) return resolved;
   if (course.slug.includes("conversation")) return coursConversationImg;
