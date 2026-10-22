@@ -12,7 +12,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { coursesQuery } from "@/lib/courses";
 import { PlansComparison } from "@/components/site/PlansComparison";
 import { Testimonials } from "@/components/site/Testimonials";
-import heroImg from "@/assets/hero-study.webp";
+import heroAsset from "@/assets/hero-metro.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -110,7 +110,7 @@ function Home() {
               </p>
             </div>
             <div className="hero-enter relative" style={{ animationDelay: "300ms" }}>
-              <img src={heroImg} alt="Apprenante avec des écouteurs étudiant à son bureau" width={1024} height={768} fetchPriority="high" loading="eager" decoding="async" className="aspect-[4/3] w-full rounded-2xl object-cover shadow-soft" />
+              <img src={heroAsset.url} alt="Étudiante souriante sur un quai de métro, sur le chemin de son cours d'anglais en ligne" width={1600} height={901} fetchPriority="high" loading="eager" decoding="async" className="aspect-[16/9] w-full rounded-2xl object-cover shadow-soft" />
               <div className="animate-float-soft absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-soft">
                 <div className="flex gap-2 mb-2">
                   <div className="h-2 w-12 rounded-full bg-sage-600"></div>
