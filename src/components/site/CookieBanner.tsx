@@ -22,7 +22,7 @@ export function CookieBanner() {
   return (
     <div role="dialog" aria-label="Cookies" className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-xl rounded-2xl bg-white p-5 shadow-soft ring-1 ring-sage-100 text-sage-900">
       <p className="text-sm">
-        Avec votre accord, nous utilisons le pixel Meta (Facebook, Instagram) pour mesurer l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Cookies » en bas de page.{" "}
+        Avec votre accord, nous utilisons des cookies pour mesurer l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Cookies » en bas de page.{" "}
         <Link to="/confidentialite" className="font-semibold underline">En savoir plus</Link>
       </p>
       <div className="mt-4 flex gap-3">
