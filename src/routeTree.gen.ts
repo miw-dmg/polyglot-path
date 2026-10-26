@@ -16,6 +16,7 @@ import { Route as AnglaisConversationRouteImport } from './routes/anglais-conver
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EssaiGratuitRouteImport } from './routes/essai-gratuit'
 import { Route as PanierRouteImport } from './routes/panier'
@@ -57,6 +58,11 @@ const CatalogueRoute = CatalogueRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfidentialiteRoute = ConfidentialiteRouteImport.update({
+  id: '/confidentialite',
+  path: '/confidentialite',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
+  '/confidentialite': typeof ConfidentialiteRoute
   '/contact': typeof ContactRoute
   '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
+  '/confidentialite': typeof ConfidentialiteRoute
   '/contact': typeof ContactRoute
   '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/catalogue': typeof CatalogueRoute
   '/checkout': typeof CheckoutRoute
+  '/confidentialite': typeof ConfidentialiteRoute
   '/contact': typeof ContactRoute
   '/essai-gratuit': typeof EssaiGratuitRoute
   '/panier': typeof PanierRoute
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/catalogue'
     | '/checkout'
+    | '/confidentialite'
     | '/contact'
     | '/essai-gratuit'
     | '/panier'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/catalogue'
     | '/checkout'
+    | '/confidentialite'
     | '/contact'
     | '/essai-gratuit'
     | '/panier'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/catalogue'
     | '/checkout'
+    | '/confidentialite'
     | '/contact'
     | '/essai-gratuit'
     | '/panier'
@@ -211,6 +223,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CatalogueRoute: typeof CatalogueRoute
   CheckoutRoute: typeof CheckoutRoute
+  ConfidentialiteRoute: typeof ConfidentialiteRoute
   ContactRoute: typeof ContactRoute
   EssaiGratuitRoute: typeof EssaiGratuitRoute
   PanierRoute: typeof PanierRoute
@@ -269,6 +282,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confidentialite': {
+      id: '/confidentialite'
+      path: '/confidentialite'
+      fullPath: '/confidentialite'
+      preLoaderRoute: typeof ConfidentialiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -349,6 +369,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CatalogueRoute: CatalogueRoute,
   CheckoutRoute: CheckoutRoute,
+  ConfidentialiteRoute: ConfidentialiteRoute,
   ContactRoute: ContactRoute,
   EssaiGratuitRoute: EssaiGratuitRoute,
   PanierRoute: PanierRoute,
