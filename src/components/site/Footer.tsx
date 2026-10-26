@@ -73,7 +73,8 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-xs font-bold uppercase tracking-widest">Légal</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-sage-600">Confidentialité</a></li>
+              <li><Link to="/confidentialite" className="hover:text-sage-600">Confidentialité</Link></li>
+              <li><button type="button" onClick={() => window.dispatchEvent(new Event("pl-open-cookie-settings"))} className="hover:text-sage-600">Cookies</button></li>
               <li><a href="#" className="hover:text-sage-600">Mentions légales</a></li>
               <li><a href="#" className="hover:text-sage-600">CGV</a></li>
             </ul>
