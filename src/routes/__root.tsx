@@ -17,6 +17,8 @@ import { CartDrawer } from "@/components/site/CartDrawer";
 import { CallButton } from "@/components/site/CallButton";
 import { StickyTrialCta } from "@/components/site/StickyTrialCta";
 import { ContentsquareTag } from "@/components/site/ContentsquareTag";
+import { MetaPixel } from "@/components/site/MetaPixel";
+import { CookieBanner } from "@/components/site/CookieBanner";
 
 function NotFoundComponent() {
   return (
@@ -139,6 +141,8 @@ function RootComponent() {
       <CallButton />
       <StickyTrialCta />
       <ContentsquareTag />
+      <MetaPixel />
+      <CookieBanner />
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
