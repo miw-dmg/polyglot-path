@@ -85,9 +85,18 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className="max-w-xl">
-              <span className="hero-enter mb-4 inline-block rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold tracking-wider uppercase text-sage-600">
-                Cours d'anglais individuels en ligne
-              </span>
+              <div className="hero-enter mb-4 flex flex-wrap items-center gap-3">
+                <span className="inline-block rounded-full bg-sage-100 px-3 py-1 text-xs font-semibold tracking-wider uppercase text-sage-600">
+                  Cours d'anglais individuels en ligne
+                </span>
+                <Link
+                  to="/contact"
+                  onClick={() => track("cta_click", { location: "hero_quote" })}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-sage-600 px-3 py-1 text-xs font-semibold text-sage-600 transition-colors hover:bg-sage-600 hover:text-white"
+                >
+                  Devis personnalisé <ArrowRight className="h-3 w-3" />
+                </Link>
+              </div>
               <h1 className="hero-enter mb-6 font-serif text-5xl leading-[1.1] md:text-6xl" style={{ animationDelay: "120ms" }}>
                 Parlez anglais avec <span className="italic">confiance</span>.
               </h1>
