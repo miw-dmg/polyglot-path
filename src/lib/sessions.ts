@@ -4,7 +4,9 @@ import type { Tables } from "@/integrations/supabase/types";
 
 export type Session = Tables<"sessions">;
 
-export type SessionWithAvailability = Session & {
+export type SessionAvailability = Tables<"session_availability">;
+
+export type SessionWithAvailability = SessionAvailability & {
   booked_count: number;
   spots_left: number;
   my_booking_id: string | null;
@@ -32,7 +34,7 @@ export function courseSessionsQuery(courseId: string) {
     queryFn: async (): Promise<SessionWithAvailability[]> => {
       const now = new Date().toISOString();
       const { data: sessions, error } = await supabase
-        .from("sessions")
+        .from("session_availability")
         .select("*")
         .eq("course_id", courseId)
         .gte("starts_at", now)
