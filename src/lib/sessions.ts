@@ -4,7 +4,17 @@ import type { Tables } from "@/integrations/supabase/types";
 
 export type Session = Tables<"sessions">;
 
-export type SessionWithAvailability = Session & {
+// Colonnes NOT NULL dans la table sessions sous-jacente ; la vue génère des
+// types nullable, d'où ce type explicite.
+export type SessionAvailability = {
+  id: string;
+  course_id: string;
+  starts_at: string;
+  duration_minutes: number;
+  capacity: number;
+};
+
+export type SessionWithAvailability = SessionAvailability & {
   booked_count: number;
   spots_left: number;
   my_booking_id: string | null;
@@ -32,13 +42,13 @@ export function courseSessionsQuery(courseId: string) {
     queryFn: async (): Promise<SessionWithAvailability[]> => {
       const now = new Date().toISOString();
       const { data: sessions, error } = await supabase
-        .from("sessions")
+        .from("session_availability")
         .select("*")
         .eq("course_id", courseId)
         .gte("starts_at", now)
         .order("starts_at", { ascending: true });
       if (error) throw error;
-      const rows = sessions ?? [];
+      const rows = (sessions ?? []) as SessionAvailability[];
       const ids = rows.map((s) => s.id);
 
       const counts: Record<string, number> = {};

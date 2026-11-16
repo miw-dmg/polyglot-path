@@ -50,6 +50,13 @@
       "when": 1791372883106,
       "tag": "0006_create_leads",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794820096866,
+      "tag": "0007_restrict_sessions_public_read",
+      "breakpoints": true
     }
   ]
 }
