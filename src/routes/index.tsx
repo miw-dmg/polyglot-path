@@ -92,9 +92,9 @@ function Home() {
                 <Link
                   to="/contact"
                   onClick={() => track("cta_click", { location: "hero_quote" })}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-sage-600 px-3 py-1 text-xs font-semibold text-sage-600 transition-colors hover:bg-sage-600 hover:text-white"
+                  className="inline-flex items-center gap-2 rounded-full bg-sage-900 px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:-translate-y-0.5"
                 >
-                  Devis personnalisé <ArrowRight className="h-3 w-3" />
+                  Devis personnalisé <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
               <h1 className="hero-enter mb-6 font-serif text-5xl leading-[1.1] md:text-6xl" style={{ animationDelay: "120ms" }}>
