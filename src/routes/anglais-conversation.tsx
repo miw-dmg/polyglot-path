@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Gift, ShieldCheck, UserCheck, CalendarCheck } from "lucide-react";
-import { TrustBand } from "@/components/site/TrustBand";
 import { FaqSection } from "@/components/site/Reassurance";
 import { track } from "@/lib/track";
 import logoAsset from "@/assets/polylinguist-logo.png.asset.json";
@@ -93,8 +92,6 @@ function ConversationLanding() {
         </div>
         <div className="mt-10 text-center"><Cta location="benefits" /></div>
       </section>
-
-      <TrustBand />
 
       <div className="mx-auto max-w-3xl px-6 py-20"><FaqSection /></div>
 

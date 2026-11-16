@@ -5,7 +5,6 @@ import { track } from "@/lib/track";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CourseCard } from "@/components/site/CourseCard";
-import { TrustBand } from "@/components/site/TrustBand";
 import { FaqSection } from "@/components/site/Reassurance";
 import { Reveal } from "@/components/site/Reveal";
 // import { VideoTestimonials } from "@/components/site/VideoTestimonials";
