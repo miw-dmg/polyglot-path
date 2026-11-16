@@ -27,19 +27,6 @@ function About() {
           Nos cours sont conçus par des linguistes passionnés et des locuteurs certifiés. Toutes nos formations se déroulent en sessions live individuelles, à réserver selon vos disponibilités, avec un accompagnement personnalisé pour vous faire progresser durablement.
         </p>
 
-        <div className="grid gap-6 sm:grid-cols-3 my-12">
-          {[
-            { n: "1 000+", l: "Apprenants" },
-            { n: "50+", l: "PROFESSEURS" },
-            { n: "4.8/5", l: "Note moyenne" },
-          ].map((s) => (
-            <div key={s.l} className="rounded-2xl bg-white p-6 text-center ring-1 ring-sage-100">
-              <div className="font-serif text-3xl font-bold text-sage-600">{s.n}</div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground mt-1">{s.l}</div>
-            </div>
-          ))}
-        </div>
-
         <h2 className="font-serif text-3xl mt-12 mb-4">Notre méthode</h2>
         <p className="text-sage-900/80 leading-relaxed mb-6">
           Chaque cours suit une progression structurée, avec des objectifs clairs à chaque étape. Nous croyons en la pratique active : écouter, parler, écrire et comprendre.
