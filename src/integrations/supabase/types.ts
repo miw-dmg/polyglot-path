@@ -320,6 +320,13 @@ export type Database = {
             foreignKeyName: "session_bookings_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
+            referencedRelation: "session_availability"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "session_bookings_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
             referencedRelation: "sessions"
             referencedColumns: ["id"]
           },
@@ -365,12 +372,51 @@ export type Database = {
       }
     }
     Views: {
+      session_availability: {
+        Row: {
+          capacity: number | null
+          course_id: string | null
+          duration_minutes: number | null
+          id: string | null
+          starts_at: string | null
+        }
+        Insert: {
+          capacity?: number | null
+          course_id?: string | null
+          duration_minutes?: number | null
+          id?: string | null
+          starts_at?: string | null
+        }
+        Update: {
+          capacity?: number | null
+          course_id?: string | null
+          duration_minutes?: number | null
+          id?: string | null
+          starts_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sessions_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       session_booking_counts: {
         Row: {
           booked_count: number | null
           session_id: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "session_bookings_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "session_availability"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "session_bookings_session_id_fkey"
             columns: ["session_id"]
