@@ -256,7 +256,7 @@ function Home() {
           <div className="rounded-3xl bg-sage-900 p-12 md:p-16 text-center text-white">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">Prêt à parler anglais avec confiance ?</h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              Rejoignez plus de 1 000 étudiants. Commencez par une séance gratuite de 20 minutes, sans engagement.
+              Rejoignez notre communauté d'étudiants. Commencez par une séance gratuite de 20 minutes, sans engagement.
             </p>
             <TrialCta location="final" light />
           </div>
