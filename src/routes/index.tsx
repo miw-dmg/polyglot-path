@@ -155,8 +155,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Trust figures */}
-      <TrustBand />
       <Testimonials />
 
       {/* How it works */}
